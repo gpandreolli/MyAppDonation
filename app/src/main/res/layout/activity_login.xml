@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/txtSenha"
+        android:layout_width="172dp"
+        android:layout_height="39dp"
+        android:text="E-mail"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="172dp"
+        android:layout_height="39dp"
+        android:text="E-mail"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="110dp" />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="321dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="149dp" />
+
+    <EditText
+        android:id="@+id/edtSenha"
+        android:layout_width="323dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="260dp" />
+
+    <Button
+        android:id="@+id/btnLogar"
+        android:layout_width="305dp"
+        android:layout_height="55dp"
+        android:text="Logar"
+        android:textAllCaps="false"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="342dp" />
+
+    <Button
+        android:id="@+id/btnCadastrar"
+        android:layout_width="298dp"
+        android:layout_height="54dp"
+        android:text="Cadastrar"
+        android:textAllCaps="false"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="441dp" />
+
+    <Button
+        android:id="@+id/btnRecSenha"
+        android:layout_width="213dp"
+        android:layout_height="56dp"
+        android:text="Recuperar Senha"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="602dp"
+        android:textAllCaps="false"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
