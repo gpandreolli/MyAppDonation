@@ -1,8 +1,10 @@
-package com.gpa.myappdonation;
+package com.gpa.myappdonation.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.gpa.myappdonation.R;
 
 public class AberturaActivity extends AppCompatActivity {
 

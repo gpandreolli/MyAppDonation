@@ -1,4 +1,4 @@
-package com.gpa.myappdonation;
+package com.gpa.myappdonation.view;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -8,6 +8,8 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.gpa.myappdonation.R;
 
 public class LoginEmailActivity extends AppCompatActivity implements View.OnClickListener {
 

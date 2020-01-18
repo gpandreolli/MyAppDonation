@@ -1,7 +1,5 @@
-package com.gpa.myappdonation.Model;
+package com.gpa.myappdonation.model;
 
-import java.io.StringBufferInputStream;
-import java.security.PrivateKey;
 import java.util.Objects;
 
 public class Pessoa {

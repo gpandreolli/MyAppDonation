@@ -1,4 +1,4 @@
-package com.gpa.myappdonation;
+package com.gpa.myappdonation.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.gpa.myappdonation.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void btnInstituicaoOnclick() {
-        Intent i = new Intent(this, LoginActivity.class);
+        Intent i = new Intent(this, CadastrarInstituicaoActivity.class);
         startActivity(i);
 
     }
