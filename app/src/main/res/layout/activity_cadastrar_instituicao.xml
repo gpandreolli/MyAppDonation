@@ -47,10 +47,84 @@
         android:layout_height="wrap_content"
         android:text="CEP" />
 
+
     <EditText
-        android:id="@+id/edtCep"
+        android:id="@+id/et_zip_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="8" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Estados" />
+
+    <Spinner
+        android:id="@+id/sp_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cidade" />
+
+    <EditText
+        android:id="@+id/et_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rua" />
+
+    <EditText
+        android:id="@+id/et_street"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Número" />
+
+    <EditText
+        android:id="@+id/et_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Complemento" />
+
+    <EditText
+        android:id="@+id/et_complement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bairro" />
+
+    <EditText
+        android:id="@+id/et_neighbor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_zip_code_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Esqueci o CEP"
+        android:visibility="invisible"/>
+
 
 </LinearLayout>
