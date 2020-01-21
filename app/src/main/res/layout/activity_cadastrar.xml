@@ -20,7 +20,7 @@
         android:id="@+id/edtEmailInst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Insira seu email"
+        android:hint="Insira seu email"
         android:inputType="textEmailAddress"/>
 
     <TextView
@@ -31,7 +31,7 @@
         android:id="@+id/edtSenhaInst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Senha"
+        android:hint="*******"
         android:inputType="textPassword"/>
     
     <Button

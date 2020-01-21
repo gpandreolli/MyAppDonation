@@ -34,4 +34,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.2.0'
    // compile 'com.android.support:design:25.1.0'
     compile 'com.google.code.gson:gson:2.7'
+    implementation 'com.google.firebase:firebase-database:19.2.0'
 }

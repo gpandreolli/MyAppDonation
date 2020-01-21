@@ -8,64 +8,55 @@
     android:gravity="center"
     tools:context=".view.LoginActivity">
 
-    <TextView
-        android:id="@+id/txtSenha"
-        android:layout_width="172dp"
-        android:layout_height="39dp"
-        android:text="E-mail"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="217dp" />
+
 
     <TextView
         android:id="@+id/txtEmail"
-        android:layout_width="172dp"
-        android:layout_height="39dp"
-        android:text="E-mail"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="110dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="E-mail" />
 
     <EditText
         android:id="@+id/edtEmail"
-        android:layout_width="321dp"
-        android:layout_height="46dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="149dp" />
+        android:hint="Informe seu email"
+        android:inputType="textEmailAddress"/>
+
+    <TextView
+        android:id="@+id/txtSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Senha" />
 
     <EditText
         android:id="@+id/edtSenha"
-        android:layout_width="323dp"
-        android:layout_height="39dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="260dp" />
+        android:hint="*****"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btnLogar"
-        android:layout_width="305dp"
-        android:layout_height="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Logar"
-        android:textAllCaps="false"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="342dp" />
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btnCadastrar"
-        android:layout_width="298dp"
-        android:layout_height="54dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Cadastrar"
-        android:textAllCaps="false"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="441dp" />
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btnRecSenha"
-        android:layout_width="213dp"
-        android:layout_height="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Recuperar Senha"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="602dp"
+        android:layout_marginTop="50dp"
         android:textAllCaps="false"/>
 </LinearLayout>

@@ -6,14 +6,14 @@ import java.lang.ref.WeakReference;
 
 import com.google.gson.Gson;
 import com.gpa.myappdonation.model.Address;
-import com.gpa.myappdonation.view.SignUpActivity;
+import com.gpa.myappdonation.view.CadastrarInstituicaoActivity;
 
 public class AddressRequest extends AsyncTask<Void,Void, Address> {
 
-    private WeakReference<SignUpActivity> activity;
+    private WeakReference<CadastrarInstituicaoActivity> activity;
 
-    public AddressRequest(SignUpActivity activity) {
-        this.activity = new WeakReference<SignUpActivity>(activity);
+    public AddressRequest(CadastrarInstituicaoActivity activity) {
+        this.activity = new WeakReference<CadastrarInstituicaoActivity>(activity);
     }
 
     @Override
@@ -39,6 +39,7 @@ public class AddressRequest extends AsyncTask<Void,Void, Address> {
 
         return null;
     }
+
 
     @Override
     protected void onPostExecute(Address address) {

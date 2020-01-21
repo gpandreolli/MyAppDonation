@@ -9,6 +9,15 @@
     android:padding="10dp"
     tools:context=".view.CadastrarInstituicaoActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,11 +129,34 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/tv_zip_code_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Esqueci o CEP"
-        android:visibility="invisible"/>
+        android:text="Email Instituição" />
+
+    <EditText
+        android:id="@+id/edtEmailCadInst"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Telefone" />
+
+    <EditText
+        android:id="@+id/edtFoneInst"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnSalvarInst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            android:textAllCaps="false"/>
+
+                 </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>

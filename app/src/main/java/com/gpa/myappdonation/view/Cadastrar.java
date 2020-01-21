@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,15 +20,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.gpa.myappdonation.R;
 
+
 public class Cadastrar extends AppCompatActivity implements View.OnClickListener {
 
     private EditText edtEmailInst,edtSenhaInst;
     private Button btnSalvarCadastro,btnCancelarCadastro;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,11 @@ public class Cadastrar extends AppCompatActivity implements View.OnClickListener
              Toast.makeText(getBaseContext(),"Senha com mínimo de 6 caracteres",Toast.LENGTH_LONG).show();
 
          }else{
-             criarUsuario(email,senha);
+             if(verificarInternet()){
+                criarUsuario(email,senha);
+             }else {
+                 Toast.makeText(getBaseContext(),"Verifique conexão do seu aparelho com a intenet",Toast.LENGTH_LONG).show();
+             }
          }
 
     }
@@ -114,7 +118,8 @@ public class Cadastrar extends AppCompatActivity implements View.OnClickListener
                     chamaActivity();
 
                 }else{
-                    Toast.makeText(getBaseContext(),"Erro ao cadastrar 1",Toast.LENGTH_LONG).show();
+                    String resposta = task.getException().toString();
+                    opcoesErro(resposta);
 
                 }
             }
@@ -123,10 +128,35 @@ public class Cadastrar extends AppCompatActivity implements View.OnClickListener
 
     }
 
+    private void opcoesErro(String resposta) {
+
+        if (resposta.contains("address is badly") ){
+            Toast.makeText(getBaseContext(),"Email invalido",Toast.LENGTH_LONG).show();
+        }else if(resposta.contains("interrupted connection")) {
+            Toast.makeText(getBaseContext(),"Sem conexão com banco de dados",Toast.LENGTH_LONG).show();
+        }        else if(resposta.contains("is not available on this device")) {
+            Toast.makeText(getBaseContext(),"Não é possivel se conectar ao banco de dados atraves desse aparelho",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
     private void chamaActivity() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
+
+    private boolean verificarInternet(){
+
+        ConnectivityManager conexeao = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo informacao = conexeao.getActiveNetworkInfo();
+
+        if (informacao != null && informacao.isConnected()){
+            return true;
+        }
+        return false;
+    }
+
+
 
 
 }

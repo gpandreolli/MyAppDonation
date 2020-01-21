@@ -4,6 +4,8 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 
+import com.gpa.myappdonation.view.CadastrarInstituicaoActivity;
+
 public class ZipCodeListener implements TextWatcher {
 
     private Context context;
@@ -23,6 +25,8 @@ public class ZipCodeListener implements TextWatcher {
         String zipCode = editable.toString();
 
         if (editable.length() == 8){
+
+            new AddressRequest((CadastrarInstituicaoActivity) context).execute();
 
 
         }
