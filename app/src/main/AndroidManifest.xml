@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gpa.myappdonation">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.CadastrarInstituicaoActivity"></activity>
+        <activity android:name=".view.ListContaActivity"></activity>
+        <activity android:name=".view.IncialActivityInsti" />
+        <activity android:name=".view.CadastrarInstituicaoActivity" />
         <activity android:name=".view.AberturaActivity" />
         <activity android:name=".view.Cadastrar" />
         <activity android:name=".view.MainActivity" />
