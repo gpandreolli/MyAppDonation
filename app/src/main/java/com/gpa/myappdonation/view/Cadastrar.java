@@ -68,14 +68,14 @@ public class Cadastrar extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()){
             case R.id.btnSalvarCadastro:
 
-                cadastrarInst();
+                cadastrarUsua();
 
                 break;
         }
 
     }
 
-    private void cadastrarInst() {
+    private void cadastrarUsua() {
 
 
          String email = edtEmailInst.getText().toString().trim();
@@ -141,7 +141,7 @@ public class Cadastrar extends AppCompatActivity implements View.OnClickListener
     }
 
     private void chamaActivity() {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, UsuarioActivity.class);
         startActivity(i);
     }
 

@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void btnInstituicaoOnclick() {
+
+
+
         Intent i = new Intent(this, CadastrarInstituicaoActivity.class);
         startActivity(i);
 
