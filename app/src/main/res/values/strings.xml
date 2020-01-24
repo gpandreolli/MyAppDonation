@@ -9,4 +9,23 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="account_name">Email</string>
+    <string name="password">Senha</string>
+    <string name="password_hint">**************</string>
+    <string name="forgot_your_login_info">Esqueceu sua Senha?</string>
+    <string name="sign_in">Logar</string>
+    <string name="remember_my_password">REMEMBER MY PASSWORD</string>
+    <string name="username">E-mail</string>
+    <string name="first_name">PRIMEIRO NOME</string>
+    <string name="last_name">SOBRENOME</string>
+    <string name="email">EMAIL</string>
+    <string name="create_account">CRIAR CONTA</string>
+    <string name="email_hint">teste@example.com</string>
+    <string name="reset_senha">EVIAR EMAIL DE RECUPERAÇÃO</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>
