@@ -159,7 +159,7 @@ public class UsuarioActivity extends AppCompatActivity {
 
 
 
-        databaseReference.child("").child(usua.getUid()).setValue(usua);
+        databaseReference.child("Usuario").child(usua.getUid()).setValue(usua);
 
         limparCampos();
         chamaActivity();
