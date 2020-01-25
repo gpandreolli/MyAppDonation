@@ -158,6 +158,7 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         databaseReference.child("Instituicao").child(inst.getUid()).setValue(inst);
 
             limparCampos();
+            finish();
             chamaActivity();
 
 

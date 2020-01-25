@@ -21,7 +21,7 @@ public class LoginEmailActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
 
-        edtEmail = (EditText)findViewById(R.id.edts);
+        edtEmail = (EditText)findViewById(R.id.edtEmail);
         edtSenha = (EditText)findViewById(R.id.edtSenha);
         btnLogar = (Button)findViewById(R.id.btnLogar);
         btnRecSenha = (Button) findViewById(R.id.btnRecSenha);

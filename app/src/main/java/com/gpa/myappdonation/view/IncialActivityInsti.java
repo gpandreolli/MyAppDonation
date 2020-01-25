@@ -7,12 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.gpa.myappdonation.R;
 
 public class IncialActivityInsti extends AppCompatActivity {
 
     private GridLayout mainGrid;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,7 @@ public class IncialActivityInsti extends AppCompatActivity {
         setContentView(R.layout.activity_incial_insti);
 
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
+        auth = FirebaseAuth.getInstance();
 
         //Set Event
         setSingleEvent(mainGrid);
@@ -36,10 +40,21 @@ public class IncialActivityInsti extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    Intent intent = new Intent(IncialActivityInsti.this,ListContaActivity.class);
+                    if (finalI == 0) {
+                        Intent intent = new Intent(IncialActivityInsti.this, ListContaActivity.class);
+                        intent.putExtra("info", "This is activity from card item index  " + finalI);
+                        Toast.makeText(getBaseContext(), "CARD: "+finalI, Toast.LENGTH_LONG).show();
+                        startActivity(intent);
+                    }else if(finalI == 5){
+                        auth.signOut();
+                        finish();
+                        Intent i = new Intent(IncialActivityInsti.this, LoginActivity.class);
+                        startActivity(i);
+                        Toast.makeText(getBaseContext(), "usuario deslogado: ", Toast.LENGTH_LONG).show();
 
-                    intent.putExtra("info","This is activity from card item index  "+finalI);
-                    startActivity(intent);
+
+                    }
+
 
                 }
             });

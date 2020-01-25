@@ -5,12 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.UsuarioActivity">
+    tools:context=".view.CadastrarConta">
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dados Cadastrais"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:text="Cadastro de Conta"
         android:textColor="@color/colorHybridaMarron"
         android:background="@color/colorHybridaRosa"
         android:textSize="24dp"
@@ -26,48 +29,98 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
                 android:textColor="@color/colorHybridaMarron"
-                android:text="Nome" />
+                android:text="Nome da Conta" />
 
             <EditText
-                android:id="@+id/edtNomeUsua"
+                android:id="@+id/edtNomeConta"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:textAlignment="center"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
                 android:background="@drawable/login_edittext_bg"
                 android:inputType="text" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
                 android:textColor="@color/colorHybridaMarron"
-                android:text="CPF" />
+                android:text="Banco" />
 
             <EditText
-                android:id="@+id/edtCpfUsua"
+                android:id="@+id/edtBancoConta"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:textAlignment="center"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
                 android:background="@drawable/login_edittext_bg"
                 android:inputType="text" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
                 android:textColor="@color/colorHybridaMarron"
-                android:text="CEP" />
-
+                android:text="Número do Banco" />
 
             <EditText
-                android:id="@+id/edtCepUsua"
+                android:id="@+id/edtNumeroBancoConta"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:textAlignment="center"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/login_edittext_bg"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/colorHybridaMarron"
+                android:text="Agência" />
+
+
+            <EditText
+                android:id="@+id/edtAgenciaConta"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textAlignment="center"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/login_edittext_bg"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/colorHybridaMarron"
+                android:text="Número" />
+
+            <EditText
+                android:id="@+id/edtNumeroConta"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textAlignment="center"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
                 android:background="@drawable/login_edittext_bg"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
@@ -75,105 +128,17 @@
                 android:inputType="number"
                 android:maxLength="8" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Estados" />
 
-            <Spinner
-                android:id="@+id/spEstadoUsua"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:textAlignment="textStart"
-                android:background="@drawable/login_edittext_bg"
-                android:layout_marginBottom="10dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Cidade" />
-
-            <EditText
-                android:id="@+id/edtCidadeUsua"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Rua" />
-
-            <EditText
-                android:id="@+id/edtRuaUsua"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Número" />
-
-            <EditText
-                android:id="@+id/edtNumeroUsua"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Complemento" />
-
-            <EditText
-                android:id="@+id/edtComplementoUsua"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg"
-                android:inputType="text" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Bairro" />
-
-            <EditText
-                android:id="@+id/edtBairroUsua"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Telefone" />
-
-            <EditText
-                android:id="@+id/edtFoneUsua"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg"/>
 
             <Button
-                android:id="@+id/btnSalvarUsua"
+                android:id="@+id/btnSalvarConta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="Salvar"
                 android:textSize="22dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
                 android:background="@drawable/login_button_bg"
                 android:textAllCaps="false"/>
 

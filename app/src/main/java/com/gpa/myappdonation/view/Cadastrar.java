@@ -31,7 +31,7 @@ public class Cadastrar extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.id.activity_cadastrar);
+        setContentView(R.layout.activity_cadastrar);
 
         edtEmailInst = (EditText)findViewById(R.id.edtEmailInst);
         edtSenhaInst = (EditText)findViewById(R.id.edtSenhaInst);

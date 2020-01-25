@@ -245,6 +245,7 @@
 
         <!-- coluna 02-->
         <androidx.cardview.widget.CardView
+
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
