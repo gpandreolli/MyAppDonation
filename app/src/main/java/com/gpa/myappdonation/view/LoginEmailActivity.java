@@ -19,9 +19,9 @@ public class LoginEmailActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login2);
 
-        edtEmail = (EditText)findViewById(R.id.edtEmail);
+        edtEmail = (EditText)findViewById(R.id.edts);
         edtSenha = (EditText)findViewById(R.id.edtSenha);
         btnLogar = (Button)findViewById(R.id.btnLogar);
         btnRecSenha = (Button) findViewById(R.id.btnRecSenha);

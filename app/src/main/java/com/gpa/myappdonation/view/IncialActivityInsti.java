@@ -36,7 +36,7 @@ public class IncialActivityInsti extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    Intent intent = new Intent(IncialActivityInsti.this,MainActivity.class);
+                    Intent intent = new Intent(IncialActivityInsti.this,ListContaActivity.class);
 
                     intent.putExtra("info","This is activity from card item index  "+finalI);
                     startActivity(intent);

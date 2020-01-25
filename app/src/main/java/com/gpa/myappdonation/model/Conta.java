@@ -7,13 +7,15 @@ public class Conta {
     private String banco;
     private String agencia;
     private String numero_conta;
+    private String id_instituicao;
 
-    public Conta(String uid, String nome, String banco, String agencia, String numero_conta) {
+    public Conta(String uid, String nome, String banco, String agencia, String numero_conta, String id_instituicao) {
         Uid = uid;
         this.nome = nome;
         this.banco = banco;
         this.agencia = agencia;
         this.numero_conta = numero_conta;
+        this.id_instituicao = id_instituicao;
     }
 
     public Conta() {
@@ -57,5 +59,13 @@ public class Conta {
 
     public void setNumero_conta(String numero_conta) {
         this.numero_conta = numero_conta;
+    }
+
+    public String getId_instituicao() {
+        return id_instituicao;
+    }
+
+    public void setId_instituicao(String id_instituicao) {
+        this.id_instituicao = id_instituicao;
     }
 }

@@ -23,77 +23,75 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorBotao"
-            android:text="@string/account_name" />
+            android:text="@string/account_name"
+            android:textColor="@color/colorHybridaMarron" />
 
 
         <EditText
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/login_edittext_bg"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="1dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/login_edittext_bg"
+            android:hint="@string/username"
             android:textAlignment="center"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorBotao"
-            android:hint="@string/username"/>
+            android:textColor="@color/colorHybridaRosa"
+            android:textColorHint="@color/colorHybridaMarron" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorText"
+            android:layout_marginTop="40dp"
             android:text="@string/password"
-            android:layout_marginTop="40dp"/>
+            android:textColor="@color/colorHybridaMarron" />
 
         <EditText
             android:id="@id/edtSenha"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:inputType="textPassword"
-            android:background="@drawable/login_edittext_bg"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/login_edittext_bg"
+            android:hint="@string/password_hint"
+            android:inputType="textPassword"
             android:textAlignment="center"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorBotao"
-            android:hint="@string/password_hint"/>
-
-
+            android:textColor="@color/colorHybridaMarron"
+            android:textColorHint="@color/colorHybridaMarron" />
 
         <Button
             android:id="@+id/btnLogar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="70dp"
             android:background="@drawable/login_button_bg"
             android:text="@string/sign_in"
-            android:textColor="@color/colorAccent"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"/>
+            android:textColor="@color/colorHybridaMarron" />
 
         <Button
             android:id="@+id/btnCadastrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="70dp"
             android:background="@drawable/login_button_bg"
             android:text="@string/create_account"
-            android:textColor="@color/colorText"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"/>
+            android:textColor="@color/colorHybridaMarron" />
 
         <TextView
             android:id="@+id/tv_forgot_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorText"
-            android:text="@string/forgot_your_login_info"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
-            android:layout_gravity="center_horizontal"/>
+            android:text="@string/forgot_your_login_info"
+            android:textColor="@color/colorHybridaMarron" />
 
     </LinearLayout>
 
