@@ -78,6 +78,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void btnApoiadorOnclick() {
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String user = currentUser.getUid();
+        String usernome = currentUser.getEmail();
+        Usuario usua = new Usuario();
+
+        usua.setTipo_usua("2");
+
+
+        databaseReference.child("Usuario").child(user).child("tipo_usua").setValue("2");
+
+        Intent i = new Intent(this, InicialActivityApoiador.class);
+        startActivity(i);
+
+
     }
 
     private void inicializarFirebase() {

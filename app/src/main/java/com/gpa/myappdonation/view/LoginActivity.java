@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.gpa.myappdonation.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -75,6 +76,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (task.isSuccessful()){
 
                     //fazer a verificação do tipo de usuario para encaminhar ele para a tela correta
+
+                    FirebaseUser user = auth.getCurrentUser();
+                    user.getUid();
+                    String usuarioId;
+
+                    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference ref = database.getReference("Usuario");
+
+                        // Attach a listener to read the data at our posts reference
+                        ref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                             usuarioId = dataSnapshot.getValue(Usuario.class).getUid();
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            System.out.println("The read failed: " + databaseError.getCode());
+                        }
+                    });
+
+                        if(usu)
+
                     Intent i = new Intent(LoginActivity.this, IncialActivityInsti.class);
                     startActivity(i);
                     Toast.makeText(getBaseContext(), "Usuário logado com sucesso", Toast.LENGTH_LONG).show();

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".view.CadastrarConta"></activity>
+        <activity android:name=".view.InicialActivityApoiador"></activity>
+        <activity android:name=".view.CadastrarConta" />
         <activity android:name=".view.UsuarioActivity" />
         <activity android:name=".view.ListContaActivity" />
         <activity android:name=".view.IncialActivityInsti" />
