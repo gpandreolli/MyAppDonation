@@ -2,7 +2,7 @@ package com.gpa.myappdonation.model;
 
 public class Conta {
 
-    private String Uid;
+    private String uid;
     private String nome;
     private String banco;
     private String numeroBanco;
@@ -11,7 +11,7 @@ public class Conta {
     private String id_instituicao;
 
     public Conta(String uid, String nome, String banco, String numeroBanco, String agencia, String numero_conta, String id_instituicao) {
-        Uid = uid;
+        this.uid = uid;
         this.nome = nome;
         this.banco = banco;
         this.numeroBanco = numeroBanco;
@@ -23,12 +23,18 @@ public class Conta {
     public Conta() {
     }
 
+    public Conta(String nome, String banco, String numero_conta) {
+        this.nome = nome;
+        this.banco = banco;
+        this.numero_conta = numero_conta;
+    }
+
     public String getUid() {
-        return Uid;
+        return uid;
     }
 
     public void setUid(String uid) {
-        Uid = uid;
+        this.uid = uid;
     }
 
     public String getNome() {

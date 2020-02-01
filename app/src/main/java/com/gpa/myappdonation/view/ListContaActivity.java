@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,45 +20,63 @@ import com.gpa.myappdonation.controller.ListaAdapterConta;
 import com.gpa.myappdonation.model.Conta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListContaActivity extends AppCompatActivity {
 
     private ListView lisConta;
     private Button btnNovaConta;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("conta");
-    ArrayList<Conta> contas = new ArrayList<>();
+    DatabaseReference ref = database.getReference("Conta");
+    ArrayList<Conta> contas = new ArrayList<Conta>();
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_conta);
 
-       // Conta contar_data[] = new Conta[];
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         lisConta = (ListView) findViewById(R.id.listConta);
 
-        ref.addValueEventListener(new ValueEventListener(){
+        contas.clear();
+
+
+        ref.addValueEventListener(new ValueEventListener() {
+
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                contas.clear();
 
-               Conta dadosConta = new Conta();
+                int i = 0;
 
-                dadosConta.setNome(dataSnapshot.getValue(Conta.class).getNome());
-                dadosConta.setNumero_conta(dataSnapshot.getValue(Conta.class).getNumero_conta());
+                String nomeconta;
+                String numeroconta;
+                String banco;
 
-                contas.add(dadosConta);
+                for (DataSnapshot contaSnapshot : dataSnapshot.getChildren()) {
+
+                    Conta c = contaSnapshot.getValue(Conta.class);
+                    nomeconta = c.getNome();
+                    numeroconta = c.getNumero_conta();
+                    banco = c.getBanco();
+                    Conta dadosConta = new Conta(nomeconta,banco,numeroconta);
+
+                    dadosConta.setNome(nomeconta);
+                    dadosConta.setNumero_conta(numeroconta);
+                    contas.add(dadosConta);
+
+                }
 
 
                 ListaAdapterConta adapter = new ListaAdapterConta(ListContaActivity.this,
                         R.layout.listview_conta_linha, contas);
 
-                View header = (View)getLayoutInflater().inflate(R.layout.listview_conta_linha, null);
-                lisConta.addHeaderView(header);
+                View header = (View) getLayoutInflater().inflate(R.layout.listview_conta_linha, null);
 
+                lisConta.addHeaderView(header);
                 lisConta.setAdapter(adapter);
 
             }
@@ -82,4 +101,6 @@ public class ListContaActivity extends AppCompatActivity {
         Intent i = new Intent(ListContaActivity.this, CadastrarConta.class);
         startActivity(i);
     }
+
+
 }

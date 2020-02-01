@@ -1,45 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    tools:context=".view.ListContaActivity">
+    android:layout_height="match_parent"
+    tools:context=".view.ListContaActivity"
+    android:background="@drawable/list_textview_bg"
+    android:backgroundTint="@color/colorHybridaCinza">
 
-    <TextView android:id="@+id/txtNomeConta"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center_vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
+
+    <TextView
+        android:id="@+id/lblNomeConta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Conta"
         android:textStyle="bold"
-        android:textSize="22dp"
-        android:textColor="#FFFFFF"
-        android:padding="10dp"/>
+        android:textColor="@color/colorHybridaMarron"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView android:id="@+id/txtBanco"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center_vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
+    <TextView
+        android:id="@+id/txtNomeConta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Nome Conta"
+        android:textColor="@color/colorHybridaVermelho"
+        app:layout_constraintStart_toStartOf="@+id/lblNomeConta"
+        app:layout_constraintTop_toBottomOf="@+id/lblNomeConta" />
+
+    <TextView
+        android:id="@+id/lblNomeBanco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Banco"
+        android:textColor="@color/colorHybridaMarron"
         android:textStyle="bold"
-        android:textSize="22dp"
-        android:textColor="#FFFFFF"
-        android:padding="10dp"/>
+        app:layout_constraintStart_toEndOf="@+id/txtNomeConta"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView android:id="@+id/txtNumeroConta"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center_vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
+    <TextView
+        android:id="@+id/txtBanco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/colorHybridaVermelho"
+        app:layout_constraintStart_toStartOf="@+id/lblNomeBanco"
+        app:layout_constraintTop_toBottomOf="@+id/lblNomeBanco" />
+
+    <TextView
+        android:id="@+id/lblNumeroConta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Numero da Conta"
+        android:textColor="@color/colorHybridaMarron"
         android:textStyle="bold"
-        android:textSize="22dp"
-        android:textColor="#FFFFFF"
-        android:padding="10dp"/>
+        app:layout_constraintStart_toStartOf="@+id/txtNomeConta"
+        app:layout_constraintTop_toBottomOf="@+id/txtNomeConta" />
+
+    <TextView
+        android:id="@+id/txtNumeroConta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Numero da Conta"
+        android:textColor="@color/colorHybridaVermelho"
+        app:layout_constraintStart_toStartOf="@+id/lblNumeroConta"
+        app:layout_constraintTop_toBottomOf="@+id/lblNumeroConta" />
 
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

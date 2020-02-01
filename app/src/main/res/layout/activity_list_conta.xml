@@ -15,7 +15,36 @@
     <ListView
         android:id="@+id/listConta"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginVertical="2dp"
+        android:padding="2dp"
+        android:background="@color/colorHybridaRosa">
+
+    </ListView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:visibility="visible"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="160dp"
+        android:layout_gravity="bottom|end"
+        app:srcCompat="@drawable/baseline_add_circle"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        tools:visibility="visible" />
+
+
+
+
+
 
 
 
