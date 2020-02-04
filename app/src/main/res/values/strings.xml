@@ -11,7 +11,7 @@
     <string name="login_failed">"Login failed"</string>
     <string name="account_name">Email</string>
     <string name="password">Senha</string>
-    <string name="password_hint">**************</string>
+    <string name="password_hint">******</string>
     <string name="forgot_your_login_info">Esqueceu sua Senha?</string>
     <string name="sign_in">Logar</string>
     <string name="remember_my_password">REMEMBER MY PASSWORD</string>

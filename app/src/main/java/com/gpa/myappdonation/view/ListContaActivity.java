@@ -16,20 +16,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
-import com.gpa.myappdonation.controller.ListaAdapterConta;
+import com.gpa.myappdonation.adapters.ListaAdapterConta;
 import com.gpa.myappdonation.model.Conta;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListContaActivity extends AppCompatActivity {
 
     private ListView lisConta;
-    private Button btnNovaConta;
+    private Button btnNovaConta1;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("Conta");
     ArrayList<Conta> contas = new ArrayList<Conta>();
-    private FloatingActionButton fab;
+    private FloatingActionButton btnNovaConta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,7 @@ public class ListContaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_conta);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        FloatingActionButton btnNovaConta = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         lisConta = (ListView) findViewById(R.id.listConta);
 
         contas.clear();
@@ -66,6 +65,7 @@ public class ListContaActivity extends AppCompatActivity {
 
                     dadosConta.setNome(nomeconta);
                     dadosConta.setNumero_conta(numeroconta);
+                    dadosConta.setBanco(banco);
                     contas.add(dadosConta);
 
                 }
@@ -87,7 +87,7 @@ public class ListContaActivity extends AppCompatActivity {
             }
         });
 
-        btnNovaConta = (Button) findViewById(R.id.btnNovaConta);
+        //btnNovaConta = (Button) findViewById(R.id.btnNovaConta);
 
         btnNovaConta.setOnClickListener(new View.OnClickListener() {
             @Override

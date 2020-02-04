@@ -19,12 +19,12 @@
             android:layout_gravity="center"
             android:src="@drawable/iconelove" />
 
-        <TextView
+      <!--  <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/account_name"
-            android:textColor="@color/colorHybridaMarron" />
+            android:textColor="@color/colorHybridaMarron" /> -->
 
 
         <EditText
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/login_edittext_bg"
             android:hint="@string/username"
@@ -40,13 +40,13 @@
             android:textColor="@color/colorHybridaRosa"
             android:textColorHint="@color/colorHybridaMarron" />
 
-        <TextView
+      <!--  <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
             android:text="@string/password"
-            android:textColor="@color/colorHybridaMarron" />
+            android:textColor="@color/colorHybridaMarron" /> -->
 
         <EditText
             android:id="@+id/edtSLogin"

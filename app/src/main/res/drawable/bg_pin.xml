@@ -1,0 +1,15 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- cor da borda -->
+    <item android:height="1dp" android:gravity="bottom">
+        <shape >
+            <solid android:color="@color/colorHybridaRosa" />
+        </shape>
+    </item>
+
+    <!-- cor de fundo, tamanho somente da borda inferior
+    <item  android:bottom="1dp">
+        <shape >
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>-->
+</layer-list>

@@ -28,7 +28,7 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
     private EditText etZipCode, edtRazaoSocial, edtNomeFantasia,edtCnpj,et_city,et_street,et_number, et_complement;
     private EditText et_neighbor, edtEmailCadInst,edtFoneInst;
     private Spinner sp_state;
-    private Button btnSalvar;
+    private Button btnSalvar, btnCancelarCadInst;
     private Util util;
 
 
@@ -55,6 +55,7 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         et_complement = (EditText) findViewById(R.id.et_complement);
         sp_state = (Spinner) findViewById(R.id.sp_state);
         btnSalvar = (Button) findViewById(R.id.btnSalvarInst);
+        btnCancelarCadInst = (Button) findViewById(R.id.btnCancelarCadInst);
 
 
 
@@ -80,6 +81,13 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SalvarInst();
+            }
+        });
+
+        btnCancelarCadInst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CancelarCadastro();
             }
         });
     }
@@ -184,6 +192,15 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         edtEmailCadInst.setText("");
 
     }
+
+   private void CancelarCadastro(){
+       Intent i = new Intent(CadastrarInstituicaoActivity.this,MainActivity.class);
+       finish();
+       startActivity(i);
+
+   }
+
+
 
 }
 

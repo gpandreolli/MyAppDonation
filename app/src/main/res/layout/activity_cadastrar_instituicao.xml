@@ -12,197 +12,199 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:text="Dados da Instituição"
+        android:textAlignment="center"
         android:textColor="@color/colorHybridaMarron"
-        android:background="@color/colorHybridaRosa"
         android:textSize="24dp"
         android:textStyle="bold"
-        android:textAlignment="center"
-        android:layout_marginBottom="15dp"/>
+        android:background="@drawable/login_button_bg"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Razão Social"
-        android:textColor="@color/colorHybridaMarron"/>
-
-    <EditText
-        android:id="@+id/edtRazaoSocial"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textAlignment="center"
-        android:background="@drawable/login_edittext_bg"
-        android:inputType="text" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nome Fantasia"
-        android:textColor="@color/colorHybridaMarron"/>
-
-    <EditText
-        android:id="@+id/edtNomeFantasia"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textAlignment="center"
-        android:background="@drawable/login_edittext_bg"
-        android:inputType="text" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CNPJ"
-        android:textColor="@color/colorHybridaMarron"/>
-
-    <EditText
-        android:id="@+id/edtCnpj"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textAlignment="center"
-        android:background="@drawable/login_edittext_bg"
-        android:inputType="text" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CEP"
-        android:textColor="@color/colorHybridaMarron"/>
-
-
-    <EditText
-        android:id="@+id/et_zip_code"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textAlignment="center"
-        android:background="@drawable/login_edittext_bg"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:ems="10"
-        android:inputType="number"
-        android:maxLength="8" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Estados"
-        android:textColor="@color/colorHybridaMarron"/>
-
-    <Spinner
-        android:id="@+id/sp_state"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/login_edittext_bg"
-        android:layout_marginBottom="10dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cidade"
-        android:textColor="@color/colorHybridaMarron"/>
-
-    <EditText
-        android:id="@+id/et_city"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textAlignment="center"
-        android:background="@drawable/login_edittext_bg"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rua"
-        android:textColor="@color/colorHybridaMarron"/>
-
-    <EditText
-        android:id="@+id/et_street"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textAlignment="center"
-        android:background="@drawable/login_edittext_bg"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Número"
-        android:textColor="@color/colorHybridaMarron"/>
-
-    <EditText
-        android:id="@+id/et_number"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textAlignment="center"
-        android:background="@drawable/login_edittext_bg"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Complemento"
-        android:textColor="@color/colorHybridaMarron"/>
-
-    <EditText
-        android:id="@+id/et_complement"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textAlignment="center"
-        android:background="@drawable/login_edittext_bg"
-        android:inputType="text" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Bairro"
-        android:textColor="@color/colorHybridaMarron"/>
-
-    <EditText
-        android:id="@+id/et_neighbor"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textAlignment="center"
-        android:background="@drawable/login_edittext_bg"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Email Instituição"
-        android:textColor="@color/colorHybridaMarron"/>
-
-    <EditText
-        android:id="@+id/edtEmailCadInst"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textAlignment="center"
-        android:background="@drawable/login_edittext_bg"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Telefone"
-        android:textColor="@color/colorHybridaMarron"/>
-
-    <EditText
-        android:id="@+id/edtFoneInst"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textAlignment="center"
-        android:background="@drawable/login_edittext_bg"/>
-
-        <Button
-            android:id="@+id/btnSalvarInst"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Salvar"
-            android:background="@drawable/login_button_bg"
-            android:textAllCaps="false"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-                 </LinearLayout>
+
+            <EditText
+                android:id="@+id/edtRazaoSocial"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_pin"
+                android:hint="Razão Social"
+                android:inputType="text"
+                android:textColor="@color/colorHybridaMarron"
+                android:textAlignment="viewStart" />
+
+
+            <EditText
+                android:id="@+id/edtNomeFantasia"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_pin"
+                android:hint="Nome Fantasia"
+                android:inputType="text"
+                android:textColor="@color/colorHybridaMarron"
+                android:textAlignment="viewStart" />
+
+
+            <EditText
+                android:id="@+id/edtCnpj"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_pin"
+                android:hint="CNPJ"
+                android:textColor="@color/colorHybridaMarron"
+                android:inputType="number"
+                android:textAlignment="viewStart" />
+
+            <EditText
+                android:id="@+id/et_zip_code"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_pin"
+                android:ems="10"
+                android:hint="CEP"
+                android:inputType="number"
+                android:textColor="@color/colorHybridaMarron"
+                android:maxLength="8"
+                android:textAlignment="viewStart" />
+
+            <Spinner
+                android:id="@+id/sp_state"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_pin"
+                android:outlineAmbientShadowColor="@color/colorHybridaMarron"
+                android:tooltipText="Estados" />
+
+
+            <EditText
+                android:id="@+id/et_city"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_pin"
+                android:hint="Cidade"
+                android:textColor="@color/colorHybridaMarron"
+                android:textAlignment="viewStart" />
+
+
+            <EditText
+                android:id="@+id/et_street"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_pin"
+                android:hint="Rua"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorHybridaMarron"/>
+
+
+            <EditText
+                android:id="@+id/et_number"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_pin"
+                android:textColor="@color/colorHybridaMarron"
+                android:hint="Número"
+                android:textAlignment="viewStart" />
+
+
+            <EditText
+                android:id="@+id/et_complement"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/bg_pin"
+                android:hint="Complemento"
+                android:inputType="text"
+                android:textColor="@color/colorHybridaMarron"
+                android:textAlignment="viewStart" />
+
+
+            <EditText
+                android:id="@+id/et_neighbor"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_pin"
+                android:textColor="@color/colorHybridaMarron"
+                android:hint="Bairro"
+                android:inputType="text"
+                android:textAlignment="viewStart" />
+
+
+            <EditText
+                android:id="@+id/edtEmailCadInst"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_pin"
+                android:hint="E-mail da Instituição"
+                android:textColor="@color/colorHybridaMarron"
+                android:inputType="textEmailAddress"
+                android:textAlignment="viewStart" />
+
+
+            <EditText
+                android:id="@+id/edtFoneInst"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_pin"
+                android:hint="Telefone"
+                android:textColor="@color/colorHybridaMarron"
+                android:inputType="phone"
+                android:textAlignment="viewStart" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnSalvarInst"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_button_bg"
+                    android:text="Salvar"
+                    android:layout_marginLeft="0dp"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnCancelarCadInst"
+                    tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:id="@+id/btnCancelarCadInst"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/btnSalvarInst"
+                    android:background="@drawable/login_button_bg"
+                    android:text="Cancelar"
+                    android:textAllCaps="false"
+                    android:layout_marginRight="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnSalvarInst"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
 
     </ScrollView>
 

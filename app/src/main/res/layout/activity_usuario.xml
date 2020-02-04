@@ -5,18 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.UsuarioActivity">
+    tools:context=".view.UsuarioActivity"
+    android:padding="10dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Dados Cadastrais"
-        android:textColor="@color/colorHybridaMarron"
-        android:background="@color/colorHybridaRosa"
+        android:background="@drawable/login_button_bg"
         android:textSize="24dp"
         android:textStyle="bold"
         android:textAlignment="center"
-
         android:layout_marginBottom="15dp"/>
 
     <ScrollView
@@ -28,154 +27,133 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Nome" />
 
             <EditText
                 android:id="@+id/edtNomeUsua"
+                android:hint="Nome"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg"
+                android:textAlignment="viewStart"
+                android:background="@drawable/bg_pin"
                 android:inputType="text" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="CPF" />
 
             <EditText
                 android:id="@+id/edtCpfUsua"
                 android:layout_width="match_parent"
+                android:hint="CPF"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg"
-                android:inputType="text" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="CEP" />
-
+                android:textAlignment="viewStart"
+                android:background="@drawable/bg_pin"
+                android:inputType="number"
+                android:maxLength="11"/>
 
             <EditText
                 android:id="@+id/edtCepUsua"
+                android:hint="CEP"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg"
+                android:textAlignment="viewStart"
+                android:background="@drawable/bg_pin"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:ems="10"
                 android:inputType="number"
                 android:maxLength="8" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Estados" />
-
             <Spinner
                 android:id="@+id/spEstadoUsua"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:textAlignment="textStart"
-                android:background="@drawable/login_edittext_bg"
-                android:layout_marginBottom="10dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Cidade" />
+                android:background="@drawable/bg_pin"/>
 
             <EditText
                 android:id="@+id/edtCidadeUsua"
+                android:hint="Cidade"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Rua" />
+                android:textAlignment="viewStart"
+                android:background="@drawable/bg_pin" />
 
             <EditText
                 android:id="@+id/edtRuaUsua"
+                android:hint="Rua"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Número" />
+                android:textAlignment="viewStart"
+                android:background="@drawable/bg_pin" />
+
 
             <EditText
                 android:id="@+id/edtNumeroUsua"
+                android:hint="Número"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg" />
+                android:textAlignment="viewStart"
+                android:background="@drawable/bg_pin" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Complemento" />
 
             <EditText
                 android:id="@+id/edtComplementoUsua"
+                android:hint="Complemento"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg"
+                android:textAlignment="viewStart"
+                android:background="@drawable/bg_pin"
                 android:inputType="text" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Bairro" />
 
             <EditText
                 android:id="@+id/edtBairroUsua"
+                android:hint="Bairro"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg"/>
+                android:textAlignment="viewStart"
+                android:background="@drawable/bg_pin"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Telefone" />
 
             <EditText
                 android:id="@+id/edtFoneUsua"
+                android:hint="Telefone"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:background="@drawable/login_edittext_bg"/>
+                android:textAlignment="viewStart"
+                android:background="@drawable/bg_pin"
+                android:inputType="phone"/>
 
-            <Button
-                android:id="@+id/btnSalvarUsua"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Salvar"
-                android:textSize="22dp"
-                android:background="@drawable/login_button_bg"
-                android:textAllCaps="false"/>
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnSalvarUsua"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_button_bg"
+                    android:text="Salvar"
+                    android:layout_marginLeft="0dp"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnCancelarUsua"
+                    tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:id="@+id/btnCancelarUsua"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/btnSalvarUsua"
+                    android:background="@drawable/login_button_bg"
+                    android:text="Cancelar"
+                    android:textAllCaps="false"
+                    android:layout_marginRight="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnSalvarUsua"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

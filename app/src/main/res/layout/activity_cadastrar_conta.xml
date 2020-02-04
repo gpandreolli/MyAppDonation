@@ -7,145 +7,144 @@
     android:orientation="vertical"
     tools:context=".view.CadastrarConta">
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        android:text="Cadastro de Conta"
-        android:textColor="@color/colorHybridaMarron"
-        android:background="@color/colorHybridaRosa"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-
-        android:layout_marginBottom="15dp"/>
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtTituloCadConta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_button_bg"
+            android:text="Cadastro de Conta"
+            android:textAlignment="center"
+            android:textColor="@color/colorHybridaMarron"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            android:layout_marginTop="100dp"
+            tools:layout_editor_absoluteX="5dp" />
+
+
+
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTituloCadConta"
+            android:layout_marginTop="50dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Nome da Conta" />
 
             <EditText
                 android:id="@+id/edtNomeConta"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
-                android:background="@drawable/login_edittext_bg"
-                android:inputType="text" />
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/bg_pin"
+                android:hint="Nome da Conta"
+                android:inputType="text"
+                android:textAlignment="viewStart" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Banco" />
 
             <EditText
                 android:id="@+id/edtBancoConta"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
-                android:background="@drawable/login_edittext_bg"
-                android:inputType="text" />
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/bg_pin"
+                android:hint="Banco"
+                android:inputType="text"
+                android:textAlignment="viewStart" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Número do Banco" />
 
             <EditText
                 android:id="@+id/edtNumeroBancoConta"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
-                android:background="@drawable/login_edittext_bg"
-                android:inputType="text" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Agência" />
+                android:background="@drawable/bg_pin"
+                android:hint="Número Banco"
+                android:inputType="text"
+                android:textAlignment="viewStart" />
 
 
             <EditText
                 android:id="@+id/edtAgenciaConta"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
-                android:background="@drawable/login_edittext_bg"
-                android:inputType="text" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/colorHybridaMarron"
-                android:text="Número" />
+                android:background="@drawable/bg_pin"
+                android:hint="Agência"
+                android:inputType="text"
+                android:textAlignment="viewStart" />
 
             <EditText
                 android:id="@+id/edtNumeroConta"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:textAlignment="center"
-                android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
-                android:background="@drawable/login_edittext_bg"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="8" />
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/bg_pin"
+                android:hint="Número da Conta"
+                android:textAlignment="viewStart" />
 
 
-
-            <Button
-                android:id="@+id/btnSalvarConta"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Salvar"
-                android:textSize="22dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:background="@drawable/login_button_bg"
-                android:textAllCaps="false"/>
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
+
+                <Button
+                    android:id="@+id/btnSalvarConta"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_button_bg"
+                    android:text="Salvar"
+                    android:layout_marginLeft="0dp"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnCancelarConta"
+                    tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:id="@+id/btnCancelarConta"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/btnSalvarConta"
+                    android:background="@drawable/login_button_bg"
+                    android:text="Cancelar"
+                    android:textAllCaps="false"
+                    android:layout_marginRight="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnSalvarConta"
+                    tools:ignore="MissingConstraints" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </LinearLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </LinearLayout>

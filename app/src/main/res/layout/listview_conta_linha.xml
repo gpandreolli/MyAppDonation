@@ -7,14 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".view.ListContaActivity"
     android:background="@drawable/list_textview_bg"
-    android:backgroundTint="@color/colorHybridaCinza">
+    android:backgroundTint="@color/colorHybridaCinza"
+>
 
 
     <TextView
         android:id="@+id/lblNomeConta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
         android:text="Conta"
         android:textStyle="bold"
@@ -26,7 +27,7 @@
         android:id="@+id/txtNomeConta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="1dp"
         android:text="Nome Conta"
         android:textColor="@color/colorHybridaVermelho"
         app:layout_constraintStart_toStartOf="@+id/lblNomeConta"
@@ -36,19 +37,20 @@
         android:id="@+id/lblNomeBanco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="8dp"
         android:text="Banco"
         android:textColor="@color/colorHybridaMarron"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/txtNomeConta"
+        app:layout_constraintStart_toEndOf="@+id/lblNumeroConta"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtBanco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="1dp"
+        android:text="Banco"
         android:textColor="@color/colorHybridaVermelho"
         app:layout_constraintStart_toStartOf="@+id/lblNomeBanco"
         app:layout_constraintTop_toBottomOf="@+id/lblNomeBanco" />
@@ -57,7 +59,7 @@
         android:id="@+id/lblNumeroConta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="4dp"
         android:text="Numero da Conta"
         android:textColor="@color/colorHybridaMarron"
         android:textStyle="bold"
@@ -68,7 +70,7 @@
         android:id="@+id/txtNumeroConta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="1dp"
         android:text="Numero da Conta"
         android:textColor="@color/colorHybridaVermelho"
         app:layout_constraintStart_toStartOf="@+id/lblNumeroConta"
