@@ -58,6 +58,7 @@ public class ListContaActivity extends AppCompatActivity {
                 for (DataSnapshot contaSnapshot : dataSnapshot.getChildren()) {
 
                     Conta c = contaSnapshot.getValue(Conta.class);
+
                     nomeconta = c.getNome();
                     numeroconta = c.getNumero_conta();
                     banco = c.getBanco();

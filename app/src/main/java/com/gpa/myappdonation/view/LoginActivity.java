@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +24,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private Button btnCadastrar ,btnLogar;
     private EditText edtEmailLogin, edtSenhaLogin;
+    private TextView btnRecSenha;
     private FirebaseAuth auth;
 
 
@@ -33,9 +37,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogar = (Button)findViewById(R.id.btnLogar);
         edtEmailLogin = (EditText) findViewById(R.id.edtEmailLogin);
         edtSenhaLogin = (EditText) findViewById(R.id.edtSLogin);
+        btnRecSenha = (TextView) findViewById(R.id.txtRecSenha);
 
         btnCadastrar.setOnClickListener(this);
         btnLogar.setOnClickListener(this);
+        btnRecSenha.setOnClickListener(this);
 
         auth = FirebaseAuth.getInstance();
     }
@@ -51,6 +57,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //executar login
                 loginEmail();
                 break;
+
+            case R.id.txtRecSenha:
+                recuperarSenha();
+
         }
 
     }
@@ -88,6 +98,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         });
+
+    }
+
+    private void recuperarSenha() {
+
+        String email = edtEmailLogin.getText().toString().trim();
+
+        if (email.isEmpty()){
+
+            Toast.makeText(getBaseContext(), "Favor preencher o campo de email", Toast.LENGTH_LONG).show();
+
+        }else{
+
+            auth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(getBaseContext(), "Enviamos um email com o link para redifinição, verifique sua caixa de entrada!", Toast.LENGTH_LONG).show();
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                    String erro = e.toString();
+                    Toast.makeText(getBaseContext(), erro, Toast.LENGTH_LONG).show();
+
+
+                }
+            });
+
+        }
 
     }
 }

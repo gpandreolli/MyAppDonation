@@ -85,13 +85,14 @@
             android:textColor="@color/colorHybridaMarron" />
 
         <TextView
-            android:id="@+id/tv_forgot_password"
+            android:id="@+id/txtRecSenha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
             android:text="@string/forgot_your_login_info"
-            android:textColor="@color/colorHybridaMarron" />
+            android:textColor="@color/colorHybridaMarron"
+            android:clickable="true"/>
 
     </LinearLayout>
 
