@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/iconelove"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".view.InicialActivityApoiador"></activity>
+        <activity android:name=".view.ListaInstActivity"></activity>
+        <activity android:name=".view.InicialActivityApoiador" />
         <activity android:name=".view.CadastrarConta" />
         <activity android:name=".view.UsuarioActivity" />
         <activity android:name=".view.ListContaActivity" />

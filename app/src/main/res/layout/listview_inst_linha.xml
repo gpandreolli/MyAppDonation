@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ListaInstActivity"
+    android:background="@drawable/list_textview_bg"
+    android:backgroundTint="@color/colorHybridaCinza"
+    tools:ignore="MissingDefaultResource">
+
+
+    <TextView
+        android:id="@+id/lblInstituicao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="30dp"
+        android:text="Instituição"
+        android:textStyle="bold"
+        android:textColor="@color/colorHybridaMarron"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtInstituicao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Instituição"
+        android:textColor="@color/colorHybridaVermelho"
+        app:layout_constraintStart_toStartOf="@+id/lblInstituicao"
+        app:layout_constraintTop_toBottomOf="@+id/lblInstituicao" />
+
+    <TextView
+        android:id="@+id/lblCidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Cidade"
+        android:textStyle="bold"
+        android:textColor="@color/colorHybridaMarron"
+        app:layout_constraintStart_toStartOf="@+id/txtInstituicao"
+        app:layout_constraintTop_toBottomOf="@+id/txtInstituicao" />
+
+    <TextView
+        android:id="@+id/txtCidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Cidade"
+        android:textColor="@color/colorHybridaVermelho"
+        app:layout_constraintStart_toStartOf="@+id/lblCidade"
+        app:layout_constraintTop_toBottomOf="@+id/lblCidade" />
+
+    <TextView
+        android:id="@+id/lblUf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="175dp"
+        android:text="Estado"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorHybridaMarron"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/lblCidade"
+        app:layout_constraintTop_toBottomOf="@+id/txtInstituicao" />
+
+    <TextView
+        android:id="@+id/txtUf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estado"
+        android:textColor="@color/colorHybridaVermelho"
+        app:layout_constraintStart_toStartOf="@+id/lblUf"
+        app:layout_constraintTop_toBottomOf="@+id/lblUf" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

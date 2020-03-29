@@ -37,6 +37,7 @@ public class IncialActivityInsti extends AppCompatActivity {
             CardView cardView = (CardView) mainGrid.getChildAt(i);
             final int finalI = i;
             cardView.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
 

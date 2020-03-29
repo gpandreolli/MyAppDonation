@@ -155,7 +155,7 @@ public class UsuarioActivity extends AppCompatActivity {
         usua.setCep_usua(edtCepUsua.getText().toString());
         usua.setFone_usua(edtFoneUsua.getText().toString());
         usua.setUf_usua(itemSelecionado);
-        usua.setUser_uid(currentUser.getUid());
+
 
 
 

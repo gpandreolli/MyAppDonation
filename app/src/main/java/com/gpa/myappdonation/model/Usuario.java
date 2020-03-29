@@ -14,12 +14,11 @@ public class Usuario {
     private String fone_usua;
     private String complemento_usua;
     private String tipo_usua;
-    private String user_uid;
 
     public Usuario() {
     }
 
-    public Usuario(String uid, String nome_usua, String cpf_usua, String rua_usua, String numero_usua, String bairro_usua, String cidade_usua, String uf_usua, String cep_usua, String fone_usua, String complemento_usua, String tipo_usua, String user_uid) {
+    public Usuario(String uid, String nome_usua, String cpf_usua, String rua_usua, String numero_usua, String bairro_usua, String cidade_usua, String uf_usua, String cep_usua, String fone_usua, String complemento_usua, String tipo_usua) {
         Uid = uid;
         this.nome_usua = nome_usua;
         this.cpf_usua = cpf_usua;
@@ -32,16 +31,10 @@ public class Usuario {
         this.fone_usua = fone_usua;
         this.complemento_usua = complemento_usua;
         this.tipo_usua = tipo_usua;
-        this.user_uid = user_uid;
+
     }
 
-    public String getUser_uid() {
-        return user_uid;
-    }
 
-    public void setUser_uid(String user_uid) {
-        this.user_uid = user_uid;
-    }
 
     public String getComplemento_usua() {
         return complemento_usua;
