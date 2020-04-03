@@ -162,7 +162,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         } else if(tipoUsuario1.equals("2")) {
                             Intent i = new Intent(LoginActivity.this, InicialActivityApoiador.class);
                             startActivity(i);
-                            Toast.makeText(getBaseContext(), "Instituição logado com sucesso", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "Apoiador logado com sucesso", Toast.LENGTH_LONG).show();
                             finish();
                         }
 

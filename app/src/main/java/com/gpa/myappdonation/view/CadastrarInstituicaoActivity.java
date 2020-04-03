@@ -10,11 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.model.Address;
 import com.gpa.myappdonation.model.Instituicao;
+import com.gpa.myappdonation.model.Usuario;
 import com.gpa.myappdonation.util.Util;
 import com.gpa.myappdonation.util.ZipCodeListener;
 import com.google.firebase.*;
@@ -30,10 +33,12 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
     private Spinner sp_state;
     private Button btnSalvar, btnCancelarCadInst;
     private Util util;
+    private String uidUsuario;
 
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private FirebaseAuth auth;
 
 
     @Override
@@ -110,7 +115,7 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
 
     public void setDataViews(Address address) {
         setFields(R.id.et_street, address.getLogradouro());
-        setFields(R.id.et_complement, address.getComplemento());
+        //setFields(R.id.et_complement, address.getComplemento());
         setFields(R.id.et_neighbor, address.getBairro());
         setFields(R.id.et_city, address.getLocalidade());
         setSpinner(R.id.sp_state, R.array.states, address.getUf());
@@ -143,6 +148,10 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
 
         Object posicao = sp_state.getSelectedItem();
         String itemSelecionado = posicao.toString();
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        String usuario = currentUser.getUid();
+
 
         Instituicao inst = new Instituicao();
         inst.setUid(UUID.randomUUID().toString());
@@ -158,6 +167,7 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         inst.setTelefone(edtFoneInst.getText().toString());
         inst.setUf(itemSelecionado);
         inst.setEmail(edtEmailCadInst.getText().toString());
+        inst.setUsuario(usuario);
 
 
 

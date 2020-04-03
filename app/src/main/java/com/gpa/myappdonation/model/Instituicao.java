@@ -17,7 +17,7 @@ public class Instituicao {
     private String uf;
     private String telefone;
     private String email;
-    private Usuario usuario;
+    private String usuario;
 
     public Instituicao() {
     }
@@ -28,7 +28,7 @@ public class Instituicao {
         this.uf = uf;
     }
 
-    public Instituicao(String uid, String razaoSocial, String cnpj, String nomeFantasia, String rua, String numero, String bairro, String cep, String complemento, String cidade, String uf, String telefone, String email, Usuario usuario) {
+    public Instituicao(String uid, String razaoSocial, String cnpj, String nomeFantasia, String rua, String numero, String bairro, String cep, String complemento, String cidade, String uf, String telefone, String email, String usuario) {
         Uid = uid;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
@@ -45,11 +45,11 @@ public class Instituicao {
         this.usuario = usuario;
     }
 
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 

@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +27,9 @@ public class ListaInstActivity extends AppCompatActivity {
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("Instituicao");
+    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
+    private FirebaseAuth auth;
+    private String uidUsuario;
     ArrayList<Instituicao> instituicoes = new ArrayList<Instituicao>();
 
     @Override
@@ -38,23 +44,17 @@ public class ListaInstActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-
                 int i = 0;
-
                 String nomeInstituicao;
                 String cidadeInstituicao;
                 String ufInstituicao;
-
                 for (DataSnapshot contaSnapshot : dataSnapshot.getChildren()) {
 
                     Instituicao inst = contaSnapshot.getValue(Instituicao.class);
-
                     nomeInstituicao = inst.getNomeFantasia();
                     cidadeInstituicao = inst.getCidade();
                     ufInstituicao = inst.getUf();
                     Instituicao dadosInstituicao = new Instituicao(nomeInstituicao,cidadeInstituicao,ufInstituicao);
-
                     dadosInstituicao.setNomeFantasia(nomeInstituicao);
                     dadosInstituicao.setCidade(cidadeInstituicao);
                     dadosInstituicao.setUf(ufInstituicao);
@@ -62,15 +62,11 @@ public class ListaInstActivity extends AppCompatActivity {
 
                 }
 
-
                 ListaAdapterInstituicao adapter = new ListaAdapterInstituicao(ListaInstActivity.this,
                         R.layout.listview_inst_linha, instituicoes);
-
                 View header = (View) getLayoutInflater().inflate(R.layout.listview_inst_linha, null);
-
                 listaInstituicao.addHeaderView(header);
                 listaInstituicao.setAdapter(adapter);
-
             }
 
             @Override
@@ -81,6 +77,26 @@ public class ListaInstActivity extends AppCompatActivity {
 
         });
 
+        listaInstituicao.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                long idInstituicao = adapterView.getAdapter().getItemId(pos);
+                addInstituicao(idInstituicao);
+                return false;
+            }
+        });
+
+
+    }
+
+    private void addInstituicao(Long idInstituicao) {
+
+        String id_inst = idInstituicao.toString();
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        uidUsuario = currentUser.getUid();
+        referencia.child("Inst_Usua").child("id_usua").setValue(uidUsuario);
+        referencia.child("Inst_Usua").child("id_inst").setValue(id_inst);
 
 
     }
