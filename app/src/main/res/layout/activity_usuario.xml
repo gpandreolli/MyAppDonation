@@ -113,14 +113,17 @@
                 android:background="@drawable/bg_pin"/>
 
 
-            <EditText
+            <com.santalu.maskedittext.MaskEditText
                 android:id="@+id/edtFoneUsua"
                 android:hint="Telefone"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:textAlignment="viewStart"
                 android:background="@drawable/bg_pin"
-                android:inputType="phone"/>
+                android:inputType="phone"
+                app:met_mask="(##) ##### ## ##"/>
+
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

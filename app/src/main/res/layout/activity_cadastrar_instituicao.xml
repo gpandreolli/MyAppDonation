@@ -158,16 +158,13 @@
                 android:textAlignment="viewStart" />
 
 
-            <EditText
+            <com.santalu.maskedittext.MaskEditText
                 android:id="@+id/edtFoneInst"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/bg_pin"
-                android:hint="Telefone"
-                android:textColor="@color/colorHybridaMarron"
+                android:layout_height="wrap_content"
                 android:inputType="phone"
-                android:textAlignment="viewStart" />
+                android:hint="(00) 9 9900-0000"
+                app:met_mask="(##) ##### ## ##"/>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout

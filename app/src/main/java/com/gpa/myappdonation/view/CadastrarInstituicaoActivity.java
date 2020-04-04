@@ -22,6 +22,7 @@ import com.gpa.myappdonation.util.Util;
 import com.gpa.myappdonation.util.ZipCodeListener;
 import com.google.firebase.*;
 import com.gpa.myappdonation.view.IncialActivityInsti;
+import com.santalu.maskedittext.MaskEditText;
 
 import java.util.UUID;
 
@@ -29,7 +30,8 @@ import java.util.UUID;
 public class CadastrarInstituicaoActivity extends AppCompatActivity {
 
     private EditText etZipCode, edtRazaoSocial, edtNomeFantasia,edtCnpj,et_city,et_street,et_number, et_complement;
-    private EditText et_neighbor, edtEmailCadInst,edtFoneInst;
+    private MaskEditText edtFoneInst;
+    private EditText et_neighbor, edtEmailCadInst;
     private Spinner sp_state;
     private Button btnSalvar, btnCancelarCadInst;
     private Util util;
@@ -52,7 +54,7 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         edtRazaoSocial = (EditText) findViewById(R.id.edtRazaoSocial);
         edtNomeFantasia = (EditText) findViewById(R.id.edtNomeFantasia);
         edtEmailCadInst = (EditText) findViewById(R.id.edtEmailCadInst);
-        edtFoneInst = (EditText) findViewById(R.id.edtFoneInst);
+        edtFoneInst = (MaskEditText) findViewById(R.id.edtFoneInst);
         et_city =  (EditText) findViewById(R.id.et_city);
         et_street = (EditText) findViewById(R.id.et_street);
         et_number = (EditText) findViewById(R.id.et_number);
@@ -164,7 +166,7 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         inst.setBairro(et_neighbor.getText().toString());
         inst.setCidade(et_city.getText().toString());
         inst.setCep(etZipCode.getText().toString());
-        inst.setTelefone(edtFoneInst.getText().toString());
+        inst.setTelefone(edtFoneInst.getRawText());
         inst.setUf(itemSelecionado);
         inst.setEmail(edtEmailCadInst.getText().toString());
         inst.setUsuario(usuario);

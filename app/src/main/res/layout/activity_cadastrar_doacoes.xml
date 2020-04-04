@@ -28,21 +28,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:autofillHints="Minhas Instituiçoes" />
+            android:layout_marginBottom="16dp" />
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/edtDataDocao"
+
+    <TextView
+        android:id="@+id/txtDataDoacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:text="Data"
         android:background="@drawable/bg_pin"
-        android:ems="10"
-        android:hint="Data"
-        android:inputType="date"
-        android:padding="10dp" />
-
+        android:textAlignment="textStart"
+        android:textColorHint="@color/colorHybridaVermelho"
+        android:textColorHighlight="@color/colorHybridaMarron"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginStart="5dp"
+        />
 
     <com.blackcat.currencyedittext.CurrencyEditText
         android:id="@+id/edtValorDoacao"
@@ -51,9 +55,9 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_pin"
         android:ems="10"
-        android:hint="Valor"
         android:inputType="textPersonName"
         android:padding="10dp"
+        android:layout_marginEnd="16dp"
         />
 
     <LinearLayout

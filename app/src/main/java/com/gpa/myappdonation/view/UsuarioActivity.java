@@ -21,13 +21,15 @@ import com.gpa.myappdonation.model.Usuario;
 import com.gpa.myappdonation.util.Util;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.santalu.maskedittext.MaskEditText;
 
 import java.util.UUID;
 
 public class UsuarioActivity extends AppCompatActivity {
 
     private EditText edtNomeUsua,edtCPFUsua, getEdtCpfUsua, edtCepUsua, edtCidadeUsua,edtRuaUsua,edtNumeroUsua,edtBairroUsua ;
-    private EditText edtComplementoUsua, edtFoneUsua;
+    private EditText edtComplementoUsua;
+    private MaskEditText edtFoneUsua;
     private Spinner spEstadoUsua;
     private Button bntSalvarUsua;
     private Util util;
@@ -51,7 +53,7 @@ public class UsuarioActivity extends AppCompatActivity {
         edtRuaUsua = (EditText) findViewById(R.id.edtRuaUsua);
         edtNumeroUsua = (EditText) findViewById(R.id.edtNumeroUsua);
         edtComplementoUsua = (EditText) findViewById(R.id.edtComplementoUsua);
-        edtFoneUsua = (EditText) findViewById(R.id.edtFoneUsua);
+        edtFoneUsua = (MaskEditText) findViewById(R.id.edtFoneUsua);
         spEstadoUsua = (Spinner) findViewById(R.id.spEstadoUsua);
         bntSalvarUsua = (Button) findViewById(R.id.btnSalvarUsua);
         mAuth = FirebaseAuth.getInstance();
@@ -153,7 +155,7 @@ public class UsuarioActivity extends AppCompatActivity {
         usua.setBairro_usua(edtBairroUsua.getText().toString());
         usua.setCidade_usua(edtCidadeUsua.getText().toString());
         usua.setCep_usua(edtCepUsua.getText().toString());
-        usua.setFone_usua(edtFoneUsua.getText().toString());
+        usua.setFone_usua(edtFoneUsua.getRawText());
         usua.setUf_usua(itemSelecionado);
 
 
