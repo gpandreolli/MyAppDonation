@@ -65,7 +65,7 @@ public class ListaInstActivity extends AppCompatActivity {
                 ListaAdapterInstituicao adapter = new ListaAdapterInstituicao(ListaInstActivity.this,
                         R.layout.listview_inst_linha, instituicoes);
                 View header = (View) getLayoutInflater().inflate(R.layout.listview_inst_linha, null);
-                listaInstituicao.addHeaderView(header);
+
                 listaInstituicao.setAdapter(adapter);
             }
 
@@ -78,9 +78,13 @@ public class ListaInstActivity extends AppCompatActivity {
         });
 
         listaInstituicao.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                long idInstituicao = adapterView.getAdapter().getItemId(pos);
+                Instituicao inst = instituicoes.get(pos);
+                //inst.addInstituicao();
+                String id =  inst.getUid();
+                String idInstituicao = id;
                 addInstituicao(idInstituicao);
                 return false;
             }
@@ -89,14 +93,16 @@ public class ListaInstActivity extends AppCompatActivity {
 
     }
 
-    private void addInstituicao(Long idInstituicao) {
+    private void addInstituicao(String idInstituicao) {
 
-        String id_inst = idInstituicao.toString();
+        Instituicao inst = new Instituicao();
         auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
         uidUsuario = currentUser.getUid();
+        String id_inst = referencia.child("Instituicao").child(inst.getUid()).toString();
+        String teste = id_inst;
         referencia.child("Inst_Usua").child("id_usua").setValue(uidUsuario);
-        referencia.child("Inst_Usua").child("id_inst").setValue(id_inst);
+        referencia.child("Inst_Usua").child("id_inst").setValue(teste);
 
 
     }

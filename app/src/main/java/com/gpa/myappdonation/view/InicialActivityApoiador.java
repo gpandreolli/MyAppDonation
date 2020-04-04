@@ -46,14 +46,20 @@ public class InicialActivityApoiador extends AppCompatActivity {
                     if (finalI == 1) {
                         Intent intent = new Intent(InicialActivityApoiador.this, ListaInstActivity.class);
                         intent.putExtra("info", "This is activity from card item index  " + finalI);
-                        Toast.makeText(getBaseContext(), "CARD: "+finalI, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), "CARD: " + finalI, Toast.LENGTH_LONG).show();
                         startActivity(intent);
+                    }else if(finalI == 3){
+                        Intent intent = new Intent(InicialActivityApoiador.this, MinhasDoacoesActivity.class);
+                        intent.putExtra("info", "This is activity from card item index  " + finalI);
+                        Toast.makeText(getBaseContext(), "Menu: " + finalI, Toast.LENGTH_LONG).show();
+                        startActivity(intent);
+
                     }else if(finalI == 5){
                         auth.signOut();
                         finish();
                         Intent i = new Intent(InicialActivityApoiador.this, LoginActivity.class);
                         startActivity(i);
-                        Toast.makeText(getBaseContext(), "usuario deslogado: ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), "Usuário deslogado: ", Toast.LENGTH_LONG).show();
 
 
                     }

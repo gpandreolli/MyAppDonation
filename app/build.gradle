@@ -37,4 +37,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.7'
     implementation 'com.google.firebase:firebase-database:19.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+
+    //dependencia para mascara de moeda
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
 }

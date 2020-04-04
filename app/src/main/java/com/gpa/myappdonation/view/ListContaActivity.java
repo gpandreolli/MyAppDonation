@@ -77,7 +77,6 @@ public class ListContaActivity extends AppCompatActivity {
 
                 View header = (View) getLayoutInflater().inflate(R.layout.listview_conta_linha, null);
 
-                lisConta.addHeaderView(header);
                 lisConta.setAdapter(adapter);
 
             }

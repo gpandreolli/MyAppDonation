@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.CadastrarDoacoesActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:autofillHints="Minhas Instituiçoes" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edtDataDocao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_pin"
+        android:ems="10"
+        android:hint="Data"
+        android:inputType="date"
+        android:padding="10dp" />
+
+
+    <com.blackcat.currencyedittext.CurrencyEditText
+        android:id="@+id/edtValorDoacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_pin"
+        android:ems="10"
+        android:hint="Valor"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btnCancelarDoacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="Cancelar"
+            android:theme="@style/botaoPadrao" />
+
+        <Button
+            android:id="@+id/btnSalvarDoacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="Salvar"
+
+            android:theme="@style/botaoPadrao" />
+    </LinearLayout>
+
+
+</LinearLayout>

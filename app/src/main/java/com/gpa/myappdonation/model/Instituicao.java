@@ -2,6 +2,12 @@ package com.gpa.myappdonation.model;
 
 import android.content.Intent;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
 public class Instituicao {
 
     private String Uid;
@@ -18,6 +24,12 @@ public class Instituicao {
     private String telefone;
     private String email;
     private String usuario;
+
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("Instituicao");
+    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
+    private FirebaseAuth auth;
+    private String uidUsuario;
 
     public Instituicao() {
     }
@@ -155,5 +167,19 @@ public class Instituicao {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public void addInstituicao() {
+
+        //Instituicao inst = new Instituicao();
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        uidUsuario = currentUser.getUid();
+        String id_inst = referencia.child("Instituicao").child(getUid()).toString();
+        String teste = id_inst;
+        referencia.child("Inst_Usua").child("id_usua").setValue(uidUsuario);
+        referencia.child("Inst_Usua").child("id_inst").setValue(teste);
+
+
     }
 }

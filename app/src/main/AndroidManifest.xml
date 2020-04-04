@@ -11,7 +11,18 @@
         android:roundIcon="@drawable/iconelove"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".view.ListaInstActivity"></activity>
+        <activity android:name=".view.CadastrarDoacoesActivity"></activity>
+        <activity
+            android:name=".view.MinhasDoacoesActivity"
+            android:label="@string/title_activity_minhas_doacoes"
+            android:parentActivityName=".view.InicialActivityApoiador"
+            android:theme="@style/NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.gpa.myappdonation.view.InicialActivityApoiador" />
+        </activity>
+        <activity android:name=".view.ListaDoacoesActivity" />
+        <activity android:name=".view.ListaInstActivity" />
         <activity android:name=".view.InicialActivityApoiador" />
         <activity android:name=".view.CadastrarConta" />
         <activity android:name=".view.UsuarioActivity" />

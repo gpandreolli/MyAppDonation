@@ -60,6 +60,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="70dp"
         android:background="@drawable/login_button_bg"
+        android:theme="@style/botaoPadrao"
         android:text="Cadastrar" />
 
     <Button
@@ -69,6 +70,7 @@
         android:layout_marginLeft="70dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="70dp"
+        android:theme="@style/botaoPadrao"
         android:background="@drawable/login_button_bg"
         android:text="Cancelar" />
 
