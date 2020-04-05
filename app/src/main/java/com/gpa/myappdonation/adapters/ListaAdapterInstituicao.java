@@ -42,6 +42,8 @@ public class ListaAdapterInstituicao extends ArrayAdapter<Instituicao> {
         TextView txtUf = (TextView) convertView.findViewById(R.id.txtUf);
         txtUf.setText(InstituicaoPosicao.getUf());
 
+
+
         return convertView;
     }
 

@@ -39,10 +39,7 @@ public class CadastrarConta extends AppCompatActivity {
         edtNumeroBancoConta = (EditText) findViewById(R.id.edtNumeroBancoConta);
         edtNomeConta = (EditText) findViewById(R.id.edtNomeConta);
         btnSalvarConta = (Button) findViewById(R.id.btnSalvarConta);
-
         inicializarFirebase();
-       // FirebaseUser currentUser = mAuth.getCurrentUser();
-
         btnSalvarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,9 +58,6 @@ public class CadastrarConta extends AppCompatActivity {
 
     private void salvarConta() {
 
-
-      //  FirebaseUser currentUser = mAuth.getCurrentUser();
-
         Conta conta = new Conta();
         conta.setUid(UUID.randomUUID().toString());
         conta.setNome(edtNomeConta.getText().toString());
@@ -71,10 +65,7 @@ public class CadastrarConta extends AppCompatActivity {
         conta.setAgencia(edtAgenciaConta.getText().toString());
         conta.setBanco(edtBancoConta.getText().toString());
         conta.setNumeroBanco(edtNumeroBancoConta.getText().toString());
-
-
         databaseReference.child("Conta").child(conta.getUid()).setValue(conta);
-
         limparCampos();
         chamaActivity();
     }

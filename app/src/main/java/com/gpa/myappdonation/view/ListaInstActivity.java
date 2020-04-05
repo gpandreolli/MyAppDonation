@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -20,6 +21,7 @@ import com.gpa.myappdonation.adapters.ListaAdapterInstituicao;
 import com.gpa.myappdonation.model.Instituicao;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class ListaInstActivity extends AppCompatActivity {
 
@@ -27,10 +29,10 @@ public class ListaInstActivity extends AppCompatActivity {
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("Instituicao");
-    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth auth;
     private String uidUsuario;
     ArrayList<Instituicao> instituicoes = new ArrayList<Instituicao>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +50,15 @@ public class ListaInstActivity extends AppCompatActivity {
                 String nomeInstituicao;
                 String cidadeInstituicao;
                 String ufInstituicao;
+                String uidInstituicao;
                 for (DataSnapshot contaSnapshot : dataSnapshot.getChildren()) {
 
                     Instituicao inst = contaSnapshot.getValue(Instituicao.class);
                     nomeInstituicao = inst.getNomeFantasia();
                     cidadeInstituicao = inst.getCidade();
                     ufInstituicao = inst.getUf();
-                    Instituicao dadosInstituicao = new Instituicao(nomeInstituicao,cidadeInstituicao,ufInstituicao);
+                    uidInstituicao = inst.getUid();
+                    Instituicao dadosInstituicao = new Instituicao(uidInstituicao,nomeInstituicao,cidadeInstituicao,ufInstituicao);
                     dadosInstituicao.setNomeFantasia(nomeInstituicao);
                     dadosInstituicao.setCidade(cidadeInstituicao);
                     dadosInstituicao.setUf(ufInstituicao);
@@ -65,7 +69,7 @@ public class ListaInstActivity extends AppCompatActivity {
                 ListaAdapterInstituicao adapter = new ListaAdapterInstituicao(ListaInstActivity.this,
                         R.layout.listview_inst_linha, instituicoes);
                 View header = (View) getLayoutInflater().inflate(R.layout.listview_inst_linha, null);
-
+               // header.getParent().getClass();
                 listaInstituicao.setAdapter(adapter);
             }
 
@@ -77,50 +81,36 @@ public class ListaInstActivity extends AppCompatActivity {
 
         });
 
-//        listaInstituicao.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
-//                Instituicao inst = instituicoes.get(pos);
-//                //inst.addInstituicao();
-//                String id =  inst.getUid();
-//                String idInstituicao = id;
-//                addInstituicao(idInstituicao);
-//                return false;
-//            }
-//        });
 
-        listaInstituicao.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        listaInstituicao.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
                 Instituicao inst = instituicoes.get(pos);
-                //inst.addInstituicao();
-                String id =  inst.getUid();
-                String idInstituicao = id;
-                addInstituicao(idInstituicao);
-                return ;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+                String idInstituicao =  inst.getUid();
+                String nomeInstituicao = inst.getNomeFantasia();
+                String cidadeInstituicao = inst.getCidade();
+                String ufInstituicao = inst.getUf();
+                addInstituicao(idInstituicao,nomeInstituicao,cidadeInstituicao,ufInstituicao);
+                return false;
             }
         });
 
 
+
+
     }
 
-    private void addInstituicao(String idInstituicao) {
+    private void addInstituicao(String idInstituicao,String nome,String cidade,String uf) {
 
-        Instituicao inst = new Instituicao();
+        Instituicao inst = new Instituicao(idInstituicao,nome,cidade,uf);
+        inst.setUid(idInstituicao);
+        inst.setNomeFantasia(nome);
+        inst.setCidade(cidade);
+        inst.setUf(uf);
         auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
         uidUsuario = currentUser.getUid();
-        String id_inst = referencia.child("Instituicao").child(inst.getUid()).toString();
-        String teste = id_inst;
-        referencia.child("Inst_Usua").child("id_usua").setValue(uidUsuario);
-        referencia.child("Inst_Usua").child("id_inst").setValue(teste);
-
-
+        DatabaseReference meusAnunciosRef = FirebaseDatabase.getInstance().getReference().child("Minhas_Instituicoes");
+        meusAnunciosRef.child(uidUsuario).child(idInstituicao).setValue(inst);
     }
 }
