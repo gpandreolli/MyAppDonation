@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.blackcat.currencyedittext.CurrencyEditText;
@@ -20,6 +23,7 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
 
     private CurrencyEditText edtValorDoacao;
     private TextView txtDataDoacao;
+    private Spinner spMinhasInstituicoes;
     Calendar mDataAtual;
     int dia, mes, ano;
 
@@ -29,6 +33,7 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastrar_doacoes);
 
         inicializarComponentes();
+        carregarDadosSpinner();
 
         dia = mDataAtual.get(Calendar.DAY_OF_MONTH);
         mes = mDataAtual.get(Calendar.MONTH);
@@ -51,10 +56,22 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
         });
     }
 
+    private void carregarDadosSpinner() {
+        String [] estados = getResources().getStringArray(R.array.states);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this,android.R.layout.simple_spinner_item,
+                estados
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spMinhasInstituicoes.setAdapter(adapter);
+    }
+
     private void inicializarComponentes() {
         txtDataDoacao = (TextView) findViewById(R.id.txtDataDoacao);
         mDataAtual = Calendar.getInstance();
         edtValorDoacao = (CurrencyEditText) findViewById(R.id.edtValorDoacao);
+        spMinhasInstituicoes = (Spinner) findViewById(R.id.spMinhasInstituicoes);
         //Configura localidade
         Locale locale = new Locale("pt", "BR");
         edtValorDoacao.setLocale(locale);

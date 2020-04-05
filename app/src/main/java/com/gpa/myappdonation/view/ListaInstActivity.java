@@ -77,16 +77,33 @@ public class ListaInstActivity extends AppCompatActivity {
 
         });
 
-        listaInstituicao.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//        listaInstituicao.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
+//                Instituicao inst = instituicoes.get(pos);
+//                //inst.addInstituicao();
+//                String id =  inst.getUid();
+//                String idInstituicao = id;
+//                addInstituicao(idInstituicao);
+//                return false;
+//            }
+//        });
 
+        listaInstituicao.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
                 Instituicao inst = instituicoes.get(pos);
                 //inst.addInstituicao();
                 String id =  inst.getUid();
                 String idInstituicao = id;
                 addInstituicao(idInstituicao);
-                return false;
+                return ;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
