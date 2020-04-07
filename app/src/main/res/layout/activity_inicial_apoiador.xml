@@ -4,31 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorHybridaCinza"
+    android:background="@drawable/gradiente"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context=".view.InicialActivityApoiador">
 
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:background="@color/colorWhite">
+        android:layout_weight="2"        >
 
         <TextView
             android:id="@+id/textGrid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:text="Apoiador"
-            android:textColor="@color/colorHybridaVermelho"
-            android:textSize="34dp">
+            android:layout_marginTop="50dp"
+            android:textColor="@color/colorHybridaMarron"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         </TextView>
 
+        <TextView
+            android:id="@+id/txtUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/colorHybridaMarron"
+            android:textSize="34dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textGrid" />
 
-    </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <GridLayout
         android:id="@+id/griPrincipal"
@@ -36,7 +50,6 @@
         android:layout_height="0dp"
         android:layout_weight="8"
         android:alignmentMode="alignMargins"
-        android:background="@color/colorHybridaRosa"
         android:columnCount="2"
         android:columnOrderPreserved="false"
         android:padding="14dp"
@@ -52,34 +65,36 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/colorWhite"
+            app:cardBackgroundColor="@color/colorTransparent"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
+                android:background="@color/colorTransparent"
                 android:orientation="vertical">
 
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_account_balance_black_24dp" />
+                    android:src="@drawable/baseline_account_balance_black_24dp"
+                    android:layout_gravity="center"/>
 
                 <TextView
-                    ity="center"
-                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="1dp"
                     android:text="Minhas Instituições"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="italic" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -95,12 +110,12 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/colorWhite"
+            app:cardBackgroundColor="@color/colorTransparent"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
@@ -108,12 +123,13 @@
 
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:src="@drawable/baseline_account_balance_black_24dp" />
 
                 <TextView
-                    ity="center"
+                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -122,7 +138,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="italic" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -137,12 +153,12 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/colorWhite"
+            app:cardBackgroundColor="@color/colorTransparent"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
@@ -150,21 +166,22 @@
 
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/baseline_account_balance_black_24dp" />
 
                 <TextView
-                    ity="center"
-                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:text="Configurações"
+                    android:text="Configuração"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="italic" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -179,34 +196,37 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/colorWhite"
+            app:cardBackgroundColor="@color/colorTransparent"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
                 android:orientation="vertical">
 
-
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/baseline_account_balance_black_24dp" />
 
                 <TextView
-                    ity="center"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="5"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center"
                     android:text="Minhas Doações"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="italic" />
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -221,12 +241,12 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/colorWhite"
+            app:cardBackgroundColor="@color/colorTransparent"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
@@ -234,21 +254,22 @@
 
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/baseline_account_balance_black_24dp" />
 
                 <TextView
-                    ity="center"
-                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="1dp"
                     android:text="Relatórios"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="italic" />
 
             </LinearLayout>
 
@@ -264,12 +285,12 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/colorWhite"
+            app:cardBackgroundColor="@color/colorTransparent"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
@@ -277,25 +298,28 @@
 
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/baseline_account_balance_black_24dp" />
 
                 <TextView
-                    ity="center"
-                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="1dp"
                     android:text="Sair"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="italic" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+
 
     </GridLayout>
 

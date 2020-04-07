@@ -14,11 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.adapters.AdapterMyInst;
@@ -27,7 +27,6 @@ import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.RecyclerItemClickListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,7 +34,6 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerMinhasInstituicoes;
     private List<Instituicao> instituicoes = new ArrayList<>();
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private AdapterMyInst adapterMyInst;
     private DatabaseReference istituicaoUsuarioref;
 
@@ -50,6 +48,8 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Minhas Instituições");
         recuperaInstituicoes();
 
         recyclerMinhasInstituicoes.addOnItemTouchListener(

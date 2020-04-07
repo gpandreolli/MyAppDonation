@@ -2,13 +2,19 @@
 <resources>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorHybridaVermelho" >#D9042B</color>
-    <color name="colorHybridaMarron">#40010D</color>
+    <color name="colorHybridaMarron">#00155C</color>
     <color name="colorHybridaRosa">#F2A2B1</color>
     <color name="colorHybridaCinza">#F2F2F2</color>
     <color name="colorHybridaPreto">#0D0D0D</color>
     <color name="colorPrimary">#D9042B</color>
     <color name="colorPrimaryDark">#40010D</color>
     <color name="colorAccent">#F2A2B1</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorBlueDark">#1364B1</color>
+    <color name="colorBluePale">#A0C9F0</color>
+    <color name="colorRosaEscuro">#BE7A85</color>
+    <color name="colorBlueMedium">#4985BE</color>
+
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.gpa.myappdonation.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -7,15 +8,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
+import com.gpa.myappdonation.model.Instituicao;
+import com.gpa.myappdonation.model.Usuario;
+import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
 public class IncialActivityInsti extends AppCompatActivity {
 
     private GridLayout mainGrid;
     private FirebaseAuth auth;
+    private TextView txtInstituicao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +34,28 @@ public class IncialActivityInsti extends AppCompatActivity {
 
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
         auth = FirebaseAuth.getInstance();
+        txtInstituicao = (TextView) findViewById(R.id.txtNomeInstituicao);
 
-        //Set Event
         setSingleEvent(mainGrid);
-        //setToggleEvent(mainGrid);
+        setNomeInstituicao();
+
+    }
+
+    private void setNomeInstituicao() {
+
+        DatabaseReference reference = ConfiguracaoFirebase.getFirebase().child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario());
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Instituicao inst = dataSnapshot.getValue(Instituicao.class);
+                String nomefant = inst.getNomeFantasia();
+                txtInstituicao.setText(nomefant);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void setSingleEvent(GridLayout mainGrid) {

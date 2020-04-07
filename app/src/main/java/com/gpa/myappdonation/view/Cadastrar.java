@@ -67,9 +67,7 @@ public class Cadastrar extends AppCompatActivity implements View.OnClickListener
 
         switch (v.getId()){
             case R.id.btnSalvarCadastro:
-
                 cadastrarUsua();
-
                 break;
         }
 

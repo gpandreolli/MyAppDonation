@@ -8,16 +8,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/bg_pin">
+            >
 
             <TextView
                 android:id="@+id/txtNomeMinhaInstituicao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Minha Instituicao"
-                android:textColor="@color/colorHybridaVermelho"
+                android:textColor="@color/colorBlueDark"
                 android:layout_marginBottom="20dp"
-                android:layout_marginStart="5dp"/>
+                android:layout_marginStart="5dp"
+                android:textSize="25dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -29,18 +30,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Cidade"
-                    android:textColor="@color/colorHybridaMarron"
+                    android:textColor="@color/colorRosaEscuro"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="5dp"/>
+                    android:layout_marginStart="5dp"
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:id="@+id/txtUfMinhaInstituicao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="UF"
-                    android:textColor="@color/colorHybridaMarron"
+                    android:textColor="@color/colorRosaEscuro"
                     android:layout_marginBottom="5dp"
                     android:layout_marginStart="150dp"
+                    android:textSize="20dp"
                     />
 
             </LinearLayout>

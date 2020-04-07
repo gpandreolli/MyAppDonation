@@ -1,5 +1,6 @@
 package com.gpa.myappdonation.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -7,15 +8,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
+import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
 public class InicialActivityApoiador extends AppCompatActivity {
 
     private GridLayout griPrincipal;
     private FirebaseAuth auth;
+    private TextView txtUsuario;
 
 
     @Override
@@ -25,6 +33,24 @@ public class InicialActivityApoiador extends AppCompatActivity {
         griPrincipal = (GridLayout) findViewById(R.id.griPrincipal);
         auth = FirebaseAuth.getInstance();
         setSingleEvent(griPrincipal);
+        txtUsuario = (TextView) findViewById(R.id.txtUsuario);
+        setNomeUsuario();
+    }
+
+    private void setNomeUsuario() {
+
+        DatabaseReference reference = ConfiguracaoFirebase.getFirebase().child("Usuario").child(ConfiguracaoFirebase.getIdUsuario()).child("nome_usua");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String nome = dataSnapshot.getValue().toString();
+                txtUsuario.setText(nome);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void setSingleEvent(GridLayout griPrincipal) {

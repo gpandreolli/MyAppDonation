@@ -11,12 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="br.com.fake.steam.LoginActivity">
+        android:background="@drawable/gradiente"
+        tools:context=".view.LoginActivity">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="210dp"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:src="@drawable/iconelove" />
 
       <!--  <TextView
@@ -37,7 +39,7 @@
             android:background="@drawable/login_edittext_bg"
             android:hint="@string/username"
             android:textAlignment="center"
-            android:textColor="@color/colorHybridaRosa"
+            android:textColor="@color/colorHybridaMarron"
             android:textColorHint="@color/colorHybridaMarron" />
 
       <!--  <TextView
@@ -56,7 +58,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/login_edittext_bg"
-            android:hint="@string/password_hint"
+            android:hint="******"
             android:inputType="textPassword"
             android:textAlignment="center"
             android:textColor="@color/colorHybridaMarron"

@@ -110,7 +110,7 @@ public class ListaInstActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
         uidUsuario = currentUser.getUid();
-        DatabaseReference meusAnunciosRef = FirebaseDatabase.getInstance().getReference().child("Minhas_Instituicoes");
-        meusAnunciosRef.child(uidUsuario).child(idInstituicao).setValue(inst);
+        DatabaseReference minhasInstituicoes = FirebaseDatabase.getInstance().getReference().child("Minhas_Instituicoes");
+        minhasInstituicoes.child(uidUsuario).child(idInstituicao).setValue(inst);
     }
 }

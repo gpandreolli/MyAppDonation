@@ -18,6 +18,7 @@ import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.model.Address;
 import com.gpa.myappdonation.model.Instituicao;
 import com.gpa.myappdonation.model.Usuario;
+import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.Util;
 import com.gpa.myappdonation.util.ZipCodeListener;
 import com.google.firebase.*;
@@ -150,10 +151,6 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
 
         Object posicao = sp_state.getSelectedItem();
         String itemSelecionado = posicao.toString();
-        auth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        String usuario = currentUser.getUid();
-
 
         Instituicao inst = new Instituicao();
         inst.setUid(UUID.randomUUID().toString());
@@ -169,13 +166,13 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         inst.setTelefone(edtFoneInst.getRawText());
         inst.setUf(itemSelecionado);
         inst.setEmail(edtEmailCadInst.getText().toString());
-        inst.setUsuario(usuario);
 
 
 
 
 
-        databaseReference.child("Instituicao").child(inst.getUid()).setValue(inst);
+
+        databaseReference.child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario()).setValue(inst);
 
             limparCampos();
             finish();
