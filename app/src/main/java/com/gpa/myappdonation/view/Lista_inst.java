@@ -3,9 +3,6 @@ package com.gpa.myappdonation.view;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,14 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
-import com.gpa.myappdonation.adapters.AdapterMyInst;
+import com.gpa.myappdonation.adapters.Adapter_instituicoes;
 import com.gpa.myappdonation.model.Instituicao;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.RecyclerItemClickListener;
@@ -32,52 +28,51 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MinhasInstituicoesActivity extends AppCompatActivity {
+public class Lista_inst extends AppCompatActivity {
 
-    private RecyclerView recyclerMinhasInstituicoes;
+    private RecyclerView recyclerInstituicoes;
     private List<Instituicao> instituicoes = new ArrayList<>();
-    private AdapterMyInst adapterMyInst;
-    private DatabaseReference istituicaoUsuarioref;
+    private Adapter_instituicoes adapterInst;
+    private DatabaseReference instituicaoRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_minhas_instituicoes);
+        setContentView(R.layout.activity_instituicoes);
 
-        istituicaoUsuarioref = ConfiguracaoFirebase.getFirebase().child("Minhas_Instituicoes").child(ConfiguracaoFirebase.getIdUsuario());
-
+        instituicaoRef = ConfiguracaoFirebase.getFirebase().child("Instituicao");
         inicializarComponnetes();
+        recuperaInstituicoes();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Minhas Instituições");
-        recuperaInstituicoes();
+        getSupportActionBar().setTitle("Instituições");
 
-        recyclerMinhasInstituicoes.addOnItemTouchListener(
+
+
+        recyclerInstituicoes.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         this,
-                        recyclerMinhasInstituicoes,
+                        recyclerInstituicoes,
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
+
                             }
 
                             @Override
                             public void onLongItemClick(View view, final int position) {
 
-                                new AlertDialog.Builder(MinhasInstituicoesActivity.this)
-                                        .setTitle("Remover Instiuição")
-                                        .setMessage("Deseja remover essa instituição da sua lista?")
-                                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
+
                                                 Instituicao inst = instituicoes.get(position);
-                                                String idInstituicao = inst.getUid();
-                                                removeMinhaInstituicao(idInstituicao);
-                                            }
-                                        })
-                                        .setNegativeButton("Não",null).show();
+                                                String idInstituicao =  inst.getUid();
+                                                String nomeInstituicao = inst.getNomeFantasia();
+                                                String cidadeInstituicao = inst.getCidade();
+                                                String ufInstituicao = inst.getUf();
+                                                addInstituicao(idInstituicao,nomeInstituicao,cidadeInstituicao,ufInstituicao);
+
 
                             }
 
@@ -86,25 +81,13 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
 
                             }
                         }
-
                 )
         );
-    }
-
-    private void removeMinhaInstituicao(String idInstituicao) {
-        istituicaoUsuarioref = ConfiguracaoFirebase.getFirebase()
-                .child("Minhas_Instituicoes")
-                .child(ConfiguracaoFirebase.getIdUsuario())
-                .child(idInstituicao);
-
-        istituicaoUsuarioref.removeValue();
 
     }
-
 
     private void recuperaInstituicoes() {
-
-        istituicaoUsuarioref.addValueEventListener(new ValueEventListener() {
+        instituicaoRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 instituicoes.clear();
@@ -112,27 +95,37 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
 
 
                     instituicoes.add(ds.getValue(Instituicao.class));
-                    adapterMyInst = new AdapterMyInst(instituicoes, MinhasInstituicoesActivity.this);
-                    recyclerMinhasInstituicoes.setLayoutManager(new LinearLayoutManager(MinhasInstituicoesActivity.this));
-                    recyclerMinhasInstituicoes.setHasFixedSize(true);
-                    recyclerMinhasInstituicoes.setAdapter(adapterMyInst);
+                    adapterInst = new Adapter_instituicoes(instituicoes, Lista_inst.this);
+                    recyclerInstituicoes.setLayoutManager(new LinearLayoutManager(Lista_inst.this));
+                    recyclerInstituicoes.setHasFixedSize(true);
+                    recyclerInstituicoes.setAdapter(adapterInst);
                 }
                 Collections.reverse(instituicoes);
                 if (instituicoes.size() > 0) {
-                    adapterMyInst.notifyDataSetChanged();
+                    adapterInst.notifyDataSetChanged();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                System.out.println("Erro ao ler Instituições: " + databaseError.getCode());
+
             }
         });
     }
 
     private void inicializarComponnetes() {
-        recyclerMinhasInstituicoes = (RecyclerView) findViewById(R.id.recyclerMinhasInstituicoes);
+        recyclerInstituicoes = (RecyclerView) findViewById(R.id.recyclerInstituicoes);
     }
 
+    private void addInstituicao(String idInstituicao,String nome,String cidade,String uf) {
+
+        Instituicao inst = new Instituicao(idInstituicao,nome,cidade,uf);
+        inst.setUid(idInstituicao);
+        inst.setNomeFantasia(nome);
+        inst.setCidade(cidade);
+        inst.setUf(uf);
+        DatabaseReference minhasInstituicoes = FirebaseDatabase.getInstance().getReference().child("Minhas_Instituicoes");
+        minhasInstituicoes.child(ConfiguracaoFirebase.getIdUsuario()).child(idInstituicao).setValue(inst);
+    }
 
 }

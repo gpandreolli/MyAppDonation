@@ -1,13 +1,16 @@
 package com.gpa.myappdonation.view;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -84,7 +87,10 @@ public class ListaInstActivity extends AppCompatActivity {
 
         listaInstituicao.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int pos, long l) {
+
+                createDialog(view);
+
                 Instituicao inst = instituicoes.get(pos);
                 String idInstituicao =  inst.getUid();
                 String nomeInstituicao = inst.getNomeFantasia();
@@ -100,6 +106,28 @@ public class ListaInstActivity extends AppCompatActivity {
 
     }
 
+    private void createDialog(View view) {
+
+        new AlertDialog.Builder(this)
+                .setTitle("Adicionar Istituição")
+                .setMessage("Deseja adicionar esta Instituição a lista de instituições que irá apoiar?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_LONG).show();
+                        // Instituicao inst = instituicoes.get(pos);
+                        //String idInstituicao =  inst.getUid();
+                        //String nomeInstituicao = inst.getNomeFantasia();
+                        //String cidadeInstituicao = inst.getCidade();
+                        //String ufInstituicao = inst.getUf();
+                        //addInstituicao(idInstituicao,nomeInstituicao,cidadeInstituicao,ufInstituicao);
+
+                    }
+                }).
+                setNegativeButton("Não",null);
+    }
+
     private void addInstituicao(String idInstituicao,String nome,String cidade,String uf) {
 
         Instituicao inst = new Instituicao(idInstituicao,nome,cidade,uf);
@@ -107,6 +135,7 @@ public class ListaInstActivity extends AppCompatActivity {
         inst.setNomeFantasia(nome);
         inst.setCidade(cidade);
         inst.setUf(uf);
+
         auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
         uidUsuario = currentUser.getUid();
