@@ -58,6 +58,11 @@ public class Instituicao {
         this.usuario = usuario;
     }
 
+    public Instituicao(String Uid, String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+        this.Uid = Uid;
+    }
+
     public String getUsuario() {
         return usuario;
     }
@@ -182,5 +187,10 @@ public class Instituicao {
         referencia.child("Inst_Usua").child("id_inst").setValue(teste);
 
 
+    }
+
+    @Override
+    public String toString() {
+        return nomeFantasia;
     }
 }

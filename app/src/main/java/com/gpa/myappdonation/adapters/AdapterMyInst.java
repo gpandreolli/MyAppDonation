@@ -1,10 +1,12 @@
 package com.gpa.myappdonation.adapters;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,20 +14,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.model.Instituicao;
+import com.gpa.myappdonation.view.CadastrarDoacoesActivity;
 
 import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class AdapterMyInst extends RecyclerView.Adapter<AdapterMyInst.MyViewHolder> {
+public class AdapterMyInst extends RecyclerView.Adapter<AdapterMyInst.MyViewHolder>  {
 
     private List<Instituicao> instituicoes;
     private Context context;
+    int layoutResourceId;
+
+
 
     public AdapterMyInst(List<Instituicao> instituicoes, Context context) {
         this.instituicoes = instituicoes;
         this.context = context;
     }
+
+
 
     @NonNull
     @Override
@@ -47,6 +55,7 @@ public class AdapterMyInst extends RecyclerView.Adapter<AdapterMyInst.MyViewHold
         return instituicoes.size();
     }
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView nomeInst;
         TextView cidadeInst;
@@ -59,6 +68,5 @@ public class AdapterMyInst extends RecyclerView.Adapter<AdapterMyInst.MyViewHold
             ufInst = itemView.findViewById(R.id.txtUfMinhaInstituicao);
         }
     }
-
 
 }

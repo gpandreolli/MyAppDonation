@@ -51,7 +51,6 @@ public class Lista_inst extends AppCompatActivity {
         getSupportActionBar().setTitle("Instituições");
 
 
-
         recyclerInstituicoes.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         this,
@@ -64,15 +63,12 @@ public class Lista_inst extends AppCompatActivity {
 
                             @Override
                             public void onLongItemClick(View view, final int position) {
-
-
-                                                Instituicao inst = instituicoes.get(position);
-                                                String idInstituicao =  inst.getUid();
-                                                String nomeInstituicao = inst.getNomeFantasia();
-                                                String cidadeInstituicao = inst.getCidade();
-                                                String ufInstituicao = inst.getUf();
-                                                addInstituicao(idInstituicao,nomeInstituicao,cidadeInstituicao,ufInstituicao);
-
+                                Instituicao inst = instituicoes.get(position);
+                                String idInstituicao = inst.getUid();
+                                String nomeInstituicao = inst.getNomeFantasia();
+                                String cidadeInstituicao = inst.getCidade();
+                                String ufInstituicao = inst.getUf();
+                                addInstituicao(idInstituicao, nomeInstituicao, cidadeInstituicao, ufInstituicao);
 
                             }
 
@@ -117,15 +113,16 @@ public class Lista_inst extends AppCompatActivity {
         recyclerInstituicoes = (RecyclerView) findViewById(R.id.recyclerInstituicoes);
     }
 
-    private void addInstituicao(String idInstituicao,String nome,String cidade,String uf) {
+    private void addInstituicao(final String idInstituicao, String nome, String cidade, String uf) {
 
-        Instituicao inst = new Instituicao(idInstituicao,nome,cidade,uf);
+        final Instituicao inst = new Instituicao(idInstituicao, nome, cidade, uf);
         inst.setUid(idInstituicao);
         inst.setNomeFantasia(nome);
         inst.setCidade(cidade);
         inst.setUf(uf);
         DatabaseReference minhasInstituicoes = FirebaseDatabase.getInstance().getReference().child("Minhas_Instituicoes");
         minhasInstituicoes.child(ConfiguracaoFirebase.getIdUsuario()).child(idInstituicao).setValue(inst);
+
     }
 
 }

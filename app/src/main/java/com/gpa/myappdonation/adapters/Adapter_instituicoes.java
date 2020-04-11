@@ -1,9 +1,11 @@
 package com.gpa.myappdonation.adapters;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,6 +47,7 @@ public class Adapter_instituicoes extends RecyclerView.Adapter<Adapter_instituic
         return instituicoes.size();
     }
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView nomeInst;
         TextView cidadeInst;
@@ -57,4 +60,6 @@ public class Adapter_instituicoes extends RecyclerView.Adapter<Adapter_instituic
             ufInst = itemView.findViewById(R.id.txtUfInstituicao);
         }
     }
+
+
 }

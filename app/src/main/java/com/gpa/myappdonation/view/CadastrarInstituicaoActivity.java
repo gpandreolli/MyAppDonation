@@ -169,9 +169,6 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
 
 
 
-
-
-
         databaseReference.child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario()).setValue(inst);
 
             limparCampos();

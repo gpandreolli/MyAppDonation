@@ -1,5 +1,6 @@
 package com.gpa.myappdonation.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -7,25 +8,44 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.blackcat.currencyedittext.CurrencyEditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
+import com.gpa.myappdonation.adapters.AdapterMinhasDoacoes;
+import com.gpa.myappdonation.adapters.AdapterMyInst;
+import com.gpa.myappdonation.adapters.ListaAdapterInstituicao;
+import com.gpa.myappdonation.model.Doacao;
+import com.gpa.myappdonation.model.Instituicao;
+import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Currency;
+import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 public class CadastrarDoacoesActivity extends AppCompatActivity {
 
     private CurrencyEditText edtValorDoacao;
     private TextView txtDataDoacao;
-    private Spinner spMinhasInstituicoes;
+    Spinner spMyInst;
+    private List<Instituicao> instituicoes = new ArrayList<>();
+    private ArrayList<String> spinnerInstituicaoLista;
     Calendar mDataAtual;
     int dia, mes, ano;
+    private Button btnSalvarDoacao;
+    DatabaseReference doacaoRef;
+    DatabaseReference instituicaoRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,27 +74,76 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+        
+        btnSalvarDoacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                salvarDoacao();
+            }
+        });
+    }
+
+    private void salvarDoacao() {
+        int posicao = spMyInst.getSelectedItemPosition();
+
+        Instituicao instituicao = instituicoes.get(posicao);
+        String idInstituicao = instituicao.getUid();
+        String nomeInstituicao = instituicao.getNomeFantasia();
+
+        Doacao doacao = new Doacao();
+        doacao.setUid(UUID.randomUUID().toString());
+        doacao.setData(txtDataDoacao.getText().toString());
+        doacao.setValor(edtValorDoacao.getText().toString());
+        doacao.setUidInstituicao(idInstituicao);
+        doacao.setNomeInstituicao(nomeInstituicao);
+        doacaoRef = ConfiguracaoFirebase.getFirebase().child("Minhas_Doacoes");
+        doacaoRef.child(ConfiguracaoFirebase.getIdUsuario()).child(UUID.randomUUID().toString()).setValue(doacao);
+
     }
 
     private void carregarDadosSpinner() {
-        String [] estados = getResources().getStringArray(R.array.states);
+        instituicaoRef = ConfiguracaoFirebase.getFirebase().child("Minhas_Instituicoes").child(ConfiguracaoFirebase.getIdUsuario());
+        instituicaoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int i = 0;
+                String nomeInstituicao;
+                String uidInstituicao;
+                for (DataSnapshot contaSnapshot : dataSnapshot.getChildren()) {
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this,android.R.layout.simple_spinner_item,
-                estados
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spMinhasInstituicoes.setAdapter(adapter);
+                    Instituicao inst = contaSnapshot.getValue(Instituicao.class);
+                    nomeInstituicao = inst.getNomeFantasia();
+                    uidInstituicao = inst.getUid();
+                    Instituicao dadosInstituicao = new Instituicao(uidInstituicao,nomeInstituicao);
+                    dadosInstituicao.setNomeFantasia(nomeInstituicao);
+                    instituicoes.add(dadosInstituicao);
+                }
+                ArrayAdapter adapter = new ArrayAdapter(CadastrarDoacoesActivity.this, android.R.layout.simple_spinner_item,instituicoes);
+                spMyInst.setAdapter(adapter);
+            }
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     private void inicializarComponentes() {
         txtDataDoacao = (TextView) findViewById(R.id.txtDataDoacao);
         mDataAtual = Calendar.getInstance();
         edtValorDoacao = (CurrencyEditText) findViewById(R.id.edtValorDoacao);
-        spMinhasInstituicoes = (Spinner) findViewById(R.id.spMinhasInstituicoes);
+        spMyInst = (Spinner) findViewById(R.id.spMinhasInst);
+        btnSalvarDoacao = (Button) findViewById(R.id.btnSalvarDoacao);
+        spinnerInstituicaoLista = new ArrayList<>();
         //Configura localidade
         Locale locale = new Locale("pt", "BR");
         edtValorDoacao.setLocale(locale);
+
 
     }
 
