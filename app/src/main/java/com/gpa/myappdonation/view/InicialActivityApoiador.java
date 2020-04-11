@@ -74,6 +74,10 @@ public class InicialActivityApoiador extends AppCompatActivity {
                         intent.putExtra("info", "This is activity from card item index  " + finalI);
                         Toast.makeText(getBaseContext(), "Menu: " + finalI, Toast.LENGTH_LONG).show();
                         startActivity(intent);
+                    } else if (finalI == 2) {
+                        Intent intent = new Intent(InicialActivityApoiador.this, UsuarioActivity.class);
+                        intent.putExtra("info",finalI);
+                        startActivity(intent);
                     } else if (finalI == 5) {
                         auth.signOut();
                         finish();

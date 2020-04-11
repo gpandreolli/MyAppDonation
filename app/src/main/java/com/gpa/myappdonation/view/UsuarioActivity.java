@@ -1,5 +1,6 @@
 package com.gpa.myappdonation.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,21 +10,24 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.model.Address;
-import com.gpa.myappdonation.model.Instituicao;
 import com.gpa.myappdonation.model.Usuario;
+import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.Util;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.santalu.maskedittext.MaskEditText;
 
-import java.util.UUID;
+
 
 public class UsuarioActivity extends AppCompatActivity {
 
@@ -31,19 +35,24 @@ public class UsuarioActivity extends AppCompatActivity {
     private EditText edtComplementoUsua;
     private MaskEditText edtFoneUsua;
     private Spinner spEstadoUsua;
-    private Button bntSalvarUsua;
+    private Button bntSalvarUsua, btnCancelaUsua;
     private Util util;
     private FirebaseUser user;
     private FirebaseAuth mAuth;
-
+    private Bundle extras;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private Toolbar toolbarUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
-
+        toolbarUsuario = (Toolbar) findViewById(R.id.toolbarUsuario);
+        setSupportActionBar(toolbarUsuario);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Dados Cadastrais");
 
         edtNomeUsua = (EditText) findViewById(R.id.edtNomeUsua);
         edtCPFUsua = (EditText) findViewById(R.id.edtCpfUsua);
@@ -56,6 +65,7 @@ public class UsuarioActivity extends AppCompatActivity {
         edtFoneUsua = (MaskEditText) findViewById(R.id.edtFoneUsua);
         spEstadoUsua = (Spinner) findViewById(R.id.spEstadoUsua);
         bntSalvarUsua = (Button) findViewById(R.id.btnSalvarUsua);
+        btnCancelaUsua = (Button) findViewById(R.id.btnCancelarUsua);
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -83,9 +93,45 @@ public class UsuarioActivity extends AppCompatActivity {
             }
         });
 
+        btnCancelaUsua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
+            }
+        });
+        extras = getIntent().getExtras();
 
 
+        if (extras!=null){
+            recuperUsuario();
+        }
+    }
 
+    private void recuperUsuario() {
+        databaseReference = ConfiguracaoFirebase.getFirebase().child("Usuario").child(ConfiguracaoFirebase.getIdUsuario());
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Usuario usuarioEdit = dataSnapshot.getValue(Usuario.class);
+
+                edtBairroUsua.setText(usuarioEdit.getBairro_usua());
+                edtCidadeUsua.setText(usuarioEdit.getCidade_usua());
+                edtCepUsua.setText(usuarioEdit.getCep_usua());
+                edtComplementoUsua.setText(usuarioEdit.getComplemento_usua());
+                edtCPFUsua.setText(usuarioEdit.getCpf_usua());
+                edtFoneUsua.setText(usuarioEdit.getFone_usua());
+                edtNomeUsua.setText(usuarioEdit.getNome_usua());
+                edtRuaUsua.setText(usuarioEdit.getRua_usua());
+                edtNumeroUsua.setText(usuarioEdit.getNumero_usua());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void inicializarFirebase() {
@@ -158,13 +204,24 @@ public class UsuarioActivity extends AppCompatActivity {
         usua.setFone_usua(edtFoneUsua.getRawText());
         usua.setUf_usua(itemSelecionado);
 
+        if(extras != null){
 
+            Intent it = getIntent();
+            int i =0;
+            int numero =  it.getIntExtra("info", i);
 
+            if (numero ==2 ){
+                usua.setTipo_usua("2");
+                databaseReference.setValue(usua);
+                limparCampos();
+                chamaActivity(1);
+            }
+        }else {
+            databaseReference.child("Usuario").child(ConfiguracaoFirebase.getIdUsuario()).setValue(usua);
+            limparCampos();
+            chamaActivity(2);
+        }
 
-        databaseReference.child("Usuario").child(usua.getUid()).setValue(usua);
-
-        limparCampos();
-        chamaActivity();
     }
 
     private void limparCampos(){
@@ -180,9 +237,14 @@ public class UsuarioActivity extends AppCompatActivity {
 
     }
 
-    private void chamaActivity() {
-        Intent i = new Intent(UsuarioActivity.this,MainActivity.class);
-        startActivity(i);
+    private void chamaActivity(Integer local) {
+
+        if (local == 1){
+            finish();
+        }else if (local ==2){
+            Intent i = new Intent(UsuarioActivity.this,MainActivity.class);
+            startActivity(i);
+        }
     }
 
 

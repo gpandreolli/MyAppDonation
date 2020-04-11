@@ -6,21 +6,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".view.UsuarioActivity"
-    android:padding="10dp">
+    >
 
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dados Cadastrais"
-        android:background="@drawable/login_button_bg"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:layout_marginBottom="15dp"/>
+        android:theme="@style/AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorBlueMedium"
+            app:popupTheme="@style/PopupOverlay"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -123,8 +130,6 @@
                 android:inputType="phone"
                 app:met_mask="(##) ##### ## ##"/>
 
-
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -135,12 +140,14 @@
                     android:id="@+id/btnSalvarUsua"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/login_button_bg"
+                    android:background="@drawable/button_bg_geral"
                     android:text="Salvar"
-                    android:layout_marginLeft="0dp"
                     android:textAllCaps="false"
+                    android:textColor="@color/colorHybridaRosa"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btnCancelarUsua"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
 
                 <Button
@@ -148,12 +155,14 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/btnSalvarUsua"
-                    android:background="@drawable/login_button_bg"
+                    android:background="@drawable/button_bg_geral"
                     android:text="Cancelar"
                     android:textAllCaps="false"
-                    android:layout_marginRight="0dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/colorHybridaRosa"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btnSalvarUsua"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,7 +25,8 @@
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="sans-serif-thin">
 
         </TextView>
 
@@ -39,7 +40,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textGrid" />
+            app:layout_constraintTop_toBottomOf="@+id/textGrid"
+            android:fontFamily="sans-serif-thin"
+            android:textStyle="bold"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -81,7 +84,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_account_balance_black_24dp"
+                    android:src="@drawable/ic_kindness"
                     android:layout_gravity="center"/>
 
                 <TextView
@@ -94,7 +97,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="italic" />
+                    android:fontFamily="sans-serif-thin"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -126,7 +129,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/baseline_account_balance_black_24dp" />
+                    android:src="@drawable/ic_instituicoes" />
 
                 <TextView
                     android:gravity="center"
@@ -138,7 +141,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="italic" />
+                    android:fontFamily="sans-serif-thin"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -169,7 +172,7 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_account_balance_black_24dp" />
+                    android:src="@drawable/ic_account" />
 
                 <TextView
                     android:gravity="center"
@@ -177,11 +180,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:text="Configuração"
+                    android:text="Meu Perfil"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="italic" />
+                    android:fontFamily="sans-serif-thin" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -211,7 +214,7 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_account_balance_black_24dp" />
+                    android:src="@drawable/ic_minhas" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -225,7 +228,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="italic" />
+                    android:fontFamily="sans-serif-thin" />
 
             </LinearLayout>
 
@@ -257,19 +260,19 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_account_balance_black_24dp" />
+                    android:src="@drawable/ic_reports" />
 
                 <TextView
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="1dp"
+                    android:layout_marginTop="10dp"
                     android:text="Relatórios"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="italic" />
+                    android:fontFamily="sans-serif-thin" />
 
             </LinearLayout>
 
@@ -301,19 +304,19 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_account_balance_black_24dp" />
+                    android:src="@drawable/ic_logout" />
 
                 <TextView
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="1dp"
+                    android:layout_marginTop="10dp"
                     android:text="Sair"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
-                    android:textStyle="italic" />
+                    android:fontFamily="sans-serif-thin" />
 
             </LinearLayout>
 

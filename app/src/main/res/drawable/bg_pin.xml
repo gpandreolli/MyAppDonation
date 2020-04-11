@@ -2,7 +2,7 @@
     <!-- cor da borda -->
     <item android:height="1dp" android:gravity="bottom">
         <shape >
-            <solid android:color="@color/colorHybridaRosa" />
+            <solid android:color="@color/colorBlueDark" />
         </shape>
     </item>
 

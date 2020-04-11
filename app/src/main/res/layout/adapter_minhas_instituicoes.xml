@@ -17,8 +17,10 @@
                 android:text="Minha Instituicao"
                 android:textColor="@color/colorBlueDark"
                 android:layout_marginBottom="20dp"
-                android:layout_marginStart="5dp"
-                android:textSize="25dp"/>
+                android:layout_marginStart="15dp"
+                android:textSize="20dp"
+                android:fontFamily="sans-serif-thin"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -32,8 +34,8 @@
                     android:text="Cidade"
                     android:textColor="@color/colorRosaEscuro"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="5dp"
-                    android:textSize="20dp"/>
+                    android:layout_marginStart="15dp"
+                    android:textSize="15dp"/>
 
                 <TextView
                     android:id="@+id/txtUfMinhaInstituicao"
@@ -42,9 +44,9 @@
                     android:text="UF"
                     android:textColor="@color/colorRosaEscuro"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginStart="150dp"
-                    android:textSize="20dp"
-                    />
+                    android:layout_marginStart="160dp"
+                    android:textSize="15dp"
+                    android:fontFamily="sans-serif-thin"/>
 
             </LinearLayout>
 

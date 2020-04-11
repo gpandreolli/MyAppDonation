@@ -42,6 +42,7 @@ public class MinhasDoacoesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minhas_doacoes);
 
+
         doacoesRef = ConfiguracaoFirebase.getFirebase().child("Minhas_Doacoes").child(ConfiguracaoFirebase.getIdUsuario());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
