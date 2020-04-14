@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.model.Conta;
+import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
 import java.util.UUID;
 
@@ -23,7 +24,7 @@ public class CadastrarConta extends AppCompatActivity {
     private FirebaseUser user;
     private FirebaseAuth mAuth;
     private EditText edtNomeConta, edtNumeroConta, edtBancoConta, edtAgenciaConta, edtNumeroBancoConta;
-    private Button btnSalvarConta;
+    private Button btnSalvarConta, btnCancelarConta;
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -39,11 +40,18 @@ public class CadastrarConta extends AppCompatActivity {
         edtNumeroBancoConta = (EditText) findViewById(R.id.edtNumeroBancoConta);
         edtNomeConta = (EditText) findViewById(R.id.edtNomeConta);
         btnSalvarConta = (Button) findViewById(R.id.btnSalvarConta);
+        btnCancelarConta = (Button) findViewById(R.id.btnCancelarConta);
         inicializarFirebase();
         btnSalvarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 salvarConta();
+            }
+        });
+        btnCancelarConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
@@ -65,13 +73,13 @@ public class CadastrarConta extends AppCompatActivity {
         conta.setAgencia(edtAgenciaConta.getText().toString());
         conta.setBanco(edtBancoConta.getText().toString());
         conta.setNumeroBanco(edtNumeroBancoConta.getText().toString());
-        databaseReference.child("Conta").child(conta.getUid()).setValue(conta);
+        databaseReference.child("Conta").child(ConfiguracaoFirebase.getIdUsuario()).child(conta.getUid()).setValue(conta);
         limparCampos();
         chamaActivity();
     }
 
     private void chamaActivity() {
-        Intent i = new Intent(CadastrarConta.this, ListContaActivity.class);
+        Intent i = new Intent(CadastrarConta.this, ListaContaActivity.class);
         startActivity(i);
     }
 

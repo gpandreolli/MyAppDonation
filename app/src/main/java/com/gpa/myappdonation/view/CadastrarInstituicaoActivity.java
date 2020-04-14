@@ -30,13 +30,14 @@ import java.util.UUID;
 
 public class CadastrarInstituicaoActivity extends AppCompatActivity {
 
-    private EditText etZipCode, edtRazaoSocial, edtNomeFantasia,edtCnpj,et_city,et_street,et_number, et_complement;
+    private EditText etZipCode, edtRazaoSocial, edtNomeFantasia, edtCnpj, et_city, et_street, et_number, et_complement;
     private MaskEditText edtFoneInst;
     private EditText et_neighbor, edtEmailCadInst;
     private Spinner sp_state;
     private Button btnSalvar, btnCancelarCadInst;
     private Util util;
     private String uidUsuario;
+    private Bundle extras;
 
 
     private FirebaseDatabase firebaseDatabase;
@@ -56,15 +57,15 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         edtNomeFantasia = (EditText) findViewById(R.id.edtNomeFantasia);
         edtEmailCadInst = (EditText) findViewById(R.id.edtEmailCadInst);
         edtFoneInst = (MaskEditText) findViewById(R.id.edtFoneInst);
-        et_city =  (EditText) findViewById(R.id.et_city);
+        et_city = (EditText) findViewById(R.id.et_city);
         et_street = (EditText) findViewById(R.id.et_street);
         et_number = (EditText) findViewById(R.id.et_number);
-        et_neighbor =  (EditText) findViewById(R.id.et_neighbor);
+        et_neighbor = (EditText) findViewById(R.id.et_neighbor);
         et_complement = (EditText) findViewById(R.id.et_complement);
         sp_state = (Spinner) findViewById(R.id.sp_state);
         btnSalvar = (Button) findViewById(R.id.btnSalvarInst);
         btnCancelarCadInst = (Button) findViewById(R.id.btnCancelarCadInst);
-
+        extras = getIntent().getExtras();
 
 
         inicializarFirebase();
@@ -147,7 +148,7 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
 
     }
 
-    private void SalvarInst(){
+    private void SalvarInst() {
 
         Object posicao = sp_state.getSelectedItem();
         String itemSelecionado = posicao.toString();
@@ -167,24 +168,46 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         inst.setUf(itemSelecionado);
         inst.setEmail(edtEmailCadInst.getText().toString());
 
+        if (extras != null) {
 
+            Intent it = getIntent();
+            int numero = it.getIntExtra("info", 0);
 
-        databaseReference.child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario()).setValue(inst);
-
+            if (numero == 2) {
+                //inst.setTipo_usua("2");
+                databaseReference.child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario()).setValue(inst);
+                limparCampos();
+                chamaActivity(2);
+            }
+        } else {
+            databaseReference.child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario()).setValue(inst);
             limparCampos();
+            chamaActivity(1);
+        }
+
+
+       /* databaseReference.child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario()).setValue(inst);
+
+        limparCampos();
+        finish();
+        chamaActivity();*/
+
+
+    }
+
+    private void chamaActivity(Integer local) {
+
+        if (local == 1) {
+
+            Intent i = new Intent(CadastrarInstituicaoActivity.this, IncialActivityInsti.class);
+            startActivity(i);
+        } else if (local == 2) {
+
             finish();
-            chamaActivity();
-
-
-
+        }
     }
 
-    private void chamaActivity() {
-        Intent i = new Intent(CadastrarInstituicaoActivity.this,IncialActivityInsti.class);
-        startActivity(i);
-    }
-
-    private void limparCampos(){
+    private void limparCampos() {
         edtRazaoSocial.setText("");
         edtNomeFantasia.setText("");
         edtCnpj.setText("");
@@ -199,13 +222,12 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
 
     }
 
-   private void CancelarCadastro(){
-       Intent i = new Intent(CadastrarInstituicaoActivity.this,MainActivity.class);
-       finish();
-       startActivity(i);
+    private void CancelarCadastro() {
+        Intent i = new Intent(CadastrarInstituicaoActivity.this, MainActivity.class);
+        finish();
+        startActivity(i);
 
-   }
-
+    }
 
 
 }

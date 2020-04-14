@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".view.ListaContaActivity"
+            android:label="@string/title_activity_lista_conta"
+            android:parentActivityName=".view.IncialActivityInsti"
+            android:theme="@style/NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.gpa.myappdonation.view.IncialActivityInsti" />
+        </activity>
+        <activity
             android:name=".view.Lista_inst"
             android:label="@string/title_activity_instituicoes"
             android:parentActivityName=".view.InicialActivityApoiador"

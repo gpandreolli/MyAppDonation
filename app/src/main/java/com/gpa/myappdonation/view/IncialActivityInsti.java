@@ -70,17 +70,26 @@ public class IncialActivityInsti extends AppCompatActivity {
                 public void onClick(View view) {
 
                     if (finalI == 0) {
-                        Intent intent = new Intent(IncialActivityInsti.this, ListContaActivity.class);
+                        Intent intent = new Intent(IncialActivityInsti.this, ListaContaActivity.class);
                         intent.putExtra("info", "This is activity from card item index  " + finalI);
-                        Toast.makeText(getBaseContext(), "CARD: "+finalI, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), "Cadastro de Contas: ", Toast.LENGTH_LONG).show();
                         startActivity(intent);
+
+                    }else if(finalI == 1){
+                        Intent i = new Intent(IncialActivityInsti.this, ListaContaActivity.class);
+                        startActivity(i);
+                        Toast.makeText(getBaseContext(), "Cadastro de Contas: ", Toast.LENGTH_LONG).show();
                     }else if(finalI == 5){
                         auth.signOut();
                         finish();
                         Intent i = new Intent(IncialActivityInsti.this, LoginActivity.class);
                         startActivity(i);
                         Toast.makeText(getBaseContext(), "usuario deslogado: ", Toast.LENGTH_LONG).show();
-
+                    }else if (finalI ==2 ){
+                        Intent i = new Intent(IncialActivityInsti.this, CadastrarInstituicaoActivity.class);
+                        i.putExtra("info",finalI);
+                        startActivity(i);
+                        Toast.makeText(getBaseContext(), "Cadastro de Contas: ", Toast.LENGTH_LONG).show();
 
                     }
 

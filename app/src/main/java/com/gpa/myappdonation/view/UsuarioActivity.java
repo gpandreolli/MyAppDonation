@@ -207,19 +207,19 @@ public class UsuarioActivity extends AppCompatActivity {
         if(extras != null){
 
             Intent it = getIntent();
-            int i =0;
-            int numero =  it.getIntExtra("info", i);
+           // int i =0;
+            int numero =  it.getIntExtra("info", 0);
 
-            if (numero ==2 ){
+            if (numero == 2 ){
                 usua.setTipo_usua("2");
                 databaseReference.setValue(usua);
                 limparCampos();
-                chamaActivity(1);
+                chamaActivity(2);
             }
         }else {
             databaseReference.child("Usuario").child(ConfiguracaoFirebase.getIdUsuario()).setValue(usua);
             limparCampos();
-            chamaActivity(2);
+            chamaActivity(1);
         }
 
     }
@@ -239,9 +239,9 @@ public class UsuarioActivity extends AppCompatActivity {
 
     private void chamaActivity(Integer local) {
 
-        if (local == 1){
+        if (local == 2){
             finish();
-        }else if (local ==2){
+        }else if (local ==1){
             Intent i = new Intent(UsuarioActivity.this,MainActivity.class);
             startActivity(i);
         }

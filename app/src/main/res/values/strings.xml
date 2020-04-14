@@ -31,4 +31,5 @@
     <string name="title_activity_minhas_doacoes">MinhasDoacoesActivity</string>
     <string name="title_activity_minhas_instituicoes">MinhasInstituicoesActivity</string>
     <string name="title_activity_instituicoes">Instituicoes</string>
+    <string name="title_activity_lista_conta">ListaContaActivity</string>
 </resources>
