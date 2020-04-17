@@ -215,7 +215,15 @@ public class UsuarioActivity extends AppCompatActivity {
                 databaseReference.setValue(usua);
                 limparCampos();
                 chamaActivity(2);
+            }else if (numero == 3){
+
+                usua.setTipo_usua("1");
+                databaseReference.setValue(usua);
+                limparCampos();
+                chamaActivity(2);
             }
+
+
         }else {
             databaseReference.child("Usuario").child(ConfiguracaoFirebase.getIdUsuario()).setValue(usua);
             limparCampos();

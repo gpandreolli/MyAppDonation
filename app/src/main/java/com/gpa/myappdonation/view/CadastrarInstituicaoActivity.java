@@ -1,5 +1,6 @@
 package com.gpa.myappdonation.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,8 +13,11 @@ import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.model.Address;
 import com.gpa.myappdonation.model.Instituicao;
@@ -50,25 +54,9 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_instituicao);
 
-        etZipCode = (EditText) findViewById(R.id.et_zip_code);
-        etZipCode.addTextChangedListener(new ZipCodeListener(this));
-        edtCnpj = (EditText) findViewById(R.id.edtCnpj);
-        edtRazaoSocial = (EditText) findViewById(R.id.edtRazaoSocial);
-        edtNomeFantasia = (EditText) findViewById(R.id.edtNomeFantasia);
-        edtEmailCadInst = (EditText) findViewById(R.id.edtEmailCadInst);
-        edtFoneInst = (MaskEditText) findViewById(R.id.edtFoneInst);
-        et_city = (EditText) findViewById(R.id.et_city);
-        et_street = (EditText) findViewById(R.id.et_street);
-        et_number = (EditText) findViewById(R.id.et_number);
-        et_neighbor = (EditText) findViewById(R.id.et_neighbor);
-        et_complement = (EditText) findViewById(R.id.et_complement);
-        sp_state = (Spinner) findViewById(R.id.sp_state);
-        btnSalvar = (Button) findViewById(R.id.btnSalvarInst);
-        btnCancelarCadInst = (Button) findViewById(R.id.btnCancelarCadInst);
-        extras = getIntent().getExtras();
-
-
+       inicializarComponentes();
         inicializarFirebase();
+        extras = getIntent().getExtras();
 
 
         Spinner spStates = (Spinner) findViewById(R.id.sp_state);
@@ -96,9 +84,42 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         btnCancelarCadInst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CancelarCadastro();
+                finish();
             }
         });
+
+        if (extras!=null){
+            recuperaInstituicao();
+        }
+    }
+
+    private void recuperaInstituicao() {
+        databaseReference = ConfiguracaoFirebase.getFirebase().child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Instituicao instituicaoEdit = dataSnapshot.getValue(Instituicao.class);
+                edtCnpj.setText(instituicaoEdit.getCnpj());
+                edtEmailCadInst.setText(instituicaoEdit.getEmail());
+                edtFoneInst.setText(instituicaoEdit.getTelefone());
+                edtNomeFantasia.setText(instituicaoEdit.getNomeFantasia());
+                edtRazaoSocial.setText(instituicaoEdit.getRazaoSocial());
+                et_city.setText(instituicaoEdit.getCidade());
+                et_complement.setText(instituicaoEdit.getComplemento());
+                et_neighbor.setText(instituicaoEdit.getBairro());
+                et_number.setText(instituicaoEdit.getNumero());
+                etZipCode.setText(instituicaoEdit.getCep());
+                et_street.setText(instituicaoEdit.getRua());
+                //sp_state
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     private void inicializarFirebase() {
@@ -175,8 +196,8 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
 
             if (numero == 2) {
                 //inst.setTipo_usua("2");
-                databaseReference.child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario()).setValue(inst);
-                limparCampos();
+                databaseReference.setValue(inst);
+                //limparCampos();
                 chamaActivity(2);
             }
         } else {
@@ -219,15 +240,27 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         etZipCode.setText("");
         edtFoneInst.setText("");
         edtEmailCadInst.setText("");
-
     }
 
-    private void CancelarCadastro() {
-        Intent i = new Intent(CadastrarInstituicaoActivity.this, MainActivity.class);
-        finish();
-        startActivity(i);
-
+    private void inicializarComponentes(){
+        etZipCode = (EditText) findViewById(R.id.et_zip_code);
+        etZipCode.addTextChangedListener(new ZipCodeListener(this));
+        edtCnpj = (EditText) findViewById(R.id.edtCnpj);
+        edtRazaoSocial = (EditText) findViewById(R.id.edtRazaoSocial);
+        edtNomeFantasia = (EditText) findViewById(R.id.edtNomeFantasia);
+        edtEmailCadInst = (EditText) findViewById(R.id.edtEmailCadInst);
+        edtFoneInst = (MaskEditText) findViewById(R.id.edtFoneInst);
+        et_city = (EditText) findViewById(R.id.et_city);
+        et_street = (EditText) findViewById(R.id.et_street);
+        et_number = (EditText) findViewById(R.id.et_number);
+        et_neighbor = (EditText) findViewById(R.id.et_neighbor);
+        et_complement = (EditText) findViewById(R.id.et_complement);
+        sp_state = (Spinner) findViewById(R.id.sp_state);
+        btnSalvar = (Button) findViewById(R.id.btnSalvarInst);
+        btnCancelarCadInst = (Button) findViewById(R.id.btnCancelarCadInst);
     }
+
+
 
 
 }
