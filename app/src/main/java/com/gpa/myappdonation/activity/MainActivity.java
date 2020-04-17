@@ -1,4 +1,4 @@
-package com.gpa.myappdonation.view;
+package com.gpa.myappdonation.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

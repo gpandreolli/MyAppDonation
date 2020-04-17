@@ -1,4 +1,4 @@
-package com.gpa.myappdonation.view;
+package com.gpa.myappdonation.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -20,16 +18,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
-import com.gpa.myappdonation.adapters.AdapterMinhasDoacoes;
-import com.gpa.myappdonation.adapters.AdapterMyInst;
-import com.gpa.myappdonation.adapters.ListaAdapterInstituicao;
 import com.gpa.myappdonation.model.Doacao;
 import com.gpa.myappdonation.model.Instituicao;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;

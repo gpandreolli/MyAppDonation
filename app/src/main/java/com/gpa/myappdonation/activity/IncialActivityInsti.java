@@ -1,4 +1,4 @@
-package com.gpa.myappdonation.view;
+package com.gpa.myappdonation.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.model.Instituicao;
-import com.gpa.myappdonation.model.Usuario;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
 public class IncialActivityInsti extends AppCompatActivity {

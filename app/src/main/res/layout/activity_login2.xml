@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@drawable/gradiente"
-        tools:context=".view.LoginActivity">
+        tools:context=".activity.LoginActivity">
 
         <ImageView
             android:layout_width="wrap_content"

@@ -6,7 +6,7 @@ import java.lang.ref.WeakReference;
 
 import com.google.gson.Gson;
 import com.gpa.myappdonation.model.Address;
-import com.gpa.myappdonation.view.CadastrarInstituicaoActivity;
+import com.gpa.myappdonation.activity.CadastrarInstituicaoActivity;
 
 public class AddressRequest extends AsyncTask<Void,Void, Address> {
 

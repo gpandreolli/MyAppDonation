@@ -7,7 +7,7 @@
     android:background="@drawable/gradiente"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context=".view.InicialActivityApoiador">
+    tools:context=".activity.InicialActivityApoiador">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

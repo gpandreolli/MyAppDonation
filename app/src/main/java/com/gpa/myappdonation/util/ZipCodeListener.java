@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 
-import com.gpa.myappdonation.view.CadastrarInstituicaoActivity;
+import com.gpa.myappdonation.activity.CadastrarInstituicaoActivity;
 
 public class ZipCodeListener implements TextWatcher {
 

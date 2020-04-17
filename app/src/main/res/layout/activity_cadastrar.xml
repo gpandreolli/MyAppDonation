@@ -7,7 +7,7 @@
     android:background="@drawable/login_bg"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".view.Cadastrar">
+    tools:context=".activity.Cadastrar">
 
 
     <TextView

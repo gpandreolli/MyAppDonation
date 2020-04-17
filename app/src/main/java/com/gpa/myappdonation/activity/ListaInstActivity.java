@@ -1,4 +1,4 @@
-package com.gpa.myappdonation.view;
+package com.gpa.myappdonation.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ import com.gpa.myappdonation.adapters.ListaAdapterInstituicao;
 import com.gpa.myappdonation.model.Instituicao;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class ListaInstActivity extends AppCompatActivity {
 

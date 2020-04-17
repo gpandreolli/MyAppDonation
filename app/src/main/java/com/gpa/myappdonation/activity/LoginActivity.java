@@ -1,4 +1,4 @@
-package com.gpa.myappdonation.view;
+package com.gpa.myappdonation.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.model.Usuario;
-import com.gpa.myappdonation.util.Util;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 

@@ -1,7 +1,6 @@
-package com.gpa.myappdonation.view;
+package com.gpa.myappdonation.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;

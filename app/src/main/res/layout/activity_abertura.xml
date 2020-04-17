@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".view.AberturaActivity">
+    tools:context=".activity.AberturaActivity">
 
     <ImageView
         android:layout_width="300dp"

@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".view.CadastrarInstituicaoActivity">
+    tools:context=".activity.CadastrarInstituicaoActivity">
 
     <TextView
         android:layout_width="match_parent"

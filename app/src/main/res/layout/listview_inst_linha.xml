@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ListaInstActivity"
+    tools:context=".activity.ListaInstActivity"
     android:background="@drawable/list_textview_bg"
     android:backgroundTint="@color/colorHybridaCinza"
     tools:ignore="MissingDefaultResource">

@@ -1,4 +1,4 @@
-package com.gpa.myappdonation.view;
+package com.gpa.myappdonation.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,12 +20,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.model.Address;
 import com.gpa.myappdonation.model.Instituicao;
-import com.gpa.myappdonation.model.Usuario;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.Util;
 import com.gpa.myappdonation.util.ZipCodeListener;
 import com.google.firebase.*;
-import com.gpa.myappdonation.view.IncialActivityInsti;
 import com.santalu.maskedittext.MaskEditText;
 
 import java.util.UUID;
