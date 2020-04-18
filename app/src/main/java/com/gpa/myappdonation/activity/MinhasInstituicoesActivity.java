@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.adapters.AdapterMyInst;
+import com.gpa.myappdonation.fragment.ContaFragment;
 import com.gpa.myappdonation.model.Instituicao;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.RecyclerItemClickListener;
@@ -35,6 +38,7 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
     private List<Instituicao> instituicoes = new ArrayList<>();
     private AdapterMyInst adapterMyInst;
     private DatabaseReference istituicaoUsuarioref;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,9 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
 
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+
 
                             }
                         }

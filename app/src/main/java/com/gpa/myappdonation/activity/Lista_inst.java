@@ -1,8 +1,10 @@
 package com.gpa.myappdonation.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -61,13 +63,22 @@ public class Lista_inst extends AppCompatActivity {
 
                             @Override
                             public void onLongItemClick(View view, final int position) {
-                                Instituicao inst = instituicoes.get(position);
-                                String idInstituicao = inst.getUid();
-                                String nomeInstituicao = inst.getNomeFantasia();
-                                String cidadeInstituicao = inst.getCidade();
-                                String ufInstituicao = inst.getUf();
-                                addInstituicao(idInstituicao, nomeInstituicao, cidadeInstituicao, ufInstituicao);
 
+                                new AlertDialog.Builder(Lista_inst.this).
+                                        setTitle("Adicionar Instituição").
+                                        setMessage("Deseja apoiar esta Instituição?").
+                                        setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                Instituicao inst = instituicoes.get(position);
+                                                String idInstituicao = inst.getUid();
+                                                String nomeInstituicao = inst.getNomeFantasia();
+                                                String cidadeInstituicao = inst.getCidade();
+                                                String ufInstituicao = inst.getUf();
+                                                addInstituicao(idInstituicao, nomeInstituicao, cidadeInstituicao, ufInstituicao);
+                                            }
+                                        }).
+                                        setNegativeButton("Não", null).show();
                             }
 
                             @Override
