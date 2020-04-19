@@ -65,7 +65,7 @@ public class InicialActivityApoiador extends AppCompatActivity {
                         Intent intent = new Intent(InicialActivityApoiador.this, MinhasInstituicoesActivity.class);
                         startActivity(intent);
                     } else if (finalI == 1) {
-                        Intent intent = new Intent(InicialActivityApoiador.this, Lista_inst.class);
+                        Intent intent = new Intent(InicialActivityApoiador.this, ListaInstituicaoActivity.class);
                         intent.putExtra("info", "This is activity from card item index  " + finalI);
                         Toast.makeText(getBaseContext(), "CARD: " + finalI, Toast.LENGTH_LONG).show();
                         startActivity(intent);

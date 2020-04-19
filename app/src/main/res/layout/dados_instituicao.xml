@@ -2,21 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lblDadosInstituicao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dados Instituição"
         android:gravity="center"
-        android:textSize="20dp"
+        android:text="Dados Instituição"
         android:textColor="@color/colorBlueDark"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" >
+        tools:ignore="MissingConstraints">
 
     </androidx.appcompat.widget.AppCompatTextView>
 
@@ -24,66 +24,272 @@
         android:id="@+id/lblRazaoSocial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
-        android:text="Razão Social:"
+        android:text="Razão Social"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lblDadosInstituicao"
-        tools:ignore="MissingConstraints" >
+        tools:ignore="MissingConstraints">
 
     </androidx.appcompat.widget.AppCompatTextView>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lblNomeFantasia"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Nome Fantasia"
-    android:layout_marginTop="4dp"
-    app:layout_constraintTop_toBottomOf="@id/lblRazaoSocial"
-    tools:ignore="MissingConstraints">
-</androidx.appcompat.widget.AppCompatTextView>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="Nome Fantasia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblRazaoSocial"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
 
     <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/lblCnpj"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="CNPJ"
-    android:layout_marginTop="4dp"
-    app:layout_constraintTop_toBottomOf="@id/lblNomeFantasia"
-    tools:ignore="MissingConstraints">
-</androidx.appcompat.widget.AppCompatTextView>
+        android:id="@+id/lblCnpj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="CNPJ"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblNomeFantasia"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lblTelefone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Telefone"
         android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Telefone"
         app:layout_constraintTop_toBottomOf="@id/lblCnpj"
-        tools:ignore="MissingConstraints">
-    </androidx.appcompat.widget.AppCompatTextView>
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lblEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="email"
         android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="email"
         app:layout_constraintTop_toBottomOf="@id/lblTelefone"
-        tools:ignore="MissingConstraints">
-    </androidx.appcompat.widget.AppCompatTextView>
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lblEndereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Endereco"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/lblEmail"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lblRua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rua"
         android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@id/lblEmail"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Rua"
+        app:layout_constraintTop_toBottomOf="@id/lblEndereco"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lblNumeroRua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Número"
+        app:layout_constraintTop_toBottomOf="@id/lblRua"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lblComplemento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Complemento"
+        app:layout_constraintTop_toBottomOf="@id/lblNumeroRua"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lblBairro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Bairro"
+        app:layout_constraintTop_toBottomOf="@id/lblComplemento"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lblNomeCidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Cidade"
+        app:layout_constraintTop_toBottomOf="@id/lblBairro"
+        tools:ignore="MissingConstraints">
+    </androidx.appcompat.widget.AppCompatTextView>
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lblEstado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Estado"
+        app:layout_constraintTop_toBottomOf="@id/lblNomeCidade"
+        tools:ignore="MissingConstraints">
+    </androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lblCep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="CEP"
+        app:layout_constraintTop_toBottomOf="@id/lblEstado"
         tools:ignore="MissingConstraints">
     </androidx.appcompat.widget.AppCompatTextView>
 
 
+    <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/txtRazaoSocial"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="NOME DA RAZAO SOCIAL"
+    android:layout_marginStart="4dp"
+    app:layout_constraintBottom_toBottomOf="@+id/lblRazaoSocial"
+    app:layout_constraintStart_toEndOf="@id/guideline"
+    tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtNomeFantasia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NOME Fantasia"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblNomeFantasia"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtCnpj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CNPJ"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblCnpj"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtTelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telefone"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblTelefone"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NOME Fantasia"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblEmail"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/txtRua"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="RUA"
+    android:layout_marginStart="4dp"
+    app:layout_constraintBottom_toBottomOf="@+id/lblRua"
+    app:layout_constraintStart_toEndOf="@id/guideline"
+    tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtNumeroRua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Número"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblNumeroRua"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtComplemento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Complemento"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblComplemento"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtBairro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bairro"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblBairro"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtCidade_dadosInst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cidade"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblNomeCidade"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtEstado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estado"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblEstado"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtCep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CEP"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblCep"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.AppCompatTextView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

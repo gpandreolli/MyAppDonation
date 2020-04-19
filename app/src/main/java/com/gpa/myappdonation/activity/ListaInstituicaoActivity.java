@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,17 +29,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Lista_inst extends AppCompatActivity {
+public class ListaInstituicaoActivity extends AppCompatActivity {
 
     private RecyclerView recyclerInstituicoes;
     private List<Instituicao> instituicoes = new ArrayList<>();
     private Adapter_instituicoes adapterInst;
     private DatabaseReference instituicaoRef;
+    private TextView txtRazaoSocial, txtNomeFantasia, txtCnpj, txtTelefone, txtEmail, txtRua, txtNumeroRua, txtComplemento, txtBairro;
+    private TextView txtCidade, txtEstado, txtCep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instituicoes);
+        //setContentView(R.layout.dados_instituicao);
 
         instituicaoRef = ConfiguracaoFirebase.getFirebase().child("Instituicao");
         inicializarComponnetes();
@@ -59,29 +62,13 @@ public class Lista_inst extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Instituicao inst = instituicoes.get(position);
-
-                                final AlertDialog dialog = new AlertDialog.Builder(view.getContext())
-                                        .setTitle("Dados da Instituicao")
-                                        .setMessage(getInstituicao(inst))
-                                        .setPositiveButton("OK", null)
-                                        .show();
-                                Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                                button.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        dialog.dismiss();
-                                    }
-                                });
-
-
-
+                                exibeDadosInstituicao(position);
                             }
 
                             @Override
                             public void onLongItemClick(View view, final int position) {
 
-                                new AlertDialog.Builder(Lista_inst.this).
+                                new AlertDialog.Builder(ListaInstituicaoActivity.this).
                                         setTitle("Adicionar Instituição").
                                         setMessage("Deseja apoiar esta Instituição?").
                                         setPositiveButton("Sim", new DialogInterface.OnClickListener() {
@@ -108,6 +95,43 @@ public class Lista_inst extends AppCompatActivity {
 
     }
 
+    private void exibeDadosInstituicao(int position) {
+
+        Instituicao instituicao = instituicoes.get(position);
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(ListaInstituicaoActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.dados_instituicao, null);
+
+        txtRazaoSocial = mView.findViewById(R.id.txtRazaoSocial);
+        txtNomeFantasia = mView.findViewById(R.id.txtNomeFantasia);
+        txtCnpj = mView.findViewById(R.id.txtCnpj);
+        txtTelefone = mView.findViewById(R.id.txtTelefone);
+        txtEmail = mView.findViewById(R.id.txtEmail);
+        txtRua = mView.findViewById(R.id.txtRua);
+        txtNumeroRua = mView.findViewById(R.id.txtNumeroRua);
+        txtComplemento = mView.findViewById(R.id.txtComplemento);
+        txtBairro = mView.findViewById(R.id.txtBairro);
+        txtCidade = mView.findViewById(R.id.txtCidade_dadosInst);
+        txtEstado = mView.findViewById(R.id.txtEstado);
+        txtCep = mView.findViewById(R.id.txtCep);
+
+        txtRazaoSocial.setText(instituicao.getRazaoSocial());
+        txtNomeFantasia.setText(instituicao.getNomeFantasia());
+        txtCnpj.setText(instituicao.getCnpj());
+        txtTelefone.setText(instituicao.getTelefone());
+        txtEmail.setText(instituicao.getEmail());
+        txtRua.setText(instituicao.getRua());
+        txtNumeroRua.setText(instituicao.getNumero());
+        txtComplemento.setText(instituicao.getComplemento());
+        txtBairro.setText(instituicao.getBairro());
+        txtCidade.setText(instituicao.getCidade());
+        txtEstado.setText(instituicao.getUf());
+        txtCep.setText(instituicao.getCep());
+
+        mBuilder.setView(mView);
+        AlertDialog dialog = mBuilder.create();
+        dialog.show();
+    }
+
     private void recuperaInstituicoes() {
         instituicaoRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -117,8 +141,8 @@ public class Lista_inst extends AppCompatActivity {
 
 
                     instituicoes.add(ds.getValue(Instituicao.class));
-                    adapterInst = new Adapter_instituicoes(instituicoes, Lista_inst.this);
-                    recyclerInstituicoes.setLayoutManager(new LinearLayoutManager(Lista_inst.this));
+                    adapterInst = new Adapter_instituicoes(instituicoes, ListaInstituicaoActivity.this);
+                    recyclerInstituicoes.setLayoutManager(new LinearLayoutManager(ListaInstituicaoActivity.this));
                     recyclerInstituicoes.setHasFixedSize(true);
                     recyclerInstituicoes.setAdapter(adapterInst);
                 }
@@ -137,11 +161,12 @@ public class Lista_inst extends AppCompatActivity {
 
     private void inicializarComponnetes() {
         recyclerInstituicoes = (RecyclerView) findViewById(R.id.recyclerInstituicoes);
+
     }
 
     private void addInstituicao(final String idInstituicao, String nome, String cidade, String uf) {
 
-        final Instituicao inst = new Instituicao(idInstituicao, nome, cidade, uf);
+        final Instituicao inst = new Instituicao();
         inst.setUid(idInstituicao);
         inst.setNomeFantasia(nome);
         inst.setCidade(cidade);
@@ -150,21 +175,4 @@ public class Lista_inst extends AppCompatActivity {
         minhasInstituicoes.child(ConfiguracaoFirebase.getIdUsuario()).child(idInstituicao).setValue(inst);
 
     }
-    private String getInstituicao(Instituicao inst) {
-        return "Razão Social: " + inst.getRazaoSocial()  + "\n" +
-                "Nome Fantasia: " + inst.getNomeFantasia() + "\n" +
-                "CNPJ: " + inst.getCnpj() + "\n" +
-                "Telefone: " + inst.getTelefone() + "\n" +
-                "email: " + inst.getEmail() + "\n" +
-                "----------------------------------- " + "\n" +
-                "Enedereço: " + "\n" +
-                "Rua: " + inst.getRua() + "\n" +
-                "Número: " + inst.getNumero() + "\n" +
-                "Complemento: " + inst.getComplemento() + "\n" +
-                "Bairro: " + inst.getBairro() + "\n" +
-                "CEP: " + inst.getCep() + "\n" +
-                "Cidade: " + inst.getCidade() + "\n" +
-                "Estado: " + inst.getUf() + "\n" ;
-    }
-
 }

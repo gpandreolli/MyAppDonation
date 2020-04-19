@@ -22,7 +22,7 @@
                 android:value="com.gpa.myappdonation.activity.IncialActivityInsti" />
         </activity>
         <activity
-            android:name=".activity.Lista_inst"
+            android:name=".activity.ListaInstituicaoActivity"
             android:label="@string/title_activity_instituicoes"
             android:parentActivityName=".activity.InicialActivityApoiador"
             android:theme="@style/NoActionBar">

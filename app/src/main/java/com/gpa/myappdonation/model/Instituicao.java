@@ -34,12 +34,12 @@ public class Instituicao {
     public Instituicao() {
     }
 
-    public Instituicao(String Uid, String nomeFantasia, String cidade, String uf) {
+   /* public Instituicao(String Uid, String nomeFantasia, String cidade, String uf) {
         this.nomeFantasia = nomeFantasia;
         this.cidade = cidade;
         this.uf = uf;
         this.Uid = Uid;
-    }
+    }*/
 
     public Instituicao(String uid, String razaoSocial, String cnpj, String nomeFantasia, String rua, String numero, String bairro, String cep, String complemento, String cidade, String uf, String telefone, String email, String usuario) {
         Uid = uid;

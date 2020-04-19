@@ -54,16 +54,16 @@ public class ListaInstActivity extends AppCompatActivity {
                 String uidInstituicao;
                 for (DataSnapshot contaSnapshot : dataSnapshot.getChildren()) {
 
-                    Instituicao inst = contaSnapshot.getValue(Instituicao.class);
+                   /* Instituicao inst = contaSnapshot.getValue(Instituicao.class);
                     nomeInstituicao = inst.getNomeFantasia();
                     cidadeInstituicao = inst.getCidade();
                     ufInstituicao = inst.getUf();
                     uidInstituicao = inst.getUid();
-                    Instituicao dadosInstituicao = new Instituicao(uidInstituicao,nomeInstituicao,cidadeInstituicao,ufInstituicao);
+                 //   Instituicao dadosInstituicao = new Instituicao(uidInstituicao,nomeInstituicao,cidadeInstituicao,ufInstituicao);
                     dadosInstituicao.setNomeFantasia(nomeInstituicao);
                     dadosInstituicao.setCidade(cidadeInstituicao);
                     dadosInstituicao.setUf(ufInstituicao);
-                    instituicoes.add(dadosInstituicao);
+                    instituicoes.add(dadosInstituicao);*/
 
                 }
 
@@ -127,7 +127,7 @@ public class ListaInstActivity extends AppCompatActivity {
 
     private void addInstituicao(String idInstituicao,String nome,String cidade,String uf) {
 
-        Instituicao inst = new Instituicao(idInstituicao,nome,cidade,uf);
+        /*Instituicao inst = new Instituicao(idInstituicao,nome,cidade,uf);
         inst.setUid(idInstituicao);
         inst.setNomeFantasia(nome);
         inst.setCidade(cidade);
@@ -137,6 +137,6 @@ public class ListaInstActivity extends AppCompatActivity {
         FirebaseUser currentUser = auth.getCurrentUser();
         uidUsuario = currentUser.getUid();
         DatabaseReference minhasInstituicoes = FirebaseDatabase.getInstance().getReference().child("Minhas_Instituicoes");
-        minhasInstituicoes.child(uidUsuario).child(idInstituicao).setValue(inst);
+        minhasInstituicoes.child(uidUsuario).child(idInstituicao).setValue(inst);*/
     }
 }
