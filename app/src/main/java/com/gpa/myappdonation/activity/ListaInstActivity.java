@@ -70,7 +70,6 @@ public class ListaInstActivity extends AppCompatActivity {
                 ListaAdapterInstituicao adapter = new ListaAdapterInstituicao(ListaInstActivity.this,
                         R.layout.listview_inst_linha, instituicoes);
                 View header = (View) getLayoutInflater().inflate(R.layout.listview_inst_linha, null);
-               // header.getParent().getClass();
                 listaInstituicao.setAdapter(adapter);
             }
 

@@ -28,8 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
-                    android:textSize="20dp"
-                    android:text="Nome da Conta">
+                    android:textSize="20dp">
 
                 </TextView>
 
@@ -41,8 +40,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
-                    android:textSize="18dp"
-                    android:text="Banco">
+                    android:textSize="18dp">
                 </TextView>
 
             </LinearLayout>
@@ -59,8 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
-                    android:textSize="18dp"
-                    android:text="Agência">
+                    android:textSize="18dp">
 
                 </TextView>
 
@@ -70,8 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"
                     android:layout_marginLeft="80dp"
-                    android:textSize="18dp"
-                    android:text="Número da Conta">
+                    android:textSize="18dp">
 
                 </TextView>
 

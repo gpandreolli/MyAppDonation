@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,6 +59,22 @@ public class Lista_inst extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
+                                Instituicao inst = instituicoes.get(position);
+
+                                final AlertDialog dialog = new AlertDialog.Builder(view.getContext())
+                                        .setTitle("Dados da Instituicao")
+                                        .setMessage(getInstituicao(inst))
+                                        .setPositiveButton("OK", null)
+                                        .show();
+                                Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                                button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+
 
                             }
 
@@ -132,6 +149,22 @@ public class Lista_inst extends AppCompatActivity {
         DatabaseReference minhasInstituicoes = FirebaseDatabase.getInstance().getReference().child("Minhas_Instituicoes");
         minhasInstituicoes.child(ConfiguracaoFirebase.getIdUsuario()).child(idInstituicao).setValue(inst);
 
+    }
+    private String getInstituicao(Instituicao inst) {
+        return "Razão Social: " + inst.getRazaoSocial()  + "\n" +
+                "Nome Fantasia: " + inst.getNomeFantasia() + "\n" +
+                "CNPJ: " + inst.getCnpj() + "\n" +
+                "Telefone: " + inst.getTelefone() + "\n" +
+                "email: " + inst.getEmail() + "\n" +
+                "----------------------------------- " + "\n" +
+                "Enedereço: " + "\n" +
+                "Rua: " + inst.getRua() + "\n" +
+                "Número: " + inst.getNumero() + "\n" +
+                "Complemento: " + inst.getComplemento() + "\n" +
+                "Bairro: " + inst.getBairro() + "\n" +
+                "CEP: " + inst.getCep() + "\n" +
+                "Cidade: " + inst.getCidade() + "\n" +
+                "Estado: " + inst.getUf() + "\n" ;
     }
 
 }

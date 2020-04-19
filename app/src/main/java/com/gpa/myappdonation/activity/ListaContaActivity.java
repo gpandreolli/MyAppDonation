@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -68,15 +69,34 @@ public class ListaContaActivity extends AppCompatActivity {
                         this,
                         recyclerContas,
                         new RecyclerItemClickListener.OnItemClickListener() {
+
+
                             @Override
                             public void onItemClick(View view, final int position) {
-                                contaFragment = new ContaFragment();
+                                Conta conta = contas.get(position);
+
+                               /* String idConta = conta.getUid();
+                                contaFragment = new ContaFragment(idConta);
                                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                                transaction.add(R.id.frame_content_conta, contaFragment).commit();
+                                transaction.add(R.id.frame_content_conta, contaFragment).commit();*/
+
+                                final AlertDialog dialog = new AlertDialog.Builder(view.getContext())
+                                        .setTitle("Dados da Conta")
+                                        .setMessage(getConta(conta))
+                                        .setPositiveButton("OK", null)
+                                        .show();
+                                Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                                button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        dialog.dismiss();
+                                    }
+                                });
                             }
 
                             @Override
                             public void onLongItemClick(View view, final int position) {
+
                                 new AlertDialog.Builder(ListaContaActivity.this)
                                         .setTitle("Remover Conta")
                                         .setMessage("Deseja remover essa Conta?")
@@ -89,7 +109,6 @@ public class ListaContaActivity extends AppCompatActivity {
                                             }
                                         })
                                         .setNegativeButton("Não",null).show();
-
                             }
 
                             @Override
@@ -141,6 +160,13 @@ public class ListaContaActivity extends AppCompatActivity {
 
     private void inicializarComponnetes() {
         recyclerContas = (RecyclerView) findViewById(R.id.recyclerContas);
+    }
+
+    private String getConta(Conta conta) {
+        return "Conta: " + conta.getNome()  + "\n" +
+                "Banco: " + conta.getBanco() + "\n" +
+                "Agência: " + conta.getAgencia() + "\n" +
+                "Número da Conta: " + conta.getNumero_conta() + "\n" ;
     }
 
 }
