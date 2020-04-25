@@ -7,11 +7,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/iconelove"
+        android:icon="@drawable/logo_donation_sem_texto"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/iconelove"
+        android:roundIcon="@drawable/logo_donation_sem_texto"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".activity.AdministradorActivity"></activity>
         <activity
             android:name=".activity.ListaContaActivity"
             android:label="@string/title_activity_lista_conta"

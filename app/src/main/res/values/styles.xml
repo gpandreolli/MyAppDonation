@@ -9,8 +9,8 @@
     </style>
 
     <style name="botaoPadrao" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/colorHybridaCinza</item>
-        <item name="colorButtonNormal">@color/colorHybridaRosa</item>
+        <item name="colorControlHighlight">@color/colorGreenPrimary</item>
+        <item name="colorButtonNormal">@color/colorBluePrimary</item>
     </style>
 
     <string-array name="states">

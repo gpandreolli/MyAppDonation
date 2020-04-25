@@ -18,6 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.adapters.Adapter_instituicoes;
@@ -75,11 +76,7 @@ public class ListaInstituicaoActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 Instituicao inst = instituicoes.get(position);
-                                                String idInstituicao = inst.getUid();
-                                                String nomeInstituicao = inst.getNomeFantasia();
-                                                String cidadeInstituicao = inst.getCidade();
-                                                String ufInstituicao = inst.getUf();
-                                                addInstituicao(idInstituicao, nomeInstituicao, cidadeInstituicao, ufInstituicao);
+                                                addInstituicao(inst);
                                             }
                                         }).
                                         setNegativeButton("Não", null).show();
@@ -164,15 +161,9 @@ public class ListaInstituicaoActivity extends AppCompatActivity {
 
     }
 
-    private void addInstituicao(final String idInstituicao, String nome, String cidade, String uf) {
-
-        final Instituicao inst = new Instituicao();
-        inst.setUid(idInstituicao);
-        inst.setNomeFantasia(nome);
-        inst.setCidade(cidade);
-        inst.setUf(uf);
+    private void addInstituicao(Instituicao instituicao) {
         DatabaseReference minhasInstituicoes = FirebaseDatabase.getInstance().getReference().child("Minhas_Instituicoes");
-        minhasInstituicoes.child(ConfiguracaoFirebase.getIdUsuario()).child(idInstituicao).setValue(inst);
+        minhasInstituicoes.child(ConfiguracaoFirebase.getIdUsuario()).child(instituicao.getUid()).setValue(instituicao);
 
     }
 }

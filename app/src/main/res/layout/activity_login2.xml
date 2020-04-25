@@ -18,8 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="210dp"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/iconelove" />
+            android:layout_marginTop="64dp"
+            android:src="@drawable/logo_donation" />
 
       <!--  <TextView
             android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/login_edittext_bg"
-            android:hint="******"
+            android:hint="Senha"
             android:inputType="textPassword"
             android:textAlignment="center"
             android:textColor="@color/colorHybridaMarron"
@@ -73,7 +73,7 @@
             android:layout_marginRight="70dp"
             android:background="@drawable/login_button_bg"
             android:text="@string/sign_in"
-            android:textColor="@color/colorHybridaMarron" />
+            android:textColor="@color/colorBlueDark" />
 
         <Button
             android:id="@+id/btnCadastrar"
@@ -84,7 +84,7 @@
             android:layout_marginRight="70dp"
             android:background="@drawable/login_button_bg"
             android:text="@string/create_account"
-            android:textColor="@color/colorHybridaMarron" />
+            android:textColor="@color/colorBlueDark" />
 
         <TextView
             android:id="@+id/txtRecSenha"
@@ -93,7 +93,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
             android:text="@string/forgot_your_login_info"
-            android:textColor="@color/colorHybridaMarron"
+            android:textColor="@color/colorBlueDark"
             android:clickable="true"/>
 
     </LinearLayout>

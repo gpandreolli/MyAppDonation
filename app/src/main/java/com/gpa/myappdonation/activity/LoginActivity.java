@@ -163,6 +163,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             startActivity(i);
                             Toast.makeText(getBaseContext(), "Apoiador logado com sucesso", Toast.LENGTH_LONG).show();
                             finish();
+                        }else if(tipoUsuario1.equals("3")){
+                            Intent i = new Intent(LoginActivity.this, AdministradorActivity.class);
+                            startActivity(i);
+                            Toast.makeText(getBaseContext(), "Administrador logado com sucesso", Toast.LENGTH_LONG).show();
+                            finish();
                         }
 
                     }

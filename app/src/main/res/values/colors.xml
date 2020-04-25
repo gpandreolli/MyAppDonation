@@ -14,6 +14,15 @@
     <color name="colorBluePale">#A0C9F0</color>
     <color name="colorRosaEscuro">#BE7A85</color>
     <color name="colorBlueMedium">#4985BE</color>
+    <color name="colorGreenLight">#80DDB5</color>
+
+    <color name="colorBluePrimary">#8CE4FF</color>
+    <color name="colorBlueIntermediate">#80E8E5</color>
+    <color name="colorGreenPrimary">#98FFDF</color>
+    <color name="colorGreenSecondary">#80E8A9</color>
+    <color name="colorGreenTertiary">#8CFF9A</color>
+    <color name="colorGreenPrimaryPale">#2F98FFDF</color>
+    <color name="colorBluePrimaryPale">#2F8CE4FF</color>
 
 
 
