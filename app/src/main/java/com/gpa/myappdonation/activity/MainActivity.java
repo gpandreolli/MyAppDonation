@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, CadastrarInstituicaoActivity.class);
         startActivity(i);
+        finish();
 
     }
 
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, InicialActivityApoiador.class);
         startActivity(i);
+        finish();
 
 
     }

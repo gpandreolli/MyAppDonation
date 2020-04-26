@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.fragment.InstituicaoAprovadaFragment;
+import com.gpa.myappdonation.fragment.InstituicaoNaoAvaliadaFragment;
 import com.gpa.myappdonation.fragment.InstituicaoReprovadaFragment;
 
 public class AdministradorActivity extends AppCompatActivity {
@@ -16,6 +17,7 @@ public class AdministradorActivity extends AppCompatActivity {
     private Button btnInstNaoAvalidas, btnInstAprovadas,btnInstReprovadas;
     private InstituicaoAprovadaFragment aprovadaFragment;
     private InstituicaoReprovadaFragment reprovadaFragment;
+    private InstituicaoNaoAvaliadaFragment naoAvaliadaFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,12 @@ public class AdministradorActivity extends AppCompatActivity {
         btnInstNaoAvalidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+             naoAvaliadaFragment = new InstituicaoNaoAvaliadaFragment();
+             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+             transaction.replace(R.id.frame_inst_aprovada,naoAvaliadaFragment);
+             transaction.commit();
+             ocultaBotoes();
+
 
             }
         });
@@ -63,5 +71,15 @@ public class AdministradorActivity extends AppCompatActivity {
         btnInstAprovadas = (Button) findViewById(R.id.btnInstAprovadas);
         btnInstNaoAvalidas = (Button) findViewById(R.id.btnInstNaoAvalidas);
         btnInstReprovadas = (Button) findViewById(R.id.btnInstReprovadas);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() == 0) {
+           //this.finish();
+            getFragmentManager().popBackStack();
+        } else {
+            getFragmentManager().popBackStack();
+        }
     }
 }
