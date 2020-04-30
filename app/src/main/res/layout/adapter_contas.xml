@@ -60,12 +60,20 @@
                 android:id="@+id/txtNumero_Conta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="160dp"
+                android:layout_marginStart="100dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="sans-serif-thin"
                 android:text="Número"
                 android:textColor="@color/colorRosaEscuro"
                 android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/btnEditaConta"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_editar"
+                android:layout_marginStart="50dp"/>
+
 
 
         </LinearLayout>

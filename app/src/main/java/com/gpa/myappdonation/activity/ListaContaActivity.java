@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -64,6 +65,23 @@ public class ListaContaActivity extends AppCompatActivity {
         
         recuperaContas();
 
+        recyclerContas.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+
         recyclerContas.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         this,
@@ -73,12 +91,7 @@ public class ListaContaActivity extends AppCompatActivity {
 
                             @Override
                             public void onItemClick(View view, final int position) {
-                                Conta conta = contas.get(position);
-
-                               /* String idConta = conta.getUid();
-                                contaFragment = new ContaFragment(idConta);
-                                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                                transaction.add(R.id.frame_content_conta, contaFragment).commit();*/
+                               /* Conta conta = contas.get(position);
 
                                 final AlertDialog dialog = new AlertDialog.Builder(view.getContext())
                                         .setTitle("Dados da Conta")
@@ -91,7 +104,7 @@ public class ListaContaActivity extends AppCompatActivity {
                                     public void onClick(View view) {
                                         dialog.dismiss();
                                     }
-                                });
+                                });*/
                             }
 
                             @Override

@@ -172,7 +172,7 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         String itemSelecionado = posicao.toString();
 
         Instituicao inst = new Instituicao();
-        inst.setUid(UUID.randomUUID().toString());
+        inst.setUid(ConfiguracaoFirebase.getIdUsuario());
         inst.setRazaoSocial(edtRazaoSocial.getText().toString());
         inst.setNomeFantasia(edtNomeFantasia.getText().toString());
         inst.setCnpj(edtCnpj.getText().toString());

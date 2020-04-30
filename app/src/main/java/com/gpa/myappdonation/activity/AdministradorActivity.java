@@ -1,16 +1,23 @@
 package com.gpa.myappdonation.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.fragment.InstituicaoAprovadaFragment;
 import com.gpa.myappdonation.fragment.InstituicaoNaoAvaliadaFragment;
 import com.gpa.myappdonation.fragment.InstituicaoReprovadaFragment;
+import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
 public class AdministradorActivity extends AppCompatActivity {
 
@@ -18,12 +25,14 @@ public class AdministradorActivity extends AppCompatActivity {
     private InstituicaoAprovadaFragment aprovadaFragment;
     private InstituicaoReprovadaFragment reprovadaFragment;
     private InstituicaoNaoAvaliadaFragment naoAvaliadaFragment;
+    private TextView txtNomeAdministrador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_administrador);
         inicializarComponentes();
+        setNomeUsuario();
 
         btnInstNaoAvalidas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +80,7 @@ public class AdministradorActivity extends AppCompatActivity {
         btnInstAprovadas = (Button) findViewById(R.id.btnInstAprovadas);
         btnInstNaoAvalidas = (Button) findViewById(R.id.btnInstNaoAvalidas);
         btnInstReprovadas = (Button) findViewById(R.id.btnInstReprovadas);
+        txtNomeAdministrador = (TextView) findViewById(R.id.txtNomeAdministrador);
     }
 
     @Override
@@ -81,5 +91,21 @@ public class AdministradorActivity extends AppCompatActivity {
         } else {
             getFragmentManager().popBackStack();
         }
+    }
+
+    private void setNomeUsuario() {
+
+        DatabaseReference reference = ConfiguracaoFirebase.getFirebase().child("Usuario").child(ConfiguracaoFirebase.getIdUsuario()).child("nome_usua");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String nome = dataSnapshot.getValue().toString();
+                txtNomeAdministrador.setText(nome);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

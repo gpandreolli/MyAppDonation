@@ -4,7 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +17,7 @@ import com.gpa.myappdonation.model.Conta;
 
 import java.util.List;
 
-public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHolder> {
+public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHolder>  {
 
     private List<Conta> contas;
     private Context context;
@@ -32,12 +35,13 @@ public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         Conta conta = contas.get(position);
             holder.nomeConta.setText(conta.getNome());
             holder.numeroConta.setText(conta.getNumero_conta());
             holder.agenciaConta.setText(conta.getAgencia());
             holder.bancoConta.setText(conta.getBanco());
+            holder.setListners(position);
     }
 
     @Override
@@ -45,11 +49,14 @@ public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHold
         return contas.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView nomeConta;
         TextView numeroConta;
         TextView agenciaConta;
         TextView bancoConta;
+        Button btnEditaConta;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +64,19 @@ public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHold
             numeroConta = itemView.findViewById(R.id.txtNumero_Conta);
             agenciaConta = itemView.findViewById(R.id.txtAgencia_Conta);
             bancoConta = itemView.findViewById(R.id.txtNome_Banco);
+            btnEditaConta = itemView.findViewById(R.id.btnEditaConta);
+        }
+
+        public void setListners(int position) {
+            btnEditaConta.setOnClickListener(MyViewHolder.this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.btnEditaConta:
+                    Toast.makeText(context,"Conta na posição editada: ", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

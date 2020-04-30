@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -24,6 +25,7 @@ import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.activity.ListaInstituicaoActivity;
 import com.gpa.myappdonation.adapters.AdapterInstituicoesNaoAvaliadas;
 import com.gpa.myappdonation.model.Instituicao;
+import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.RecyclerItemClickListener;
 
 import androidx.appcompat.widget.Toolbar;
@@ -43,6 +45,7 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
     private AdapterInstituicoesNaoAvaliadas adapterInst;
     private TextView txtRazaoSocial, txtNomeFantasia, txtCnpj, txtTelefone, txtEmail, txtRua, txtNumeroRua, txtComplemento, txtBairro;
     private TextView txtCidade, txtEstado, txtCep;
+    private DatabaseReference databaseReference;
 
     public InstituicaoNaoAvaliadaFragment() {
         // Required empty public constructor
@@ -91,7 +94,10 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
     }
 
     private void aprovarInstituicao(int position) {
-
+        Instituicao instituicao = instituicoes.get(position);
+        String idInst = instituicao.getUid();
+        String idInst2 = idInst;
+        ConfiguracaoFirebase.getFirebase().child("Instituicao").child(idInst).child("situacao").setValue("2");
     }
 
     private void recuperaInstituicoes() {
