@@ -35,7 +35,8 @@ public class ListaInstituicaoActivity extends AppCompatActivity {
     private RecyclerView recyclerInstituicoes;
     private List<Instituicao> instituicoes = new ArrayList<>();
     private Adapter_instituicoes adapterInst;
-    private DatabaseReference instituicaoRef;
+    private DatabaseReference instituicaoRef_;
+    private Query instituicaoRef;
     private TextView txtRazaoSocial, txtNomeFantasia, txtCnpj, txtTelefone, txtEmail, txtRua, txtNumeroRua, txtComplemento, txtBairro;
     private TextView txtCidade, txtEstado, txtCep;
 
@@ -45,7 +46,7 @@ public class ListaInstituicaoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_instituicoes);
         //setContentView(R.layout.dados_instituicao);
 
-        instituicaoRef = ConfiguracaoFirebase.getFirebase().child("Instituicao");
+        instituicaoRef = ConfiguracaoFirebase.getFirebase().child("Instituicao").orderByChild("situacao").equalTo("2");
         inicializarComponnetes();
         recuperaInstituicoes();
 

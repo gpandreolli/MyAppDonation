@@ -63,9 +63,8 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Instituições Não Avaliadas");
-        recuperaInstituicoes();
-        atualizaInstituicoes();
-
+         recuperaInstituicoes();
+         atualizaInstituicoes();
         return view;
     }
 

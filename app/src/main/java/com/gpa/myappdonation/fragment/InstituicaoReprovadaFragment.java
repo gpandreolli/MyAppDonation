@@ -46,7 +46,7 @@ public class InstituicaoReprovadaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_instituicao_reprovada, container, false);
         recyclerViewInstReprovadas = (RecyclerView) view.findViewById(R.id.recyclerInstituicoesReprovadas);
 
-        query = FirebaseDatabase.getInstance().getReference("Instituicao").orderByChild("situacao").equalTo("2");
+        query = FirebaseDatabase.getInstance().getReference("Instituicao").orderByChild("situacao").equalTo("3");
 
         query.addValueEventListener(new ValueEventListener() {
             @Override

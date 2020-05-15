@@ -3,6 +3,8 @@ package com.gpa.myappdonation.fragment;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,6 +40,7 @@ public class InstituicaoAprovadaFragment extends Fragment {
     private Query query;
     private List<Instituicao> instituicoes = new ArrayList<>();
     private AdapterInstituicoesAprovadas adapterInst;
+    private AppBarLayout barLayout;
 
     public InstituicaoAprovadaFragment() {
         // Required empty public constructor
@@ -48,6 +53,22 @@ public class InstituicaoAprovadaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_instituicao_aprovada, container, false);
         recyclerViewInstAprovadas = (RecyclerView) view.findViewById(R.id.recyclerInstituicoesAprovadas);
+        Toolbar toolbar = view.findViewById(R.id.toolbarInstInstAprovadas);
+        barLayout = view.findViewById(R.id.appBarLayoutInstAprovadas);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Instituições Aprovadas");
+
+        barLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Mensagem",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
         inicializarComponentes();
         query = FirebaseDatabase.getInstance().getReference("Instituicao").orderByChild("situacao").equalTo("2");
         query.addValueEventListener(new ValueEventListener() {

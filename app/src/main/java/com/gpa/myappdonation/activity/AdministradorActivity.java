@@ -40,6 +40,7 @@ public class AdministradorActivity extends AppCompatActivity {
              naoAvaliadaFragment = new InstituicaoNaoAvaliadaFragment();
              FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
              transaction.replace(R.id.frame_inst_aprovada,naoAvaliadaFragment);
+                transaction.addToBackStack(null);
              transaction.commit();
              ocultaBotoes();
 
@@ -53,6 +54,7 @@ public class AdministradorActivity extends AppCompatActivity {
                 aprovadaFragment = new InstituicaoAprovadaFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_inst_aprovada,aprovadaFragment);
+                transaction.addToBackStack(null);
                 transaction.commit();
                 ocultaBotoes();
             }
@@ -63,6 +65,7 @@ public class AdministradorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 reprovadaFragment = new InstituicaoReprovadaFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.addToBackStack(null);
                 transaction.replace(R.id.frame_inst_aprovada,reprovadaFragment);
                 transaction.commit();
                 ocultaBotoes();
@@ -85,11 +88,15 @@ public class AdministradorActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() == 0) {
-           //this.finish();
-            getFragmentManager().popBackStack();
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            onPause();
+            this.finish();
+
         } else {
-            getFragmentManager().popBackStack();
+            getSupportFragmentManager().popBackStack();
+            btnInstNaoAvalidas.setVisibility(View.VISIBLE);
+            btnInstAprovadas.setVisibility(View.VISIBLE);
+            btnInstReprovadas.setVisibility(View.VISIBLE);
         }
     }
 
