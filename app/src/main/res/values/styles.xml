@@ -53,4 +53,24 @@
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <string-array name="produtos">
+        <item>Arroz</item>
+        <item>Feijão</item>
+        <item>Macarrão</item>
+        <item>Óleo</item>
+        <item>Farinha de Trigo</item>
+        <item>Extrato de Tomate</item>
+        <item>Macarrão Instantâneo</item>
+        <item>Açucar</item>
+        <item>Café</item>
+        <item>Leite</item>
+        <item>Leite em Pó</item>
+        <item>Fraldas</item>
+        <item>Papel Higiênico</item>
+        <item>Sabonete</item>
+        <item>Shampoo</item>
+        <item>Sabão em pó</item>
+        <item>Sabão em barra</item>
+    </string-array>
+
 </resources>

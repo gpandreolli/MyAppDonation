@@ -2,6 +2,7 @@ package com.gpa.myappdonation.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
     private Util util;
     private String uidUsuario;
     private Bundle extras;
+    private Toolbar toolbarCadInstituicao;
 
 
     private FirebaseDatabase firebaseDatabase;
@@ -50,6 +52,11 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_instituicao);
+        toolbarCadInstituicao = (Toolbar) findViewById(R.id.toolbarCadInstituicao);
+        setSupportActionBar(toolbarCadInstituicao);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Dados Cadastrais");
 
        inicializarComponentes();
         inicializarFirebase();
@@ -60,7 +67,7 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter
                 .createFromResource(this,
                         R.array.states,
-                        android.R.layout.simple_spinner_item);
+                        android.R.layout.simple_spinner_dropdown_item);
         spStates.setAdapter(adapter);
 
         util = new Util(this,

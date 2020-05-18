@@ -182,4 +182,10 @@ public class ListaContaActivity extends AppCompatActivity {
                 "Número da Conta: " + conta.getNumero_conta() + "\n" ;
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+
 }

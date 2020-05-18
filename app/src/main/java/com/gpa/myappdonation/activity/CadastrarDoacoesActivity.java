@@ -112,7 +112,7 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
                     dadosInstituicao.setNomeFantasia(nomeInstituicao);
                     instituicoes.add(dadosInstituicao);
                 }
-                ArrayAdapter adapter = new ArrayAdapter(CadastrarDoacoesActivity.this, android.R.layout.simple_spinner_item,instituicoes);
+                ArrayAdapter adapter = new ArrayAdapter(CadastrarDoacoesActivity.this, android.R.layout.simple_spinner_dropdown_item,instituicoes);
                 spMyInst.setAdapter(adapter);
             }
 

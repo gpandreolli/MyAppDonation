@@ -77,7 +77,7 @@ public class UsuarioActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter
                 .createFromResource(this,
                         R.array.states,
-                        android.R.layout.simple_spinner_item);
+                        android.R.layout.simple_spinner_dropdown_item);
         spStates.setAdapter(adapter);
 
         util = new Util(this,

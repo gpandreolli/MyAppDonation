@@ -9,16 +9,22 @@
     android:padding="10dp"
     tools:context=".activity.CadastrarInstituicaoActivity">
 
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Dados da Instituição"
-        android:textAlignment="center"
-        android:textColor="@color/colorHybridaMarron"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:background="@drawable/login_button_bg"/>
+        android:theme="@style/AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarCadInstituicao"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/colorBlueDark"
+            android:background="@color/colorBlueIntermediate"
+            app:popupTheme="@style/PopupOverlay"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"

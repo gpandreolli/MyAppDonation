@@ -17,6 +17,7 @@ import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.fragment.InstituicaoAprovadaFragment;
 import com.gpa.myappdonation.fragment.InstituicaoNaoAvaliadaFragment;
 import com.gpa.myappdonation.fragment.InstituicaoReprovadaFragment;
+import com.gpa.myappdonation.util.App;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
 public class AdministradorActivity extends AppCompatActivity {
@@ -72,6 +73,8 @@ public class AdministradorActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void ocultaBotoes() {
         btnInstNaoAvalidas.setVisibility(View.INVISIBLE);

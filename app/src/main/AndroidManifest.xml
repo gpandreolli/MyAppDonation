@@ -12,7 +12,12 @@
         android:roundIcon="@drawable/logo_donation_sem_texto"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.AdministradorActivity"></activity>
+        <activity android:name=".activity.ListaCampanhasActivity"></activity>
+        <activity
+            android:name=".activity.CampanhaActivity"
+            android:label="@string/title_activity_campanha"
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".activity.AdministradorActivity" />
         <activity
             android:name=".activity.ListaContaActivity"
             android:label="@string/title_activity_lista_conta"

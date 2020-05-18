@@ -101,4 +101,16 @@ public class IncialActivityInsti extends AppCompatActivity {
             });
         }
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        onRestart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        onRestart();
+    }
 }
