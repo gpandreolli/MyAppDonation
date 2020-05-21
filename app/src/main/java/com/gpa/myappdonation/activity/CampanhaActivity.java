@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.adapters.AdapterProdutos;
+import com.gpa.myappdonation.model.Campanha;
 import com.gpa.myappdonation.model.ItemCampanha;
 import com.gpa.myappdonation.model.Produto;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
@@ -43,6 +44,7 @@ public class CampanhaActivity extends AppCompatActivity {
     private DatabaseReference produtoRef;
     private AdapterProdutos adapterProdutos;
     private Context context;
+    private Campanha campanhaRecuperada;
 
 
     @Override
@@ -63,8 +65,8 @@ public class CampanhaActivity extends AppCompatActivity {
                             @Override
                             public void onLongItemClick(View view, final int position) {
                                 new AlertDialog.Builder(CampanhaActivity.this).
-                                        setTitle("Adicionar Instituição").
-                                        setMessage("Deseja apoiar esta Instituição?").
+                                        setTitle("Adicionar Produto").
+                                        setMessage("Deseja adicionar esse produto?").
                                         setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -75,6 +77,14 @@ public class CampanhaActivity extends AppCompatActivity {
                                                 itemCampanha.setDescricao(produtoSelecionado.getDescricao());
 
                                                 itensCampanha.add(itemCampanha);
+
+                                                if (campanhaRecuperada == null){
+                                                    campanhaRecuperada = new Campanha(idInstituicao);
+                                                }
+
+                                                campanhaRecuperada.setItens(itensCampanha);
+                                                campanhaRecuperada.salvarCampanha();
+
 
                                             }
                                         }).
@@ -140,6 +150,10 @@ public class CampanhaActivity extends AppCompatActivity {
         recyclerProdutos = (RecyclerView) findViewById(R.id.recyclerProdutos);
         txtDatafinal = (TextView) findViewById(R.id.txtDataFinalCampnha);
         txtDataInicial = (TextView) findViewById(R.id.txtDataInicialCampanha);
+
+    }
+
+    private void recuperarCampanha(){
 
     }
 

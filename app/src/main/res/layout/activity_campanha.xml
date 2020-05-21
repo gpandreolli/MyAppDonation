@@ -30,7 +30,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginTop="8dp">
 
             <TextView
@@ -44,20 +44,48 @@
 
             </TextView>
 
+            <TextView
+                android:id="@+id/txtStatusCampanha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:textColor="@color/colorRosaEscuro"
+                android:textSize="25dp"
+                android:gravity="left">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/edtNomeCampanha"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Nome da sua Campanha"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp">
+
+
+            </EditText>
+
 
         </LinearLayout>
+
+
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:layout_gravity="left">
 
             <Switch
                 android:id="@+id/switchPermanente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginLeft="8dp"
                 android:textSize="20dp"
+                android:layout_gravity="center"
                 android:text="Campanha Permanente" />
 
         </LinearLayout>
@@ -111,7 +139,8 @@
         android:id="@+id/recyclerProdutos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="8dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 

@@ -75,7 +75,7 @@ public class IncialActivityInsti extends AppCompatActivity {
                         startActivity(intent);
 
                     }else if(finalI == 1){
-                        Intent i = new Intent(IncialActivityInsti.this, ListaContaActivity.class);
+                        Intent i = new Intent(IncialActivityInsti.this, CampanhaActivity.class);
                         startActivity(i);
                         Toast.makeText(getBaseContext(), "Cadastro de Contas: ", Toast.LENGTH_LONG).show();
                     }else if(finalI == 5){
@@ -92,6 +92,11 @@ public class IncialActivityInsti extends AppCompatActivity {
 
                     }else if (finalI == 3){
                         Intent intent = new Intent(IncialActivityInsti.this, UsuarioActivity.class);
+                        intent.putExtra("info",finalI);
+                        startActivity(intent);
+                    }
+                    else if (finalI == 4){
+                        Intent intent = new Intent(IncialActivityInsti.this, ListaProdutoActivity.class);
                         intent.putExtra("info",finalI);
                         startActivity(intent);
                     }

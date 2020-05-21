@@ -12,7 +12,9 @@
         android:roundIcon="@drawable/logo_donation_sem_texto"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.ListaCampanhasActivity"></activity>
+        <activity android:name=".activity.CadastrarProdutoActivity"></activity>
+        <activity android:name=".activity.ListaProdutoActivity" />
+        <activity android:name=".activity.ListaCampanhasActivity" />
         <activity
             android:name=".activity.CampanhaActivity"
             android:label="@string/title_activity_campanha"
