@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtNomeCampanhaLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Campanha"
+            android:textColor="@color/colorBlueDark"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="15dp"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-thin"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtStatusCampanhaLista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:textColor="@color/colorRosaEscuro"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="15dp"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif-thin"/>
+            <TextView
+                android:id="@+id/txtPermanenteLista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Permanente"
+                android:textColor="@color/colorRosaEscuro"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="150dp"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif-thin"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+
+            <TextView
+                android:id="@+id/txtDataInicialCampanhaLista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Inicial"
+                android:textColor="@color/colorRosaEscuro"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif-thin"/>
+
+            <TextView
+                android:id="@+id/txtDataFinalCampanhaLista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DataFinal"
+                android:textColor="@color/colorRosaEscuro"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="150dp"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif-thin"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+

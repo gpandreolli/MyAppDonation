@@ -4,10 +4,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Campanha {
 
      private String uid;
+     private String nomeCampanha;
      private String uidInstituica;
      private String permanente;
      private String dataInicial;
@@ -82,10 +84,18 @@ public class Campanha {
         this.itens = itens;
     }
 
+    public String getNomeCampanha() {
+        return nomeCampanha;
+    }
+
+    public void setNomeCampanha(String nomeCampanha) {
+        this.nomeCampanha = nomeCampanha;
+    }
+
     public void salvarCampanha() {
 
         DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebase();
-        DatabaseReference campanhaRef = firebaseRef.child("campanha_instituicao").child(getUidInstituica());
+        DatabaseReference campanhaRef = firebaseRef.child("Campanha").child((UUID.randomUUID().toString()));
         campanhaRef.setValue(this);
 
 

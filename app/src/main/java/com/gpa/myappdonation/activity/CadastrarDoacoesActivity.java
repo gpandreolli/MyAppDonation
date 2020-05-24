@@ -52,7 +52,7 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
         dia = mDataAtual.get(Calendar.DAY_OF_MONTH);
         mes = mDataAtual.get(Calendar.MONTH);
         ano = mDataAtual.get(Calendar.YEAR);
-        mes = mes + 1;
+
 
         txtDataDoacao.setText(dia + "/" + mes + "/" + ano);
         txtDataDoacao.setOnClickListener(new View.OnClickListener() {

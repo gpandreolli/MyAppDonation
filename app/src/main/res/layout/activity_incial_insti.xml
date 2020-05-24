@@ -19,6 +19,7 @@
             android:text="Instituição"
             android:textColor="@color/colorHybridaMarron"
             android:textSize="34dp"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_centerInParent="true"
             android:layout_height="wrap_content">
@@ -73,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="1dp"
-                    android:text="Contas"
+                    android:text="Contas da Instituição"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
@@ -152,7 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Instituição"
+                    android:text="Perfil Instituição"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
@@ -190,7 +191,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Perfil"
+                    android:text="Perfil
+                     Usuário"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
                     android:textSize="20sp"
@@ -225,7 +227,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_reports" />
+                    android:src="@drawable/ic_product_list" />
 
                 <TextView
                     android:layout_width="match_parent"

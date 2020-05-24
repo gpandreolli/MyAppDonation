@@ -31,14 +31,12 @@ public class ListaProdutoActivity extends AppCompatActivity {
     private List<Produto> produtos = new ArrayList<>();
     private AdapterProdutos adapterProdutos;
     private Query produtosRef;
-    private TextView txtNomeProduto, txtDescricaoProduto;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_produto);
-
+        recyclerProdutos = (RecyclerView) findViewById(R.id.recyclerProdutos);
         produtosRef = ConfiguracaoFirebase.getFirebase().child("Produto");
         recuperaProdutos();
 

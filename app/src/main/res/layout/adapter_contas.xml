@@ -73,9 +73,6 @@
                 android:layout_height="50dp"
                 android:background="@drawable/ic_editar"
                 android:layout_marginStart="50dp"/>
-
-
-
         </LinearLayout>
 
     </LinearLayout>

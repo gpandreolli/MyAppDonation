@@ -51,7 +51,7 @@
                 android:text="Status"
                 android:textColor="@color/colorRosaEscuro"
                 android:textSize="25dp"
-                android:gravity="left">
+                android:gravity="center">
 
             </TextView>
 
@@ -100,7 +100,6 @@
                 android:id="@+id/txtDataInicialCampanha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_pin"
                 android:text="Data Inicial"
                 android:textAlignment="textStart"
                 android:textColorHighlight="@color/colorHybridaMarron"
@@ -118,7 +117,6 @@
                 android:id="@+id/txtDataFinalCampnha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_pin"
                 android:text="Data Final"
                 android:textAlignment="textStart"
                 android:textColorHighlight="@color/colorHybridaMarron"
@@ -135,14 +133,11 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerProdutos"
+    <include layout="@layout/content_produtos_campanha"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="350dp"
         android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="8dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_marginHorizontal="8dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

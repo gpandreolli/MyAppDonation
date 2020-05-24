@@ -75,20 +75,20 @@ public class IncialActivityInsti extends AppCompatActivity {
                         startActivity(intent);
 
                     }else if(finalI == 1){
-                        Intent i = new Intent(IncialActivityInsti.this, CampanhaActivity.class);
+                        Intent i = new Intent(IncialActivityInsti.this, ListaCampanhasActivity.class);
                         startActivity(i);
-                        Toast.makeText(getBaseContext(), "Cadastro de Contas: ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), "Campanhas", Toast.LENGTH_LONG).show();
                     }else if(finalI == 5){
                         auth.signOut();
                         finish();
                         Intent i = new Intent(IncialActivityInsti.this, LoginActivity.class);
                         startActivity(i);
-                        Toast.makeText(getBaseContext(), "usuario deslogado: ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), "Usuario deslogado", Toast.LENGTH_LONG).show();
                     }else if (finalI == 2 ){
                         Intent i = new Intent(IncialActivityInsti.this, CadastrarInstituicaoActivity.class);
                         i.putExtra("info",finalI);
                         startActivity(i);
-                        Toast.makeText(getBaseContext(), "Cadastro de Contas: ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), "Cadastro de Contas", Toast.LENGTH_LONG).show();
 
                     }else if (finalI == 3){
                         Intent intent = new Intent(IncialActivityInsti.this, UsuarioActivity.class);
