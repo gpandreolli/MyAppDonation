@@ -24,6 +24,7 @@ public class Instituicao {
     private String telefone;
     private String email;
     private String usuario;
+    private String situacao;
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("Instituicao");
@@ -175,6 +176,14 @@ public class Instituicao {
         this.complemento = complemento;
     }
 
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+
     public void addInstituicao() {
 
         //Instituicao inst = new Instituicao();
@@ -188,6 +197,8 @@ public class Instituicao {
 
 
     }
+
+
 
     @Override
     public String toString() {

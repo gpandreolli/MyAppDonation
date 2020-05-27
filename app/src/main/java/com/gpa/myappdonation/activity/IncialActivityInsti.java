@@ -58,9 +58,9 @@ public class IncialActivityInsti extends AppCompatActivity {
     }
 
     private void setSingleEvent(GridLayout mainGrid) {
-        //Loop all child item of Main Grid
+
         for (int i = 0; i < mainGrid.getChildCount(); i++) {
-            //You can see , all child item is CardView , so we just cast object to CardView
+
             CardView cardView = (CardView) mainGrid.getChildAt(i);
             final int finalI = i;
             cardView.setOnClickListener(new View.OnClickListener() {
@@ -110,12 +110,12 @@ public class IncialActivityInsti extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        onRestart();
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        onRestart();
+
     }
 }

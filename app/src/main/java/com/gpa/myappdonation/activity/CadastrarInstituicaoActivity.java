@@ -192,6 +192,8 @@ public class CadastrarInstituicaoActivity extends AppCompatActivity {
         inst.setTelefone(edtFoneInst.getRawText());
         inst.setUf(itemSelecionado);
         inst.setEmail(edtEmailCadInst.getText().toString());
+        inst.setSituacao("1");
+
 
         if (extras != null) {
 

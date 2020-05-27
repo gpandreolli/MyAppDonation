@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,6 +43,7 @@ public class ListaContaActivity extends AppCompatActivity {
     private AdapterContas adapterContas;
     private DatabaseReference contaRef;
     private ContaFragment contaFragment;
+    private Button btnEditaConta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,33 +67,26 @@ public class ListaContaActivity extends AppCompatActivity {
         
         recuperaContas();
 
-        recyclerContas.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                return false;
-            }
 
-            @Override
-            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
 
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
-
-        recyclerContas.addOnItemTouchListener(
+       /*recyclerContas.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         this,
-                        recyclerContas,
+                       recyclerContas,
                         new RecyclerItemClickListener.OnItemClickListener() {
 
 
                             @Override
                             public void onItemClick(View view, final int position) {
-                               /* Conta conta = contas.get(position);
+
+                                switch (view.getId()){
+                                    case R.id.btnEditaConta:
+                                       Toast.makeText(ListaContaActivity.this,"Teste do botão: 1", Toast.LENGTH_LONG).show();
+                                    case R.id.txtNome_Conta:
+                                        Toast.makeText(ListaContaActivity.this,"Teste do botão: 2", Toast.LENGTH_LONG).show();
+                                        break;
+                                }
+                                Conta conta = contas.get(position);
 
                                 final AlertDialog dialog = new AlertDialog.Builder(view.getContext())
                                         .setTitle("Dados da Conta")
@@ -104,7 +99,7 @@ public class ListaContaActivity extends AppCompatActivity {
                                     public void onClick(View view) {
                                         dialog.dismiss();
                                     }
-                                });*/
+                                });
                             }
 
                             @Override
@@ -131,7 +126,7 @@ public class ListaContaActivity extends AppCompatActivity {
                             }
                         }
                 )
-        );
+        );*/
 
     }
 
@@ -173,6 +168,7 @@ public class ListaContaActivity extends AppCompatActivity {
 
     private void inicializarComponnetes() {
         recyclerContas = (RecyclerView) findViewById(R.id.recyclerContas);
+        btnEditaConta = (Button) findViewById(R.id.btnEditaConta);
     }
 
     private String getConta(Conta conta) {

@@ -31,7 +31,7 @@ import com.santalu.maskedittext.MaskEditText;
 
 public class UsuarioActivity extends AppCompatActivity {
 
-    private EditText edtNomeUsua,edtCPFUsua, getEdtCpfUsua, edtCepUsua, edtCidadeUsua,edtRuaUsua,edtNumeroUsua,edtBairroUsua ;
+    private EditText edtNomeUsua,edtCPFUsua, edtCepUsua, edtCidadeUsua,edtRuaUsua,edtNumeroUsua,edtBairroUsua ;
     private EditText edtComplementoUsua;
     private MaskEditText edtFoneUsua;
     private Spinner spEstadoUsua;

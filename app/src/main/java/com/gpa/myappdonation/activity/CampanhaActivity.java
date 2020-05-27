@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.adapters.AdapterProdutos;
 import com.gpa.myappdonation.model.Campanha;
+import com.gpa.myappdonation.model.Instituicao;
 import com.gpa.myappdonation.model.ItemCampanha;
 import com.gpa.myappdonation.model.Produto;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
@@ -40,7 +41,7 @@ import dmax.dialog.SpotsDialog;
 
 public class CampanhaActivity extends AppCompatActivity {
 
-    private TextView txtStatusCampanha, txtDataInicial, txtDataFinal;
+    private TextView txtStatusCampanha, txtDataInicial, txtDataFinal,txtInsituicaoCampanha;
     private EditText edtNomeCampanha;
     private Button btnSalvarCampanha, btnCancelarCampanha;
     private RecyclerView recyclerProdutos;
@@ -64,6 +65,7 @@ public class CampanhaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campanha);
         inicializarComponnetes();
+        setNomeInstituicao();
         recuperaDadosInstituicao();
         recuperarProdutos();
         txtStatusCampanha.setVisibility(View.INVISIBLE);
@@ -162,9 +164,6 @@ public class CampanhaActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         btnSalvarCampanha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -209,6 +208,13 @@ public class CampanhaActivity extends AppCompatActivity {
     }
 
     private void recuperarProdutos() {
+        dialogCarregando = new SpotsDialog.Builder()
+                .setContext(this)
+                .setMessage("Carregando Dados")
+                .setCancelable(false)
+                .build();
+        dialogCarregando.show();
+
         produtoRef = ConfiguracaoFirebase.getFirebase().child("Produto");
         produtoRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -233,7 +239,7 @@ public class CampanhaActivity extends AppCompatActivity {
 
             }
         });
-
+        dialogCarregando.dismiss();
 
     }
 
@@ -247,10 +253,26 @@ public class CampanhaActivity extends AppCompatActivity {
         aSwitchPermanente = (Switch) findViewById(R.id.switchPermanente);
         edtNomeCampanha = (EditText) findViewById(R.id.edtNomeCampanha);
         txtStatusCampanha = (TextView) findViewById(R.id.txtStatusCampanha);
+        txtInsituicaoCampanha = (TextView) findViewById(R.id.txtInsituicaoCampanha);
     }
 
-    private void recuperarCampanha() {
 
+
+    private void setNomeInstituicao() {
+
+        DatabaseReference reference = ConfiguracaoFirebase.getFirebase().child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario());
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Instituicao inst = dataSnapshot.getValue(Instituicao.class);
+                String nomefant = inst.getNomeFantasia();
+                txtInsituicaoCampanha.setText(nomefant);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 

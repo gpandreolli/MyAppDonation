@@ -36,10 +36,22 @@ public class AdapterCampanhas extends RecyclerView.Adapter<AdapterCampanhas.MyVi
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Campanha campanha = campanhas.get(position);
         holder.txtNomeCampanhaLista.setText(campanha.getNomeCampanha());
-        holder.txtStatusCampanhaLista.setText(campanha.getStatus());
-        holder.txtPermanenteLista.setText(campanha.getPermanente());
-        holder.txtDataInicialCampanhaLista.setText(campanha.getDataInicial());
-        holder.txtDataFinalCampanhaLista.setText(campanha.getDataFinal());
+
+        if (campanha.getStatus().equals("1")){
+            holder.txtStatusCampanhaLista.setText("Ativa");
+        }
+        if (campanha.getPermanente().equals("1")){
+            holder.txtPermanenteLista.setText("Campanha Permanente");
+            holder.txtDataInicialCampanhaLista.setVisibility(View.INVISIBLE);
+            holder.txtDataFinalCampanhaLista.setVisibility(View.INVISIBLE);
+        }else{
+            holder.txtDataInicialCampanhaLista.setVisibility(View.VISIBLE);
+            holder.txtDataFinalCampanhaLista.setVisibility(View.VISIBLE);
+            holder.txtDataInicialCampanhaLista.setText(campanha.getDataInicial());
+            holder.txtDataFinalCampanhaLista.setText(campanha.getDataFinal());
+        }
+
+
     }
 
     @Override
