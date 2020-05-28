@@ -7,29 +7,21 @@
     android:orientation="vertical"
     tools:context=".activity.CadastrarProdutoActivity">
 
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppBarOverlay"
+        tools:ignore="MissingConstraints">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarCadastraProduto"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorBlueDark"
+            app:popupTheme="@style/PopupOverlay" />
 
-            <TextView
-                android:id="@+id/txtTituloCadConta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/login_button_bg"
-                android:text="Cadastro de Produto"
-                android:textAlignment="center"
-                android:textColor="@color/colorHybridaMarron"
-                android:textSize="24dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints"
-                android:layout_marginTop="100dp"
-                tools:layout_editor_absoluteX="5dp" />
+    </com.google.android.material.appbar.AppBarLayout>
 
 
 
@@ -37,11 +29,11 @@
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTituloCadConta"
-                android:layout_marginTop="50dp">
+
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
 
                 <EditText
@@ -68,50 +60,46 @@
                     android:hint="Descrição"
                     android:inputType="text"
                     android:textAlignment="viewStart" />
-
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical">
-
-
-                    <Button
-                        android:id="@+id/btnSalvarProduto"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/login_button_bg"
-                        android:text="Salvar"
-                        android:layout_marginLeft="0dp"
-                        android:textAllCaps="false"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/btnCancelarProduto"
-                        tools:ignore="MissingConstraints" />
-
-                    <Button
-                        android:id="@+id/btnCancelarProduto"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/btnSalvarProduto"
-                        android:background="@drawable/login_button_bg"
-                        android:text="Cancelar"
-                        android:textAllCaps="false"
-                        android:layout_marginRight="0dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btnSalvarProduto"
-                        tools:ignore="MissingConstraints" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints">
 
 
-    </ScrollView>
+        <Button
+            android:id="@+id/btnSalvarProduto"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:background="@drawable/button_bg_geral"
+            android:text="Salvar"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnCancelarProduto"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btnCancelarProduto"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0dp"
+            android:layout_toRightOf="@id/btnSalvarProduto"
+            android:background="@drawable/button_bg_geral"
+            android:text="Cancelar"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toStartOf="@+id/btnSalvarProduto"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

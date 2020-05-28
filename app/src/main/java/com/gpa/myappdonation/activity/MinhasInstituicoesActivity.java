@@ -23,7 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.adapters.AdapterMyInst;
-import com.gpa.myappdonation.fragment.ContaFragment;
 import com.gpa.myappdonation.model.Instituicao;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.RecyclerItemClickListener;

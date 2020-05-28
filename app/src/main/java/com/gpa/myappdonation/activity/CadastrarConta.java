@@ -87,32 +87,19 @@ public class CadastrarConta extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                contas.size();
+                int size = contas.size();
                 contas.clear();
+
                 for (DataSnapshot dsContas :dataSnapshot.getChildren()){
                     contas.add(dsContas.getValue(Conta.class));
-                    Conta conta = contas.get(position);
-                    String idConta = conta.getUid();
-                    contaEditReference = ConfiguracaoFirebase.getFirebase().child("Conta").child(ConfiguracaoFirebase.getIdUsuario()).child(idConta);
 
-                    contaEditReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Conta contaEdit = dataSnapshot.getValue(Conta.class);
 
-                            edtNomeConta.setText(contaEdit.getNome().toString());
-                            edtNumeroConta.setText(contaEdit.getNumero_conta().toString());
-                            edtBancoConta.setText(contaEdit.getBanco().toString());
-                            edtAgenciaConta.setText(contaEdit.getAgencia().toString());
-                            edtNumeroBancoConta.setText(contaEdit.getNumeroBanco().toString());
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
                 }
                 Collections.reverse(contas);
+                Conta conta = contas.get(position);
+                String idConta = conta.getUid();
+                setaConta(idConta);
             }
 
             @Override
@@ -120,30 +107,28 @@ public class CadastrarConta extends AppCompatActivity {
 
             }
         });
+    }
 
+    private void setaConta(String idConta) {
+        contaEditReference = ConfiguracaoFirebase.getFirebase().child("Conta").child(ConfiguracaoFirebase.getIdUsuario()).child(idConta);
 
-//       Conta conta = contas.get(position);
-//       String idConta = conta.getUid();
-//        contaEditReference = ConfiguracaoFirebase.getFirebase().child("Conta").child(ConfiguracaoFirebase.getIdUsuario()).child(idConta);
-//
-//        contaEditReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                Conta contaEdit = dataSnapshot.getValue(Conta.class);
-//
-//                edtNomeConta.setText(contaEdit.getNome().toString());
-//                edtNumeroConta.setText(contaEdit.getNumero_conta().toString());
-//                edtBancoConta.setText(contaEdit.getBanco().toString());
-//                edtAgenciaConta.setText(contaEdit.getAgencia().toString());
-//                edtNumeroBancoConta.setText(contaEdit.getNumeroBanco().toString());
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+        contaEditReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Conta contaEdit = dataSnapshot.getValue(Conta.class);
 
+                edtNomeConta.setText(contaEdit.getNome().toString());
+                edtNumeroConta.setText(contaEdit.getNumero_conta().toString());
+                edtBancoConta.setText(contaEdit.getBanco().toString());
+                edtAgenciaConta.setText(contaEdit.getAgencia().toString());
+                edtNumeroBancoConta.setText(contaEdit.getNumeroBanco().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void inicializarFirebase() {

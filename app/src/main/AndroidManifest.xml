@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/logo_donation_sem_texto"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.CadastrarProdutoActivity" />
+        <activity android:name=".activity.CadastrarProdutoActivity"
+            android:parentActivityName=".activity.ListaProdutoActivity"/>
         <activity android:name=".activity.ListaProdutoActivity" />
         <activity android:name=".activity.ListaCampanhasActivity" />
         <activity
