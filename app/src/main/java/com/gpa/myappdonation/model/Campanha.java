@@ -15,7 +15,7 @@ public class Campanha {
      private String dataInicial;
      private String dataFinal;
      private String status;
-     private List<ItemCampanha> itens;
+     private List<ProdutosCampanha> itens;
 
     public Campanha() {
     }
@@ -76,11 +76,11 @@ public class Campanha {
         this.status = status;
     }
 
-    public List<ItemCampanha> getItens() {
+    public List<ProdutosCampanha> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemCampanha> itens) {
+    public void setItens(List<ProdutosCampanha> itens) {
         this.itens = itens;
     }
 
@@ -95,7 +95,8 @@ public class Campanha {
     public void salvarCampanha() {
 
         DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebase();
-        DatabaseReference campanhaRef = firebaseRef.child("Campanha").child((UUID.randomUUID().toString()));
+        //DatabaseReference campanhaRef = firebaseRef.child("Campanha").child((UUID.randomUUID().toString()));
+        DatabaseReference campanhaRef = firebaseRef.child("Campanha").child(getUid());
         campanhaRef.setValue(this);
 
 

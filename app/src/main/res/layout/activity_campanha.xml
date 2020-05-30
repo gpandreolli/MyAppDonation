@@ -33,28 +33,6 @@
             android:orientation="vertical"
             android:layout_marginTop="8dp">
 
-            <TextView
-                android:id="@+id/txtInsituicaoCampanha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Instituiçao"
-                android:textColor="@color/colorHybridaMarron"
-                android:textSize="34dp"
-                android:gravity="center">
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/txtStatusCampanha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Status"
-                android:textColor="@color/colorRosaEscuro"
-                android:textSize="25dp"
-                android:gravity="center">
-
-            </TextView>
-
             <EditText
                 android:id="@+id/edtNomeCampanha"
                 android:layout_width="match_parent"
@@ -62,11 +40,7 @@
                 android:hint="Nome da sua Campanha"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp">
-
-
             </EditText>
-
-
         </LinearLayout>
 
 
@@ -75,7 +49,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_gravity="left">
 
             <Switch
@@ -84,9 +58,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginLeft="8dp"
-                android:textSize="20dp"
+
                 android:layout_gravity="center"
-                android:text="Campanha Permanente" />
+                android:text="Permanente" />
 
         </LinearLayout>
 
@@ -94,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="8dp">
 
             <TextView
                 android:id="@+id/txtDataInicialCampanha"
@@ -105,7 +79,7 @@
                 android:textColorHighlight="@color/colorHybridaMarron"
                 android:textColorHint="@color/colorHybridaVermelho"
                 android:textSize="20dp"
-                android:textStyle="bold"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/txtDataFinalCampnha"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +96,7 @@
                 android:textColorHighlight="@color/colorHybridaMarron"
                 android:textColorHint="@color/colorHybridaVermelho"
                 android:textSize="20dp"
-                android:textStyle="bold"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/txtDataInicialCampanha"
@@ -133,16 +107,68 @@
 
     </LinearLayout>
 
-    <include layout="@layout/content_produtos_campanha"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="8dp"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:id="@+id/txtLitaProdutos"
+            android:textColor="@color/colorBlueDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Produtos"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="2dp"></TextView>
+
+        <include layout="@layout/content_produtos_campanha"
+            android:id="@+id/listaProdutos"
+            app:layout_constraintTop_toBottomOf="@id/txtLitaProdutos"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="8dp"/>
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorBlueDark"
+            tools:ignore="MissingConstraints"
+            android:layout_marginHorizontal="8dp"
+            app:layout_constraintTop_toBottomOf="@id/listaProdutos"/>
+
+        <TextView
+            android:id="@+id/txtProdutosAddCampanha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/colorBlueDark"
+            android:text="Produtos Adicionados a Campanha"
+            app:layout_constraintTop_toBottomOf="@id/divider2">
+
+        </TextView>
+
+        <include layout="@layout/content_produtos_campanha_add"
+            app:layout_constraintTop_toBottomOf="@id/txtProdutosAddCampanha"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="8dp"
+            android:layout_height="165dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -177,11 +203,7 @@
                 tools:ignore="MissingConstraints">
 
             </Button>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </LinearLayout>
 
 

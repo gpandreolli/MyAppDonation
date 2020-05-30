@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,12 +23,14 @@ import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.adapters.AdapterProdutos;
+import com.gpa.myappdonation.adapters.AdapterProdutosCampanha;
 import com.gpa.myappdonation.model.Campanha;
 import com.gpa.myappdonation.model.Instituicao;
-import com.gpa.myappdonation.model.ItemCampanha;
+import com.gpa.myappdonation.model.ProdutosCampanha;
 import com.gpa.myappdonation.model.Produto;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.RecyclerItemClickListener;
@@ -36,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import dmax.dialog.SpotsDialog;
 
@@ -45,17 +49,23 @@ public class CampanhaActivity extends AppCompatActivity {
     private EditText edtNomeCampanha;
     private Button btnSalvarCampanha, btnCancelarCampanha;
     private RecyclerView recyclerProdutos;
+    private RecyclerView recyclerProdutosCampanhaAdd;
     private List<Produto> produtos = new ArrayList<>();
-    private List<ItemCampanha> itensCampanha = new ArrayList<>();
+    private List<ProdutosCampanha> produtosCampanha = new ArrayList<>();
+
+    private List<Produto> itensCampanha = new ArrayList<>();
     private Switch aSwitchPermanente;
     private AlertDialog dialogCarregando;
     private String idInstituicao;
-    private DatabaseReference produtoRef;
+    private DatabaseReference produtoRef,campanhaEditReference;
     private AdapterProdutos adapterProdutos;
+    private AdapterProdutosCampanha adapterProdutosCampanha;
     private Context context;
     private Campanha campanhaRecuperada;
     Calendar mDataAtual;
     int dia, mes, ano ,campanhaPermanente, statusCampanha;
+    Bundle extras;
+    private Query produtoCampanhaRef;
 
 
 
@@ -65,13 +75,25 @@ public class CampanhaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campanha);
         inicializarComponnetes();
-        setNomeInstituicao();
+        Intent i = getIntent();
+        extras = getIntent().getExtras();
+
+
+        final String uidCampanha = i.getStringExtra("uid");
+
+        if (extras !=null){
+            setaCampanha(uidCampanha);
+            recuperaProutosCampanha(uidCampanha);
+        }
+
         recuperaDadosInstituicao();
         recuperarProdutos();
-        txtStatusCampanha.setVisibility(View.INVISIBLE);
+
+
+
 
         dia = mDataAtual.get(Calendar.DAY_OF_MONTH);
-        mes = mDataAtual.get(Calendar.MONTH);
+        mes = mDataAtual.get(Calendar.MONTH) +1;
         ano = mDataAtual.get(Calendar.YEAR);
 
         txtDataInicial.setText(dia + "/" + mes + "/" + ano);
@@ -81,7 +103,6 @@ public class CampanhaActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(CampanhaActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
-                        mes = mes + 1;
                         txtDataInicial.setText(dia + "/" + mes + "/" + ano);
                     }
                 }, ano, mes, dia);
@@ -90,13 +111,13 @@ public class CampanhaActivity extends AppCompatActivity {
         });
 
         txtDataFinal.setText(dia + "/" + mes + "/" + ano);
+
         txtDataFinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(CampanhaActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
-                        mes = mes + 1;
                         txtDataFinal.setText(dia + "/" + mes + "/" + ano);
                     }
                 }, ano, mes, dia);
@@ -124,21 +145,29 @@ public class CampanhaActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 Produto produtoSelecionado = produtos.get(position);
-                                                ItemCampanha itemCampanha = new ItemCampanha();
-                                                itemCampanha.setUid(produtoSelecionado.getUid());
-                                                itemCampanha.setNome(produtoSelecionado.getNome());
-                                                itemCampanha.setDescricao(produtoSelecionado.getDescricao());
-
-                                                itensCampanha.add(itemCampanha);
+                                                ProdutosCampanha produtoCampanha = new ProdutosCampanha();
+                                                produtoCampanha.setUidProduto(produtoSelecionado.getUid());
+                                                produtoCampanha.setNomeProCampanha(produtoSelecionado.getNome());
+                                                produtoCampanha.setDescProdCampanha(produtoSelecionado.getDescricao());
 
                                                 if (campanhaRecuperada == null) {
                                                     campanhaRecuperada = new Campanha(idInstituicao);
+                                                    //produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
                                                 }
+                                                produtosCampanha.add(produtoCampanha);
+                                                campanhaRecuperada.setItens(produtosCampanha);
+                                                String uidCampanha = campanhaRecuperada.getUid();
+                                               // recuperaProutosCampanha(uidCampanha);
+                                                adapterProdutosCampanha = new AdapterProdutosCampanha(produtosCampanha,CampanhaActivity.this);
+                                                recyclerProdutosCampanhaAdd.setLayoutManager(new LinearLayoutManager(CampanhaActivity.this));
+                                                recyclerProdutosCampanhaAdd.setHasFixedSize(true);
+                                                recyclerProdutosCampanhaAdd.setAdapter(adapterProdutosCampanha);
 
-                                                campanhaRecuperada.setItens(itensCampanha);
                                             }
                                         }).
                                         setNegativeButton("Não", null).show();
+
+
                             }
 
                             @Override
@@ -180,6 +209,7 @@ public class CampanhaActivity extends AppCompatActivity {
                 }
                 campanhaRecuperada.setNomeCampanha(edtNomeCampanha.getText().toString());
                 campanhaRecuperada.setStatus("1");
+                campanhaRecuperada.setUid(UUID.randomUUID().toString());
                 campanhaRecuperada.salvarCampanha();
                 finish();
             }
@@ -192,6 +222,74 @@ public class CampanhaActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void recuperaProutosCampanha(String uidCampanha){
+
+        dialogCarregando = new SpotsDialog.Builder()
+                .setContext(this)
+                .setMessage("Carregando Dados")
+                .setCancelable(false)
+                .build();
+        dialogCarregando.show();
+
+    //    String uidCampanha = campanhaRecuperada.getUid();
+        produtoCampanhaRef = ConfiguracaoFirebase.getFirebase().child("Campanha").child(uidCampanha).child("itens");
+        produtoCampanhaRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                produtosCampanha.clear();
+                for (DataSnapshot dsProdutosCampanha : dataSnapshot.getChildren()){
+                    produtosCampanha.add(dsProdutosCampanha.getValue(ProdutosCampanha.class));
+                    adapterProdutosCampanha = new AdapterProdutosCampanha(produtosCampanha,CampanhaActivity.this);
+                    recyclerProdutosCampanhaAdd.setLayoutManager(new LinearLayoutManager(CampanhaActivity.this));
+                    recyclerProdutosCampanhaAdd.setHasFixedSize(true);
+                    recyclerProdutosCampanhaAdd.setAdapter(adapterProdutosCampanha);
+                }
+                Collections.reverse(produtosCampanha);
+                if (produtosCampanha.size()>0){
+                    adapterProdutosCampanha.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        dialogCarregando.dismiss();
+
+    }
+
+    private void setaCampanha(String uidCampanha) {
+
+        campanhaEditReference = ConfiguracaoFirebase.getFirebase().child("Campanha").child(uidCampanha);
+
+        campanhaEditReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Campanha campanhaEdit = dataSnapshot.getValue(Campanha.class);
+                edtNomeCampanha.setText(campanhaEdit.getNomeCampanha());
+                if (campanhaEdit.getPermanente().equals("1")){
+                    aSwitchPermanente.setChecked(true);
+                    txtDataInicial.setVisibility(View.INVISIBLE);
+                    txtDataFinal.setVisibility(View.INVISIBLE);
+                }else {
+                    aSwitchPermanente.setChecked(false);
+                    txtDataInicial.setText(campanhaEdit.getDataInicial());
+                    txtDataFinal.setText(campanhaEdit.getDataFinal());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     private void recuperaDadosInstituicao() {
@@ -253,13 +351,12 @@ public class CampanhaActivity extends AppCompatActivity {
         mDataAtual = Calendar.getInstance();
         aSwitchPermanente = (Switch) findViewById(R.id.switchPermanente);
         edtNomeCampanha = (EditText) findViewById(R.id.edtNomeCampanha);
-        txtStatusCampanha = (TextView) findViewById(R.id.txtStatusCampanha);
-        txtInsituicaoCampanha = (TextView) findViewById(R.id.txtInsituicaoCampanha);
+        recyclerProdutosCampanhaAdd = (RecyclerView) findViewById(R.id.recyclerProdutosCampanhaAdd);
     }
 
 
 
-    private void setNomeInstituicao() {
+    /*private void setNomeInstituicao() {
 
         DatabaseReference reference = ConfiguracaoFirebase.getFirebase().child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario());
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -274,7 +371,7 @@ public class CampanhaActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 
 
 }

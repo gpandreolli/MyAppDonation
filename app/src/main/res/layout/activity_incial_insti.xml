@@ -74,10 +74,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="1dp"
-                    android:text="Contas da Instituição"
+                    android:text="Contas da
+                    Instituição"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
-                    android:textSize="20sp"
+                    android:textSize="19sp"
                     android:textStyle="italic" />
             </LinearLayout>
 
@@ -117,7 +118,7 @@
                     android:text="Campanhas"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
-                    android:textSize="20sp"
+                    android:textSize="19sp"
                     android:textStyle="italic" />
             </LinearLayout>
 
@@ -156,7 +157,7 @@
                     android:text="Perfil Instituição"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
-                    android:textSize="20sp"
+                    android:textSize="19sp"
                     android:textStyle="italic" />
             </LinearLayout>
 
@@ -195,7 +196,7 @@
                      Usuário"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
-                    android:textSize="20sp"
+                    android:textSize="19sp"
                     android:layout_marginTop="10dp"
                     android:textStyle="italic" />
             </LinearLayout>
@@ -233,10 +234,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Produtos Campanhas"
+                    android:text="Produtos
+                    Campanhas"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
-                    android:textSize="20sp"
+                    android:textSize="19sp"
                     android:textStyle="italic" />
             </LinearLayout>
 
@@ -275,7 +277,7 @@
                     android:text="Sair"
                     android:textAlignment="center"
                     android:textColor="@color/colorHybridaMarron"
-                    android:textSize="20sp"
+                    android:textSize="19sp"
                     android:textStyle="italic" />
             </LinearLayout>
 

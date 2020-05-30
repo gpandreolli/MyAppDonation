@@ -1,6 +1,7 @@
 package com.gpa.myappdonation.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.gpa.myappdonation.R;
+import com.gpa.myappdonation.activity.CampanhaActivity;
 import com.gpa.myappdonation.model.Campanha;
 
 import java.util.List;
@@ -34,7 +36,7 @@ public class AdapterCampanhas extends RecyclerView.Adapter<AdapterCampanhas.MyVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         Campanha campanha = campanhas.get(position);
         if (campanha.getNomeCampanha() != null) {
             holder.txtNomeCampanhaLista.setText(campanha.getNomeCampanha());
@@ -56,6 +58,17 @@ public class AdapterCampanhas extends RecyclerView.Adapter<AdapterCampanhas.MyVi
             holder.txtDataInicialCampanhaLista.setText(campanha.getDataInicial());
             holder.txtDataFinalCampanhaLista.setText(campanha.getDataFinal());
         }
+
+        holder.btnEditaCampanha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Campanha campanhaEdit = campanhas.get(position);
+                String uid = campanhaEdit.getUid();
+                Intent it = new Intent(context, CampanhaActivity.class);
+                it.putExtra("uid",uid);
+                context.startActivity(it);
+            }
+        });
 
     }
 
