@@ -14,12 +14,15 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activity.CadastrarProdutoActivity"
             android:parentActivityName=".activity.ListaProdutoActivity"/>
-        <activity android:name=".activity.ListaProdutoActivity" />
-        <activity android:name=".activity.ListaCampanhasActivity" />
+        <activity android:name=".activity.ListaProdutoActivity"
+            android:parentActivityName=".activity.IncialActivityInsti"/>
+        <activity android:name=".activity.ListaCampanhasActivity"
+            android:parentActivityName=".activity.IncialActivityInsti"/>
         <activity
             android:name=".activity.CampanhaActivity"
             android:label="@string/title_activity_campanha"
-            android:theme="@style/NoActionBar" />
+            android:theme="@style/NoActionBar"
+            android:parentActivityName=".activity.IncialActivityInsti"/>
         <activity android:name=".activity.AdministradorActivity" />
         <activity
             android:name=".activity.ListaContaActivity"
@@ -61,7 +64,8 @@
         <activity android:name=".activity.ListaDoacoesActivity" />
         <activity android:name=".activity.ListaInstActivity" />
         <activity android:name=".activity.InicialActivityApoiador" />
-        <activity android:name=".activity.CadastrarConta" />
+        <activity android:name=".activity.CadastrarConta"
+            android:parentActivityName=".activity.ListaContaActivity"/>
         <activity android:name=".activity.UsuarioActivity" />
         <activity android:name=".activity.ListContaActivity" />
         <activity android:name=".activity.IncialActivityInsti" />

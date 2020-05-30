@@ -156,8 +156,6 @@ public class UsuarioActivity extends AppCompatActivity {
         setFields(R.id.edtBairroUsua, address.getLocalidade());
         setFields(R.id.edtCidadeUsua, address.getBairro());
         setSpinner(R.id.spEstadoUsua, R.array.states, address.getUf());
-
-
     }
 
     private void setFields(int id, String data) {
@@ -180,8 +178,6 @@ public class UsuarioActivity extends AppCompatActivity {
         ((Spinner) findViewById(id)).setSelection(0);
 
     }
-
-
 
 
     private void SalvarUsua() {
@@ -207,7 +203,6 @@ public class UsuarioActivity extends AppCompatActivity {
         if(extras != null){
 
             Intent it = getIntent();
-           // int i =0;
             int numero =  it.getIntExtra("info", 0);
 
             if (numero == 2 ){

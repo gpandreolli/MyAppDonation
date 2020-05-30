@@ -148,6 +148,7 @@ public class CampanhaActivity extends AppCompatActivity {
                         }
                 )
         );
+
         aSwitchPermanente.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -158,7 +159,7 @@ public class CampanhaActivity extends AppCompatActivity {
                 }else{
                     campanhaPermanente = 0;
                     txtDataInicial.setVisibility(View.VISIBLE);
-                    txtDataInicial.setVisibility(View.VISIBLE);
+                    txtDataFinal.setVisibility(View.VISIBLE);
                 }
 
             }
@@ -172,7 +173,7 @@ public class CampanhaActivity extends AppCompatActivity {
                     campanhaRecuperada.setDataFinal("");
                     campanhaRecuperada.setDataInicial("");
                     campanhaRecuperada.setPermanente("1");
-                }else {
+                }else if (campanhaPermanente == 0) {
                     campanhaRecuperada.setDataInicial(txtDataInicial.getText().toString());
                     campanhaRecuperada.setDataFinal(txtDataFinal.getText().toString());
                     campanhaRecuperada.setPermanente("0");

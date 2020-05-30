@@ -43,7 +43,7 @@ public class ListaCampanhasActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Campanhas");
 
         recyclerCampanhas = (RecyclerView) findViewById(R.id.recyclerCampanhas);
-        campanhasRef = ConfiguracaoFirebase.getFirebase().child("Campanha");
+        campanhasRef = ConfiguracaoFirebase.getFirebase().child("Campanha").orderByChild("uidInstituicao").equalTo(ConfiguracaoFirebase.getIdUsuario());
         recuperaCampanhas();
 
         FloatingActionButton fab = findViewById(R.id.fabCampanhas);

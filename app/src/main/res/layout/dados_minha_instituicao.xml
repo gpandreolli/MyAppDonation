@@ -175,6 +175,7 @@
             tools:ignore="MissingConstraints">
 
         </androidx.appcompat.widget.AppCompatTextView>
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineMinhaInstituicao"
             android:layout_width="wrap_content"

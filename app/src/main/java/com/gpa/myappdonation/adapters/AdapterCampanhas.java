@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,8 +36,12 @@ public class AdapterCampanhas extends RecyclerView.Adapter<AdapterCampanhas.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Campanha campanha = campanhas.get(position);
-        holder.txtNomeCampanhaLista.setText(campanha.getNomeCampanha());
-
+        if (campanha.getNomeCampanha() != null) {
+            holder.txtNomeCampanhaLista.setText(campanha.getNomeCampanha());
+        }
+        else{
+            holder.txtNomeCampanhaLista.setVisibility(View.INVISIBLE);
+        }
         if (campanha.getStatus().equals("1")){
             holder.txtStatusCampanhaLista.setText("Ativa");
         }
@@ -47,10 +52,10 @@ public class AdapterCampanhas extends RecyclerView.Adapter<AdapterCampanhas.MyVi
         }else{
             holder.txtDataInicialCampanhaLista.setVisibility(View.VISIBLE);
             holder.txtDataFinalCampanhaLista.setVisibility(View.VISIBLE);
+            holder.txtPermanenteLista.setVisibility(View.INVISIBLE);
             holder.txtDataInicialCampanhaLista.setText(campanha.getDataInicial());
             holder.txtDataFinalCampanhaLista.setText(campanha.getDataFinal());
         }
-
 
     }
 
@@ -62,6 +67,7 @@ public class AdapterCampanhas extends RecyclerView.Adapter<AdapterCampanhas.MyVi
     public class MyViewHolder extends  RecyclerView.ViewHolder{
         TextView txtNomeCampanhaLista;
         TextView txtStatusCampanhaLista, txtPermanenteLista,txtDataInicialCampanhaLista,txtDataFinalCampanhaLista;
+        Button btnEditaCampanha, btnExcluiCampanha;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +76,8 @@ public class AdapterCampanhas extends RecyclerView.Adapter<AdapterCampanhas.MyVi
             txtPermanenteLista = itemView.findViewById(R.id.txtPermanenteLista);
             txtDataInicialCampanhaLista = itemView.findViewById(R.id.txtDataInicialCampanhaLista);
             txtDataFinalCampanhaLista = itemView.findViewById(R.id.txtDataFinalCampanhaLista);
+            btnEditaCampanha = (Button) itemView.findViewById(R.id.btnEditaCampanha);
+            btnExcluiCampanha = (Button) itemView.findViewById(R.id.btnExcluiCampanha);
         }
     }
 }

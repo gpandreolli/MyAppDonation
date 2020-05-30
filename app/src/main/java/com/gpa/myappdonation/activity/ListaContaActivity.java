@@ -171,12 +171,7 @@ public class ListaContaActivity extends AppCompatActivity {
         btnEditaConta = (Button) findViewById(R.id.btnEditaConta);
     }
 
-    private String getConta(Conta conta) {
-        return "Conta: " + conta.getNome()  + "\n" +
-                "Banco: " + conta.getBanco() + "\n" +
-                "Agência: " + conta.getAgencia() + "\n" +
-                "Número da Conta: " + conta.getNumero_conta() + "\n" ;
-    }
+
 
     @Override
     public void onBackPressed() {

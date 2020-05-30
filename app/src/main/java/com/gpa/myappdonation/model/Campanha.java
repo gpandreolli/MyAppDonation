@@ -10,7 +10,7 @@ public class Campanha {
 
      private String uid;
      private String nomeCampanha;
-     private String uidInstituica;
+     private String uidInstituicao;
      private String permanente;
      private String dataInicial;
      private String dataFinal;
@@ -20,11 +20,11 @@ public class Campanha {
     public Campanha() {
     }
 
-    public Campanha(String uidInstituica) {
-        this.uidInstituica = uidInstituica;
-        setUidInstituica(uidInstituica);
+    public Campanha(String uidInstituicao) {
+        this.uidInstituicao = uidInstituicao;
+        setUidInstituicao(uidInstituicao);
         DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebase();
-        DatabaseReference campanhaRef = firebaseRef.child("campanha_instituicao").child(uidInstituica);
+        DatabaseReference campanhaRef = firebaseRef.child("campanha_instituicao").child(uidInstituicao);
         setUid(campanhaRef.push().getKey());
     }
 
@@ -36,12 +36,12 @@ public class Campanha {
         this.uid = uid;
     }
 
-    public String getUidInstituica() {
-        return uidInstituica;
+    public String getUidInstituicao() {
+        return uidInstituicao;
     }
 
-    public void setUidInstituica(String uidInstituica) {
-        this.uidInstituica = uidInstituica;
+    public void setUidInstituicao(String uidInstituicao) {
+        this.uidInstituicao = uidInstituicao;
     }
 
     public String getPermanente() {

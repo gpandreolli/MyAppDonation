@@ -27,6 +27,7 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.MyView
     private Context context;
     private DatabaseReference produtoRef;
 
+
     public AdapterProdutos(List<Produto> produtos, Context context) {
         this.produtos = produtos;
         this.context = context;
@@ -58,7 +59,6 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.MyView
 
             }
         });
-
     }
 
     private void removeProduto(final int position) {
@@ -82,12 +82,13 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.MyView
                 .child(idProduto);
 
         produtoRef.removeValue();
-
     }
 
     private void editaProduto(int position) {
+        Produto produtoEdit = produtos.get(position);
+        String uid = produtoEdit.getUid();
         Intent it = new Intent(context, CadastrarProdutoActivity.class);
-        it.putExtra("position",position);
+        it.putExtra("uid",uid);
         context.startActivity(it);
     }
 

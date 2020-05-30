@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,40 +7,29 @@
     android:orientation="vertical"
     tools:context=".activity.CadastrarConta">
 
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppBarOverlay"
+        tools:ignore="MissingConstraints">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/txtTituloCadConta"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarCadastraConta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/login_button_bg"
-            android:text="Cadastro de Conta"
-            android:textAlignment="center"
-            android:textColor="@color/colorHybridaMarron"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            android:layout_marginTop="100dp"
-            tools:layout_editor_absoluteX="5dp" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorBlueDark"
+            app:popupTheme="@style/PopupOverlay" />
 
-
-
+    </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayoutConta"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTituloCadConta"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayoutConta"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
             android:layout_marginTop="50dp">
 
 
@@ -106,45 +95,43 @@
                 android:textAlignment="viewStart" />
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
-
-
-                <Button
-                    android:id="@+id/btnSalvarConta"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/login_button_bg"
-                    android:text="Salvar"
-                    android:layout_marginLeft="0dp"
-                    android:textAllCaps="false"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/btnCancelarConta"
-                    tools:ignore="MissingConstraints" />
-
-                <Button
-                    android:id="@+id/btnCancelarConta"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/btnSalvarConta"
-                    android:background="@drawable/login_button_bg"
-                    android:text="Cancelar"
-                    android:textAllCaps="false"
-                    android:layout_marginRight="0dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btnSalvarConta"
-                    tools:ignore="MissingConstraints" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutConta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutConta"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <Button
+                android:id="@+id/btnSalvarConta"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_bg_geral"
+                android:text="Salvar"
+                android:textColor="@color/colorWhite"
+                android:layout_marginLeft="0dp"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnCancelarConta"
+                tools:ignore="MissingConstraints" />
 
-</LinearLayout>
+            <Button
+                android:id="@+id/btnCancelarConta"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/btnSalvarConta"
+                android:background="@drawable/button_bg_geral"
+                android:text="Cancelar"
+                android:textColor="@color/colorWhite"
+                android:textAllCaps="false"
+                android:layout_marginRight="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnSalvarConta"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,10 +8,79 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="350dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineConta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.70">
+        </androidx.constraintlayout.widget.Guideline>
+
+
+        <TextView
+            android:id="@+id/txtNome_Conta"
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="Nome Conta"
+            android:textColor="@color/colorBlueDark"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txtNome_Banco"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="Banco"
+            app:layout_constraintTop_toBottomOf="@id/txtNome_Conta"
+
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/colorBlueDark"
+            android:textSize="18dp"
+            />
+
+        <TextView
+            android:id="@+id/txtAgencia_Conta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="Agencia"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNome_Banco"
+            android:textColor="@color/colorBlueDark"
+            android:textSize="17dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txtNumero_Conta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="Número"
+            android:textColor="@color/colorBlueDark"
+            android:textSize="17dp"
+            tools:layout_editor_absoluteX="61dp"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineConta"
+            app:layout_constraintStart_toEndOf="@id/txtAgencia_Conta"
+            app:layout_constraintTop_toBottomOf="@+id/txtNome_Banco"
+            />
 
         <Button
             android:id="@+id/btnExcluiConta"
@@ -19,90 +88,25 @@
             android:layout_height="25dp"
             android:background="@drawable/ic_excluir_detalhe"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineConta"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            />
 
         <Button
             android:id="@+id/btnEditaConta"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/ic_edit_85950"
+            android:background="@drawable/ic_edit_zul"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineConta"
             tools:ignore="MissingConstraints" />
 
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtNome_Conta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="sans-serif-thin"
-                android:text="Nome Conta"
-                android:textColor="@color/colorBlueDark"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtNome_Banco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="sans-serif-thin"
-                android:text="Banco"
-                android:textColor="@color/colorBlueDark"
-                android:textSize="18dp"
-                 />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtAgencia_Conta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif-thin"
-                android:text="Agencia"
-                android:textColor="@color/colorBlueDark"
-                android:textSize="17dp" />
-
-            <TextView
-                android:id="@+id/txtNumero_Conta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="sans-serif-thin"
-                android:text="Número"
-                android:textColor="@color/colorBlueDark"
-                android:textSize="17dp" />
-
-
-
-        </LinearLayout>
-
-    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
 

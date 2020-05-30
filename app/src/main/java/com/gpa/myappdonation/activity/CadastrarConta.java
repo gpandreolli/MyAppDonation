@@ -2,6 +2,7 @@ package com.gpa.myappdonation.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,21 +46,25 @@ public class CadastrarConta extends AppCompatActivity {
         inicilizarComponentes();
         inicializarFirebase();
 
-        int position;
+        Toolbar toolbar = findViewById(R.id.toolbarCadastraConta);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Contas");
+
         Intent i = getIntent();
-        int pos =0;
         extras = getIntent().getExtras();
-        position = i.getIntExtra("position",pos);
+        final String uidConta = i.getStringExtra("uid");
 
         
         if (extras!=null){
-            recuperaConta(position);
+            setaConta(uidConta);
         }
 
         btnSalvarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                salvarConta();
+                salvarConta(uidConta);
             }
         });
         btnCancelarConta.setOnClickListener(new View.OnClickListener() {
@@ -81,33 +86,6 @@ public class CadastrarConta extends AppCompatActivity {
         btnCancelarConta = (Button) findViewById(R.id.btnCancelarConta);
     }
 
-    private void recuperaConta(final int position ) {
-
-        databaseReference = ConfiguracaoFirebase.getFirebase().child("Conta").child(ConfiguracaoFirebase.getIdUsuario());
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                contas.size();
-                int size = contas.size();
-                contas.clear();
-
-                for (DataSnapshot dsContas :dataSnapshot.getChildren()){
-                    contas.add(dsContas.getValue(Conta.class));
-
-
-                }
-                Collections.reverse(contas);
-                Conta conta = contas.get(position);
-                String idConta = conta.getUid();
-                setaConta(idConta);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     private void setaConta(String idConta) {
         contaEditReference = ConfiguracaoFirebase.getFirebase().child("Conta").child(ConfiguracaoFirebase.getIdUsuario()).child(idConta);
@@ -138,16 +116,26 @@ public class CadastrarConta extends AppCompatActivity {
 
     }
 
-    private void salvarConta() {
-
+    private void salvarConta(String uidConta) {
         Conta conta = new Conta();
-        conta.setUid(UUID.randomUUID().toString());
         conta.setNome(edtNomeConta.getText().toString());
         conta.setNumero_conta(edtNumeroConta.getText().toString());
         conta.setAgencia(edtAgenciaConta.getText().toString());
         conta.setBanco(edtBancoConta.getText().toString());
         conta.setNumeroBanco(edtNumeroBancoConta.getText().toString());
-        databaseReference.child("Conta").child(ConfiguracaoFirebase.getIdUsuario()).child(conta.getUid()).setValue(conta);
+
+        if (extras !=null){
+            conta.setUid(uidConta);
+            databaseReference.child("Conta").child(ConfiguracaoFirebase
+                    .getIdUsuario()).child(uidConta).setValue(conta);
+
+        }else{
+            conta.setUid(UUID.randomUUID().toString());
+            databaseReference.child("Conta").child(ConfiguracaoFirebase
+                    .getIdUsuario()).child(conta.getUid()).setValue(conta);
+        }
+
+
         limparCampos();
         chamaActivity();
     }

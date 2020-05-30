@@ -1,5 +1,6 @@
 package com.gpa.myappdonation.adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -38,7 +39,7 @@ public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        Conta conta = contas.get(position);
+        final Conta conta = contas.get(position);
         holder.nomeConta.setText(conta.getNome());
         holder.numeroConta.setText(conta.getNumero_conta());
         holder.agenciaConta.setText(conta.getAgencia());
@@ -48,18 +49,46 @@ public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHold
         holder.btnEditaConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editaConta(position);
-                //Toast.makeText(context, "Teste do botão: 1", Toast.LENGTH_LONG).show();
+
+                Conta contaEdit = contas.get(position);
+                String uid = contaEdit.getUid();
+                Intent it = new Intent(context, CadastrarConta.class);
+                it.putExtra("uid",uid);
+                context.startActivity(it);
+
             }
         });
 
+        holder.nomeConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AlertDialog dialog = new AlertDialog.Builder(view.getContext())
+                        .setTitle("Dados da Conta")
+                        .setMessage(getConta(conta))
+                        .setPositiveButton("OK", null)
+                        .show();
+                Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+        });
+
+
+
     }
 
-    private void editaConta(int position) {
-        Intent it = new Intent(context, CadastrarConta.class);
-        it.putExtra("position",position);
-        context.startActivity(it);
+    private String getConta(Conta conta) {
+        return "Conta: " + conta.getNome()  + "\n" +
+                "Banco: " + conta.getBanco() + "\n" +
+                "Agência: " + conta.getAgencia() + "\n" +
+                "Número da Conta: " + conta.getNumero_conta() + "\n" ;
     }
+
 
     @Override
     public int getItemCount() {
@@ -82,26 +111,6 @@ public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHold
             bancoConta = (TextView) itemView.findViewById(R.id.txtNome_Banco);
             btnEditaConta = (Button) itemView.findViewById(R.id.btnEditaConta);
         }
-
-        /*public void setListners(int position) {
-
-            btnEditaConta.setOnClickListener(MyViewHolder.this);
-            nomeConta.setOnClickListener(MyViewHolder.this);
-
-
-        }*/
-
-        /*@Override
-        public void onClick(View view) {
-            if (view.getId() == R.id.btnEditaConta) {
-                Toast.makeText(context, "Teste do botão: 1", Toast.LENGTH_LONG).show();
-
-            } else if (view.getId() == R.id.txtNome_Conta) {
-                Toast.makeText(context, "Teste do botão: 2", Toast.LENGTH_LONG).show();
-            }
-        }*/
-
-
     }
 
 

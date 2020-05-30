@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp">
@@ -8,9 +9,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="350dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineProduto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.70">
+        </androidx.constraintlayout.widget.Guideline>
 
         <Button
             android:id="@+id/btnExcluiProduto"
@@ -18,55 +27,48 @@
             android:layout_height="25dp"
             android:background="@drawable/ic_excluir_detalhe"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidelineProduto"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnEditaProduto"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/ic_edit_85950"
+            android:background="@drawable/ic_edit_zul"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidelineProduto" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
 
         <TextView
             android:id="@+id/txtNomeProduto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-thin"
             android:text="Produto"
             android:textColor="@color/colorBlueDark"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="15dp"
             android:textSize="20dp"
-            android:fontFamily="sans-serif-thin"
-            android:textStyle="bold"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/txtDescricaoProduto"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descrição"
-                android:textColor="@color/colorRosaEscuro"
-                android:layout_marginBottom="10dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-thin"
+                android:text="Descrição"
+                android:textColor="@color/colorBlueDark"
                 android:textSize="15dp"
-                android:fontFamily="sans-serif-thin"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtNomeProduto"/>
 
-        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
 
