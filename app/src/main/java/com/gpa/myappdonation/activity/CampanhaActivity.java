@@ -152,12 +152,11 @@ public class CampanhaActivity extends AppCompatActivity {
 
                                                 if (campanhaRecuperada == null) {
                                                     campanhaRecuperada = new Campanha(idInstituicao);
-                                                    //produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
+
                                                 }
                                                 produtosCampanha.add(produtoCampanha);
                                                 campanhaRecuperada.setItens(produtosCampanha);
-                                                String uidCampanha = campanhaRecuperada.getUid();
-                                               // recuperaProutosCampanha(uidCampanha);
+
                                                 adapterProdutosCampanha = new AdapterProdutosCampanha(produtosCampanha,CampanhaActivity.this);
                                                 recyclerProdutosCampanhaAdd.setLayoutManager(new LinearLayoutManager(CampanhaActivity.this));
                                                 recyclerProdutosCampanhaAdd.setHasFixedSize(true);
@@ -195,23 +194,11 @@ public class CampanhaActivity extends AppCompatActivity {
         });
 
         btnSalvarCampanha.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
-
-                if(campanhaPermanente == 1){
-                    campanhaRecuperada.setDataFinal("");
-                    campanhaRecuperada.setDataInicial("");
-                    campanhaRecuperada.setPermanente("1");
-                }else if (campanhaPermanente == 0) {
-                    campanhaRecuperada.setDataInicial(txtDataInicial.getText().toString());
-                    campanhaRecuperada.setDataFinal(txtDataFinal.getText().toString());
-                    campanhaRecuperada.setPermanente("0");
-                }
-                campanhaRecuperada.setNomeCampanha(edtNomeCampanha.getText().toString());
-                campanhaRecuperada.setStatus("1");
-                campanhaRecuperada.setUid(UUID.randomUUID().toString());
-                campanhaRecuperada.salvarCampanha();
-                finish();
+                salvaCampanha(uidCampanha);
             }
         });
 
@@ -224,6 +211,60 @@ public class CampanhaActivity extends AppCompatActivity {
         });
     }
 
+    private void salvaCampanha(String uidCampanha) {
+
+        if (extras != null){
+            campanhaEditReference = ConfiguracaoFirebase.getFirebase().child("Campanha").child(uidCampanha);
+            campanhaEditReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Campanha campanhaRecuperada = dataSnapshot.getValue(Campanha.class);
+
+                   String uidCampanhaEdit = campanhaRecuperada.getUid();
+
+                    if(campanhaPermanente == 1){
+                        campanhaRecuperada.setDataFinal("");
+                        campanhaRecuperada.setDataInicial("");
+                        campanhaRecuperada.setPermanente("1");
+                    }else if (campanhaPermanente == 0) {
+                        campanhaRecuperada.setDataInicial(txtDataInicial.getText().toString());
+                        campanhaRecuperada.setDataFinal(txtDataFinal.getText().toString());
+                        campanhaRecuperada.setPermanente("0");
+                    }
+                    campanhaRecuperada.setNomeCampanha(edtNomeCampanha.getText().toString());
+                    campanhaRecuperada.setStatus("1");
+                    campanhaRecuperada.setUid(uidCampanhaEdit);
+                    campanhaRecuperada.salvarCampanha();
+                    finish();
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+        }else {
+            if(campanhaPermanente == 1){
+                campanhaRecuperada.setDataFinal("");
+                campanhaRecuperada.setDataInicial("");
+                campanhaRecuperada.setPermanente("1");
+            }else if (campanhaPermanente == 0) {
+                campanhaRecuperada.setDataInicial(txtDataInicial.getText().toString());
+                campanhaRecuperada.setDataFinal(txtDataFinal.getText().toString());
+                campanhaRecuperada.setPermanente("0");
+            }
+            campanhaRecuperada.setNomeCampanha(edtNomeCampanha.getText().toString());
+            campanhaRecuperada.setStatus("1");
+            campanhaRecuperada.setUid(UUID.randomUUID().toString());
+            campanhaRecuperada.salvarCampanha();
+            finish();
+        }
+    }
+
     private void recuperaProutosCampanha(String uidCampanha){
 
         dialogCarregando = new SpotsDialog.Builder()
@@ -233,7 +274,7 @@ public class CampanhaActivity extends AppCompatActivity {
                 .build();
         dialogCarregando.show();
 
-    //    String uidCampanha = campanhaRecuperada.getUid();
+
         produtoCampanhaRef = ConfiguracaoFirebase.getFirebase().child("Campanha").child(uidCampanha).child("itens");
         produtoCampanhaRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -293,17 +334,7 @@ public class CampanhaActivity extends AppCompatActivity {
     }
 
     private void recuperaDadosInstituicao() {
-
-     /*   dialogCarregando = new SpotsDialog.Builder()
-                .setContext(this)
-                .setMessage("Carregando Dados")
-                .setCancelable(false)
-                .build();
-        dialogCarregando.show();*/
-
         idInstituicao = ConfiguracaoFirebase.getIdUsuario();
-
-
     }
 
     private void recuperarProdutos() {
@@ -355,23 +386,6 @@ public class CampanhaActivity extends AppCompatActivity {
     }
 
 
-
-    /*private void setNomeInstituicao() {
-
-        DatabaseReference reference = ConfiguracaoFirebase.getFirebase().child("Instituicao").child(ConfiguracaoFirebase.getIdUsuario());
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Instituicao inst = dataSnapshot.getValue(Instituicao.class);
-                String nomefant = inst.getNomeFantasia();
-                txtInsituicaoCampanha.setText(nomefant);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }*/
 
 
 }

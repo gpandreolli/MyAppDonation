@@ -32,6 +32,8 @@
     <string name="title_activity_minhas_instituicoes">MinhasInstituicoesActivity</string>
     <string name="title_activity_instituicoes">Instituicoes</string>
     <string name="title_activity_lista_conta">ListaContaActivity</string>
+    <string name="default_notification_channel_id">fcm_default_channel</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

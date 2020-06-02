@@ -2,6 +2,7 @@ package com.gpa.myappdonation.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.activity.CadastrarConta;
 import com.gpa.myappdonation.model.Conta;
+import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
 import java.util.List;
 
@@ -24,6 +27,7 @@ public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHold
 
     private List<Conta> contas;
     private Context context;
+    private DatabaseReference contaRef;
 
     public AdapterContas(List<Conta> contas, Context context) {
         this.contas = contas;
@@ -44,7 +48,12 @@ public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHold
         holder.numeroConta.setText(conta.getNumero_conta());
         holder.agenciaConta.setText(conta.getAgencia());
         holder.bancoConta.setText(conta.getBanco());
-       // holder.setListners(position);
+        holder.btnExcluiConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeConta(position);
+            }
+        });
 
         holder.btnEditaConta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +91,30 @@ public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHold
 
     }
 
+    private void removeConta(final int position) {
+        new androidx.appcompat.app.AlertDialog.Builder(context)
+                .setTitle("Excluir Conta")
+                .setMessage("Deseja excluir essa conta?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Conta conta = contas.get(position);
+                        String idConta = conta.getUid();
+                        removerConta(idConta);
+                    }
+                })
+                .setNegativeButton("Não",null).show();
+    }
+
+    private void removerConta(String idConta) {
+        contaRef = ConfiguracaoFirebase.getFirebase().child("Conta")
+                .child(ConfiguracaoFirebase.getIdUsuario())
+                .child(idConta);
+
+        contaRef.removeValue();
+
+    }
+
     private String getConta(Conta conta) {
         return "Conta: " + conta.getNome()  + "\n" +
                 "Banco: " + conta.getBanco() + "\n" +
@@ -97,11 +130,9 @@ public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHold
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
-        TextView nomeConta;
-        TextView numeroConta;
-        TextView agenciaConta;
-        TextView bancoConta;
-        Button btnEditaConta;
+        TextView nomeConta, numeroConta, agenciaConta, bancoConta;
+        Button btnEditaConta, btnExcluiConta;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,6 +141,7 @@ public class AdapterContas extends RecyclerView.Adapter<AdapterContas.MyViewHold
             agenciaConta = (TextView) itemView.findViewById(R.id.txtAgencia_Conta);
             bancoConta = (TextView) itemView.findViewById(R.id.txtNome_Banco);
             btnEditaConta = (Button) itemView.findViewById(R.id.btnEditaConta);
+            btnExcluiConta = (Button) itemView.findViewById(R.id.btnExcluiConta);
         }
     }
 

@@ -47,4 +47,9 @@ dependencies {
     implementation 'com.github.santalu:mask-edittext:1.0.7'
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
 
+    //Dependecia para notificações
+
+    //implementation 'com.google.firebase:firebase-messaging:20.0.0'
+   // implementation 'com.google.firebase:firebase-messaging:19.0.1'
+
 }

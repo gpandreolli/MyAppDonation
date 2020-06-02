@@ -1,6 +1,7 @@
 package com.gpa.myappdonation.adapters;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.google.firebase.database.DatabaseReference;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.activity.CampanhaActivity;
 import com.gpa.myappdonation.model.Campanha;
+import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
 import java.util.List;
 
@@ -22,6 +25,7 @@ public class AdapterCampanhas extends RecyclerView.Adapter<AdapterCampanhas.MyVi
 
     private List<Campanha> campanhas;
     private Context context;
+    private DatabaseReference campanhaRef;
 
     public AdapterCampanhas(List<Campanha> campanhas, Context context) {
         this.campanhas = campanhas;
@@ -69,6 +73,36 @@ public class AdapterCampanhas extends RecyclerView.Adapter<AdapterCampanhas.MyVi
                 context.startActivity(it);
             }
         });
+
+        holder.btnExcluiCampanha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removerCamapanha(position);
+            }
+        });
+
+    }
+
+    private void removerCamapanha(final int position) {
+        new androidx.appcompat.app.AlertDialog.Builder(context)
+                .setTitle("Excluir Campanha")
+                .setMessage("Deseja excluir essa campanha?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Campanha campanha = campanhas.get(position);
+                        String idCampanha = campanha.getUid();
+                        removeCampanha(idCampanha);
+                    }
+                })
+                .setNegativeButton("Não",null).show();
+    }
+
+    private void removeCampanha(String idCampanha) {
+        campanhaRef = ConfiguracaoFirebase.getFirebase().child("Campanha")
+                .child(idCampanha);
+
+        campanhaRef.removeValue();
 
     }
 
