@@ -1,5 +1,6 @@
 package com.gpa.myappdonation.activity;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +8,6 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
@@ -36,6 +36,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
+
 public class ListaContaActivity extends AppCompatActivity {
 
     private RecyclerView recyclerContas;
@@ -44,6 +46,7 @@ public class ListaContaActivity extends AppCompatActivity {
     private DatabaseReference contaRef;
     private ContaFragment contaFragment;
     private Button btnEditaConta;
+    private AlertDialog dialogCarregando;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +144,12 @@ public class ListaContaActivity extends AppCompatActivity {
     }
 
     private void recuperaContas() {
+        dialogCarregando = new SpotsDialog.Builder()
+                .setContext(this)
+                .setMessage("Carregando Dados")
+                .setCancelable(false)
+                .build();
+        dialogCarregando.show();
 
         contaRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -164,6 +173,8 @@ public class ListaContaActivity extends AppCompatActivity {
                 System.out.println("Erro ao ler Contas: " + databaseError.getCode());
             }
         });
+
+        dialogCarregando.dismiss();
     }
 
     private void inicializarComponnetes() {

@@ -25,6 +25,26 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineProdutoAddCampanha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85">
+        </androidx.constraintlayout.widget.Guideline>
+
+        <Button
+            android:id="@+id/btnRemoveProdutoCampanha"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_excluir_detalhe"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guidelineProdutoAddCampanha"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </Button>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

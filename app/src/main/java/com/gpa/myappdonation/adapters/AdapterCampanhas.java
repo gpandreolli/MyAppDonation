@@ -93,6 +93,7 @@ public class AdapterCampanhas extends RecyclerView.Adapter<AdapterCampanhas.MyVi
                         Campanha campanha = campanhas.get(position);
                         String idCampanha = campanha.getUid();
                         removeCampanha(idCampanha);
+                        notifyItemRemoved(position);
                     }
                 })
                 .setNegativeButton("Não",null).show();
@@ -103,6 +104,7 @@ public class AdapterCampanhas extends RecyclerView.Adapter<AdapterCampanhas.MyVi
                 .child(idCampanha);
 
         campanhaRef.removeValue();
+
 
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.gpa.myappdonation">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,9 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activity.CadastrarProdutoActivity"
-            android:parentActivityName=".activity.ListaProdutoActivity"/>
+            android:parentActivityName=".activity.ListaProdutoActivity"
+            tools:ignore="LockedOrientationActivity"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".activity.ListaProdutoActivity"
-            android:parentActivityName=".activity.IncialActivityInsti"/>
+            android:parentActivityName=".activity.IncialActivityInsti"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity android:name=".activity.ListaCampanhasActivity"
             android:parentActivityName=".activity.IncialActivityInsti"/>
         <activity

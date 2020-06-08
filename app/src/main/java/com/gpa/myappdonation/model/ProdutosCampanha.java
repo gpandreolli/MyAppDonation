@@ -2,6 +2,7 @@ package com.gpa.myappdonation.model;
 
 public class ProdutosCampanha {
 
+    private String uid;
     private String uidProduto;
     private String nomeProCampanha;
     private String descProdCampanha;
@@ -11,11 +12,20 @@ public class ProdutosCampanha {
     public ProdutosCampanha() {
     }
 
-    public ProdutosCampanha(String uidProduto, String nomeProCampanha, String descProdCampanha, String uidCampanha) {
+    public ProdutosCampanha(String uid, String uidProduto, String nomeProCampanha, String descProdCampanha, String uidCampanha) {
+        this.uid = uid;
         this.uidProduto = uidProduto;
         this.nomeProCampanha = nomeProCampanha;
         this.descProdCampanha = descProdCampanha;
         this.uidCampanha = uidCampanha;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getUidProduto() {

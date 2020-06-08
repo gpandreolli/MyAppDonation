@@ -71,6 +71,7 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.MyView
                         Produto produto = produtos.get(position);
                         String idProduto = produto.getUid();
                         removeProduto(idProduto);
+                        notifyItemRemoved(position);
                     }
                 })
                 .setNegativeButton("Não",null).show();
@@ -82,6 +83,7 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.MyView
                 .child(idProduto);
 
         produtoRef.removeValue();
+
     }
 
     private void editaProduto(int position) {
