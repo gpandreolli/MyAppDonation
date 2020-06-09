@@ -11,16 +11,19 @@ public class Doacao {
     private String data;
     private String valor;
     private CurrencyEditText cet;
+    private String produto;
 
     public Doacao() {
     }
 
-    public Doacao(String uid, String uidInstituicao, String nomeInstituicao,String data, String valor) {
+    public Doacao(String uid, String uidInstituicao, String nomeInstituicao, String data, String valor, CurrencyEditText cet, String produto) {
         this.uid = uid;
         this.uidInstituicao = uidInstituicao;
         this.nomeInstituicao = nomeInstituicao;
         this.data = data;
         this.valor = valor;
+        this.cet = cet;
+        this.produto = produto;
     }
 
     public String getUid() {
@@ -63,7 +66,23 @@ public class Doacao {
         this.valor = valor;
     }
 
-   /* public String getValorFormatado(){
+    public CurrencyEditText getCet() {
+        return cet;
+    }
+
+    public void setCet(CurrencyEditText cet) {
+        this.cet = cet;
+    }
+
+    public String getProduto() {
+        return produto;
+    }
+
+    public void setProduto(String produto) {
+        this.produto = produto;
+    }
+
+    /* public String getValorFormatado(){
 
         Long valorDaLinha = getValor();
         String valorFormatado = cet.formatCurrency(Long.toString(valorDaLinha));

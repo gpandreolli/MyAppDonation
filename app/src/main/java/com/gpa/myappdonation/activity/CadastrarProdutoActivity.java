@@ -36,6 +36,7 @@ public class CadastrarProdutoActivity extends AppCompatActivity {
     private List<Produto> produtos = new ArrayList<>();
     private int position = 0;
 
+
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference,produtoEditReference;
 
@@ -99,6 +100,7 @@ public class CadastrarProdutoActivity extends AppCompatActivity {
         Produto produto = new Produto();
         produto.setNome(edtNomeProduto.getText().toString());
         produto.setDescricao(edtDescricaoProduto.getText().toString());
+
         if (extras != null) {
             produto.setUid(idProduto);
             produtoEditReference = ConfiguracaoFirebase.getFirebase();

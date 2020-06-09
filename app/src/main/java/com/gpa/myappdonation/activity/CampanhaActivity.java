@@ -53,8 +53,6 @@ public class CampanhaActivity extends AppCompatActivity {
     private List<ProdutosCampanha> produtosCampanha = new ArrayList<>();
     private List<ProdutosCampanha> produtosCampanhaRecuperados = new ArrayList<>();
     private List<ProdutosCampanha> produtosCampanhaRecuperada = new ArrayList<>();
-
-
     private Switch aSwitchPermanente;
     private AlertDialog dialogCarregando;
     private String idInstituicao;
@@ -155,18 +153,10 @@ public class CampanhaActivity extends AppCompatActivity {
                                                 produtoCampanha.setNomeProCampanha(produtoSelecionado.getNome());
                                                 produtoCampanha.setDescProdCampanha(produtoSelecionado.getDescricao());
 
-
                                                 if (campanhaRecuperada == null) {
                                                     campanhaRecuperada = new Campanha(idInstituicao);
                                                     produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
-
-
                                                 }
-
-
-
-
-
 
                                                   if(adapterProdutosCampanha == null){
                                                       produtosCampanha.add(produtoCampanha);
@@ -176,30 +166,22 @@ public class CampanhaActivity extends AppCompatActivity {
                                                     recyclerProdutosCampanhaAdd.setLayoutManager(new LinearLayoutManager(CampanhaActivity.this));
                                                     recyclerProdutosCampanhaAdd.setHasFixedSize(true);
                                                     recyclerProdutosCampanhaAdd.setAdapter(adapterProdutosCampanha);
-                                                 }else{
-
+                                                  } else if (adapterProdutosCampanha != null && extras != null) {
 
                                                       produtosCampanhaRecuperados.add(produtoCampanha);
                                                       campanhaRecuperada.setItens(produtosCampanhaRecuperados);
                                                       produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
                                                       adapterProdutosCampanha.notifyDataSetChanged();
-                                                     // recyclerProdutosCampanhaAdd.setLayoutManager(new LinearLayoutManager(CampanhaActivity.this));
-                                                     // recyclerProdutosCampanhaAdd.setHasFixedSize(true);
-                                                     // recyclerProdutosCampanhaAdd.setAdapter(adapterProdutosCampanha);
+                                                  } else if (adapterProdutosCampanha != null && extras == null) {
+                                                      produtosCampanha.add(produtoCampanha);
+                                                      campanhaRecuperada.setItens(produtosCampanha);
+                                                      produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
+                                                      adapterProdutosCampanha.notifyDataSetChanged();
 
-                                                   // produtosCampanha = produtosCampanhaRecuperados;
-
-
-                                                }
-
-                                                //adapterProdutosCampanha.notifyDataSetChanged();
-
-
+                                                  }
                                             }
                                         }).
                                         setNegativeButton("Não", null).show();
-
-
                             }
 
                             @Override

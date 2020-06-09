@@ -34,7 +34,7 @@ public class AdapterMinhasDoacoes extends RecyclerView.Adapter<AdapterMinhasDoac
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Doacao doacao = doacoes.get(position);
-        //holder.idInstituicao.setText(doacao.getUidInstituicao().toString());
+
         holder.nomeInst.setText(doacao.getNomeInstituicao().toString());
         holder.dataDoacao.setText(doacao.getData().toString());
         holder.valorDoacao.setText(doacao.getValor().toString());
@@ -47,7 +47,7 @@ public class AdapterMinhasDoacoes extends RecyclerView.Adapter<AdapterMinhasDoac
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        //TextView idInstituicao;
+
         TextView nomeInst;
         TextView dataDoacao;
         TextView valorDoacao;

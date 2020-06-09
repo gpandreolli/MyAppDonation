@@ -57,7 +57,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.gpa.myappdonation.activity.InicialActivityApoiador" />
         </activity>
-        <activity android:name=".activity.CadastrarDoacoesActivity" />
+        <activity android:name=".activity.CadastrarDoacoesActivity"
+            android:parentActivityName=".activity.MinhasDoacoesActivity"/>
         <activity
             android:name=".activity.MinhasDoacoesActivity"
             android:label="@string/title_activity_minhas_doacoes"
