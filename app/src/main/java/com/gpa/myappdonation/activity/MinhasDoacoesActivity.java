@@ -114,7 +114,7 @@ public class MinhasDoacoesActivity extends AppCompatActivity {
             @Override
             public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
                 int dragFlags =  ItemTouchHelper.ACTION_STATE_IDLE;
-                int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+                int swipeFlags = ItemTouchHelper.END;
                 return makeMovementFlags(dragFlags,swipeFlags);
             }
 
@@ -125,10 +125,39 @@ public class MinhasDoacoesActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                    Log.i("Swipe","item Arrastado");
+                    excluirDoacao(viewHolder);
             }
         };
         new ItemTouchHelper(itemTouch).attachToRecyclerView(recyclerMinhasDoacoes);
+    }
+
+    private void excluirDoacao(final RecyclerView.ViewHolder viewHolder) {
+        new AlertDialog.Builder(this)
+                .setTitle("Excluir Doação")
+                .setMessage("Deseja excluir essa Doação?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Doacao doacao = doacoes.get(viewHolder.getAdapterPosition());
+                        String idDoacao = doacao.getUid();
+                        removeDoacao(idDoacao);
+                        adapterMinhasDoacoes.notifyDataSetChanged();
+                    }
+                })
+                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        adapterMinhasDoacoes.notifyDataSetChanged();
+                    }
+                }).show();
+    }
+
+    private void removeDoacao(String idDoacao) {
+        doacoesRef = ConfiguracaoFirebase.getFirebase()
+                .child("Minhas_Doacoes")
+                .child(ConfiguracaoFirebase.getIdUsuario())
+                .child(idDoacao);
+        doacoesRef.removeValue();
     }
 
     private void recuperaDoacoes(){
