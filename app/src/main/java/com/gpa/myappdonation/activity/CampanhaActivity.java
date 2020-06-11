@@ -159,6 +159,7 @@ public class CampanhaActivity extends AppCompatActivity {
                                                 }
 
                                                   if(adapterProdutosCampanha == null){
+
                                                       produtosCampanha.add(produtoCampanha);
                                                       campanhaRecuperada.setItens(produtosCampanha);
                                                       produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());

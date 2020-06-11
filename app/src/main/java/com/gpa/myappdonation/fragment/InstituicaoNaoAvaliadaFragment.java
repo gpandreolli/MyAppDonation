@@ -1,5 +1,6 @@
 package com.gpa.myappdonation.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,11 +23,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
+import com.gpa.myappdonation.activity.AdministradorActivity;
 import com.gpa.myappdonation.activity.ListaInstituicaoActivity;
 import com.gpa.myappdonation.adapters.AdapterInstituicoesNaoAvaliadas;
 import com.gpa.myappdonation.model.Instituicao;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.RecyclerItemClickListener;
+import dmax.dialog.SpotsDialog;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -45,6 +48,7 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
     private AdapterInstituicoesNaoAvaliadas adapterInst;
     private TextView txtRazaoSocial, txtNomeFantasia, txtCnpj, txtTelefone, txtEmail, txtRua, txtNumeroRua, txtComplemento, txtBairro;
     private TextView txtCidade, txtEstado, txtCep;
+    private android.app.AlertDialog dialogCarregando;
     private DatabaseReference databaseReference;
 
     public InstituicaoNaoAvaliadaFragment() {
@@ -92,14 +96,40 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
                 ));
     }
 
-    private void aprovarInstituicao(int position) {
-        Instituicao instituicao = instituicoes.get(position);
-        String idInst = instituicao.getUid();
-        String idInst2 = idInst;
-        ConfiguracaoFirebase.getFirebase().child("Instituicao").child(idInst).child("situacao").setValue("2");
+    private void aprovarInstituicao(final int position) {
+
+
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Aprovar Instituição")
+                .setMessage("Deseja realmente aprovar essa Instituição")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Instituicao instituicao = instituicoes.get(position);
+                        String idInst = instituicao.getUid();
+                        String idInst2 = idInst;
+                        ConfiguracaoFirebase.getFirebase().child("Instituicao").child(idInst).child("situacao").setValue("2");
+
+                    }
+                })
+                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        adapterInst.notifyDataSetChanged();
+                    }
+                }).show();
+
     }
 
     private void recuperaInstituicoes() {
+        dialogCarregando = new SpotsDialog.Builder()
+                .setContext(getActivity())
+                .setMessage("Carregando Dados")
+                .setCancelable(false)
+                .build();
+        dialogCarregando.show();
+
         query = FirebaseDatabase.getInstance().getReference("Instituicao").orderByChild("situacao").equalTo("1");
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -125,6 +155,7 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
 
             }
         });
+        dialogCarregando.dismiss();
     }
 
     private void exibeDadosInstituicao(int position) {

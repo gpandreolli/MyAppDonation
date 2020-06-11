@@ -22,7 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
+import com.gpa.myappdonation.adapters.AdapterContasInstituicao;
 import com.gpa.myappdonation.adapters.AdapterMyInst;
+import com.gpa.myappdonation.model.Conta;
 import com.gpa.myappdonation.model.Instituicao;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.RecyclerItemClickListener;
@@ -31,14 +33,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
+
 public class MinhasInstituicoesActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerMinhasInstituicoes;
+    private RecyclerView recyclerMinhasInstituicoes, recyclerviewContaInstituicao;
     private List<Instituicao> instituicoes = new ArrayList<>();
+    private List<Conta> contas = new ArrayList<>();
     private AdapterMyInst adapterMyInst;
-    private DatabaseReference istituicaoUsuarioref;
+    private AdapterContasInstituicao adapterContasInstituicao;
+    private DatabaseReference istituicaoUsuarioref, contasInstituicaoRef;
     private AppCompatTextView txtRazaoSocial, txtNomeFantasia, txtCnpj, txtTelefone,  txtRua, txtNumeroRua, txtComplemento, txtBairro;
     private AppCompatTextView txtCidade, txtEstado;
+    private android.app.AlertDialog dialogCarregando;
 
 
     @Override
@@ -98,10 +105,11 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
     }
 
     private void exibeMinhasInstituicoes(int position) {
-
         Instituicao instituicao = instituicoes.get(position);
+
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(MinhasInstituicoesActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.dados_minha_instituicao, null);
+        String idInstituicao = instituicao.getUid();
 
         txtRazaoSocial = mView.findViewById(R.id.txtRazaoSocialInstituicao_alert);
         txtNomeFantasia = mView.findViewById(R.id.txtNomeInstituicao_alert);
@@ -113,7 +121,7 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
         txtBairro = mView.findViewById(R.id.txtBairroInstituicao_alert);
         txtCidade = mView.findViewById(R.id.txtCidadeInstituicao_alert);
         txtEstado = mView.findViewById(R.id.txtEstadoInstituicao_alert);
-
+        recyclerviewContaInstituicao = mView.findViewById(R.id.recyclerviewContaInstituicao);
 
         txtRazaoSocial.setText(instituicao.getRazaoSocial());
         txtNomeFantasia.setText(instituicao.getNomeFantasia());
@@ -126,9 +134,50 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
         txtCidade.setText(instituicao.getCidade());
         txtEstado.setText(instituicao.getUf());
 
+        recuperaContas(idInstituicao);
         mBuilder.setView(mView);
         AlertDialog dialog = mBuilder.create();
         dialog.show();
+
+    }
+
+    private void recuperaContas(String idInstituicao) {
+
+        dialogCarregando = new SpotsDialog.Builder()
+                .setContext(this)
+                .setMessage("Carregando Dados")
+                .setCancelable(false)
+                .build();
+        dialogCarregando.show();
+
+        contasInstituicaoRef = ConfiguracaoFirebase.getFirebase()
+                .child("Conta")
+                .child(idInstituicao);
+        contasInstituicaoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                contas.clear();
+                for (DataSnapshot dsContas : dataSnapshot.getChildren()) {
+                    contas.add(dsContas.getValue(Conta.class));
+                    adapterContasInstituicao = new AdapterContasInstituicao(contas, MinhasInstituicoesActivity.this);
+                    recyclerviewContaInstituicao.setLayoutManager(new LinearLayoutManager(MinhasInstituicoesActivity.this));
+                    recyclerviewContaInstituicao.setHasFixedSize(true);
+                    recyclerviewContaInstituicao.setAdapter(adapterContasInstituicao);
+                }
+                Collections.reverse(contas);
+                if (contas.size() > 0) {
+                    adapterContasInstituicao.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        dialogCarregando.dismiss();
     }
 
     private void removeMinhaInstituicao(String idInstituicao) {

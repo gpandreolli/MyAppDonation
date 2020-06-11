@@ -1,5 +1,6 @@
 package com.gpa.myappdonation.fragment;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ import com.gpa.myappdonation.activity.ListaInstituicaoActivity;
 import com.gpa.myappdonation.adapters.AdapterInstituicoesAprovadas;
 import com.gpa.myappdonation.adapters.Adapter_instituicoes;
 import com.gpa.myappdonation.model.Instituicao;
+import dmax.dialog.SpotsDialog;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 
 import java.util.ArrayList;
@@ -41,6 +43,7 @@ public class InstituicaoAprovadaFragment extends Fragment {
     private List<Instituicao> instituicoes = new ArrayList<>();
     private AdapterInstituicoesAprovadas adapterInst;
     private AppBarLayout barLayout;
+    private AlertDialog dialogCarregando;
 
     public InstituicaoAprovadaFragment() {
         // Required empty public constructor
@@ -71,7 +74,16 @@ public class InstituicaoAprovadaFragment extends Fragment {
 
         inicializarComponentes();
         query = FirebaseDatabase.getInstance().getReference("Instituicao").orderByChild("situacao").equalTo("2");
+
+        dialogCarregando = new SpotsDialog.Builder()
+                .setContext(getContext())
+                .setMessage("Carregando Dados")
+                .setCancelable(false)
+                .build();
+        dialogCarregando.show();
+
         query.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 instituicoes.clear();
@@ -95,7 +107,9 @@ public class InstituicaoAprovadaFragment extends Fragment {
 
             }
         });
+        dialogCarregando.dismiss();
         return  view;
+
     }
 
     private void inicializarComponentes() {

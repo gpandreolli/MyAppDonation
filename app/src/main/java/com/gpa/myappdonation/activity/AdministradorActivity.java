@@ -4,11 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +31,8 @@ public class AdministradorActivity extends AppCompatActivity {
     private InstituicaoReprovadaFragment reprovadaFragment;
     private InstituicaoNaoAvaliadaFragment naoAvaliadaFragment;
     private TextView txtNomeAdministrador;
+    private ImageView btnDeslongarAdmin;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,17 @@ public class AdministradorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_administrador);
         inicializarComponentes();
         setNomeUsuario();
+
+        btnDeslongarAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+                finish();
+                Intent i = new Intent(AdministradorActivity.this, LoginActivity.class);
+                startActivity(i);
+                Toast.makeText(getBaseContext(), "Usuário deslogado", Toast.LENGTH_LONG).show();
+            }
+        });
 
         btnInstNaoAvalidas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +104,8 @@ public class AdministradorActivity extends AppCompatActivity {
         btnInstNaoAvalidas = (Button) findViewById(R.id.btnInstNaoAvalidas);
         btnInstReprovadas = (Button) findViewById(R.id.btnInstReprovadas);
         txtNomeAdministrador = (TextView) findViewById(R.id.txtNomeAdministrador);
+        btnDeslongarAdmin = (ImageView) findViewById(R.id.btnDeslogarAdmin);
+        auth = FirebaseAuth.getInstance();
     }
 
     @Override

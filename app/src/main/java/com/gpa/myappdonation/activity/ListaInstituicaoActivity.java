@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.adapters.Adapter_instituicoes;
 import com.gpa.myappdonation.model.Instituicao;
+import com.gpa.myappdonation.model.InstituicaoUsuario;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
 import com.gpa.myappdonation.util.RecyclerItemClickListener;
 
@@ -77,6 +78,11 @@ public class ListaInstituicaoActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 Instituicao inst = instituicoes.get(position);
+                                                InstituicaoUsuario minhaInstituicao = new InstituicaoUsuario();
+                                                minhaInstituicao.setComplemento(inst.getComplemento());
+                                                minhaInstituicao.setCep(inst.getCep());
+                                                minhaInstituicao.setBairro(inst.getBairro());
+
                                                 addInstituicao(inst);
                                             }
                                         }).

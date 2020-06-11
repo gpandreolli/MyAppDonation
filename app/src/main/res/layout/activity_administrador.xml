@@ -19,6 +19,18 @@
 
     </TextView>
 
+    <ImageView
+        android:id="@+id/btnDeslogarAdmin"
+        android:layout_width="24dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_logout"
+        android:foregroundGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toTopOf="@+id/txtNomeAdministrador"
+        tools:ignore="MissingConstraints">
+    </ImageView>
+
     <Button
         android:id="@+id/btnInstNaoAvalidas"
         android:layout_width="match_parent"
@@ -60,6 +72,10 @@
         tools:layout_editor_absoluteX="8dp">
 
     </Button>
+
+
+
+
 
     <FrameLayout
         android:id="@+id/frame_inst_aprovada"
