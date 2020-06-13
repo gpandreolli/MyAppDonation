@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,8 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
-import com.gpa.myappdonation.activity.AdministradorActivity;
-import com.gpa.myappdonation.activity.ListaInstituicaoActivity;
 import com.gpa.myappdonation.adapters.AdapterInstituicoesNaoAvaliadas;
 import com.gpa.myappdonation.model.Instituicao;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
@@ -49,7 +48,7 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
     private TextView txtRazaoSocial, txtNomeFantasia, txtCnpj, txtTelefone, txtEmail, txtRua, txtNumeroRua, txtComplemento, txtBairro;
     private TextView txtCidade, txtEstado, txtCep;
     private android.app.AlertDialog dialogCarregando;
-    private DatabaseReference databaseReference;
+
 
     public InstituicaoNaoAvaliadaFragment() {
         // Required empty public constructor
@@ -69,7 +68,53 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Instituições Não Avaliadas");
          recuperaInstituicoes();
          atualizaInstituicoes();
+        swipe();
         return view;
+    }
+
+    private void swipe() {
+        ItemTouchHelper.Callback itemTouch = new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                int dragFlags =  ItemTouchHelper.ACTION_STATE_IDLE;
+                int swipeFlags = ItemTouchHelper.END;
+                return makeMovementFlags(dragFlags,swipeFlags);
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                reprovarInstituicao(viewHolder);
+            }
+        };
+        new ItemTouchHelper(itemTouch).attachToRecyclerView(recyclerViewInstNaoAvaliadas);
+    }
+
+    private void reprovarInstituicao(final RecyclerView.ViewHolder viewHolder) {
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Reprovar Instituição")
+                .setMessage("Deseja realmente reprovar essa Instituição")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Instituicao instituicao = instituicoes.get(viewHolder.getAdapterPosition());
+                        String idInst = instituicao.getUid();
+                        ConfiguracaoFirebase.getFirebase().child("Instituicao").child(idInst).child("situacao").setValue("3");
+
+                    }
+                })
+                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        adapterInst.notifyDataSetChanged();
+                    }
+                }).show();
+
     }
 
     private void atualizaInstituicoes() {
@@ -110,6 +155,7 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
                         String idInst = instituicao.getUid();
                         String idInst2 = idInst;
                         ConfiguracaoFirebase.getFirebase().child("Instituicao").child(idInst).child("situacao").setValue("2");
+                        adapterInst.notifyDataSetChanged();
 
                     }
                 })
@@ -144,9 +190,8 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
                     recyclerViewInstNaoAvaliadas.setAdapter(adapterInst);
                 }
                 Collections.reverse(instituicoes);
-                if (instituicoes.size() > 0) {
-                    adapterInst.notifyDataSetChanged();
-                }
+                adapterInst.notifyDataSetChanged();
+
 
             }
 

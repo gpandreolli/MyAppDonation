@@ -25,24 +25,14 @@ public class Instituicao {
     private String email;
     private String usuario;
     private String situacao;
-
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("Instituicao");
-    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
-    private FirebaseAuth auth;
     private String uidUsuario;
+    private String uidUsuaInst;
 
     public Instituicao() {
     }
 
-   /* public Instituicao(String Uid, String nomeFantasia, String cidade, String uf) {
-        this.nomeFantasia = nomeFantasia;
-        this.cidade = cidade;
-        this.uf = uf;
-        this.Uid = Uid;
-    }*/
 
-    public Instituicao(String uid, String razaoSocial, String cnpj, String nomeFantasia, String rua, String numero, String bairro, String cep, String complemento, String cidade, String uf, String telefone, String email, String usuario) {
+    public Instituicao(String uid, String razaoSocial, String cnpj, String nomeFantasia, String rua, String numero, String bairro, String cep, String complemento, String cidade, String uf, String telefone, String email, String usuario, String situacao, String uidUsuario, String uidUsuaInst) {
         Uid = uid;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
@@ -57,6 +47,9 @@ public class Instituicao {
         this.telefone = telefone;
         this.email = email;
         this.usuario = usuario;
+        this.situacao = situacao;
+        this.uidUsuario = uidUsuario;
+        this.uidUsuaInst = uidUsuaInst;
     }
 
     public Instituicao(String Uid, String nomeFantasia) {
@@ -184,21 +177,21 @@ public class Instituicao {
         this.situacao = situacao;
     }
 
-    public void addInstituicao() {
-
-        //Instituicao inst = new Instituicao();
-        auth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        uidUsuario = currentUser.getUid();
-        String id_inst = referencia.child("Instituicao").child(getUid()).toString();
-        String teste = id_inst;
-        referencia.child("Inst_Usua").child("id_usua").setValue(uidUsuario);
-        referencia.child("Inst_Usua").child("id_inst").setValue(teste);
-
-
+    public String getUidUsuario() {
+        return uidUsuario;
     }
 
+    public void setUidUsuario(String uidUsuario) {
+        this.uidUsuario = uidUsuario;
+    }
 
+    public String getUidUsuaInst() {
+        return uidUsuaInst;
+    }
+
+    public void setUidUsuaInst(String uidUsuaInst) {
+        this.uidUsuaInst = uidUsuaInst;
+    }
 
     @Override
     public String toString() {

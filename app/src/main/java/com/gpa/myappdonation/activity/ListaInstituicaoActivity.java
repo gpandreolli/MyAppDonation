@@ -30,6 +30,7 @@ import com.gpa.myappdonation.util.RecyclerItemClickListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class ListaInstituicaoActivity extends AppCompatActivity {
 
@@ -78,11 +79,14 @@ public class ListaInstituicaoActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 Instituicao inst = instituicoes.get(position);
-                                                InstituicaoUsuario minhaInstituicao = new InstituicaoUsuario();
-                                                minhaInstituicao.setComplemento(inst.getComplemento());
-                                                minhaInstituicao.setCep(inst.getCep());
-                                                minhaInstituicao.setBairro(inst.getBairro());
 
+                                                InstituicaoUsuario minhaInstituicao = new InstituicaoUsuario();
+                                                String uidInsituicao =inst.getUid();
+                                                String uidUsuario = ConfiguracaoFirebase.getIdUsuario();
+                                                String uidUsuario_Instituicao = uidInsituicao.concat(uidUsuario);
+                                                inst.setUidUsuario(ConfiguracaoFirebase.getIdUsuario());
+                                                inst.setUid(inst.getUid());
+                                                inst.setUidUsuaInst(uidUsuario_Instituicao);
                                                 addInstituicao(inst);
                                             }
                                         }).
@@ -170,7 +174,6 @@ public class ListaInstituicaoActivity extends AppCompatActivity {
 
     private void addInstituicao(Instituicao instituicao) {
         DatabaseReference minhasInstituicoes = FirebaseDatabase.getInstance().getReference().child("Minhas_Instituicoes");
-        minhasInstituicoes.child(ConfiguracaoFirebase.getIdUsuario()).child(instituicao.getUid()).setValue(instituicao);
-
+        minhasInstituicoes.child(UUID.randomUUID().toString()).setValue(instituicao);
     }
 }

@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.adapters.AdapterContasInstituicao;
@@ -43,9 +44,11 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
     private AdapterMyInst adapterMyInst;
     private AdapterContasInstituicao adapterContasInstituicao;
     private DatabaseReference istituicaoUsuarioref, contasInstituicaoRef;
+    private Query queryInstituicaoUsuarioRef, queryInstituicaoAprovada;
     private AppCompatTextView txtRazaoSocial, txtNomeFantasia, txtCnpj, txtTelefone,  txtRua, txtNumeroRua, txtComplemento, txtBairro;
     private AppCompatTextView txtCidade, txtEstado;
     private android.app.AlertDialog dialogCarregando;
+
 
 
     @Override
@@ -53,7 +56,9 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minhas_instituicoes);
 
-        istituicaoUsuarioref = ConfiguracaoFirebase.getFirebase().child("Minhas_Instituicoes").child(ConfiguracaoFirebase.getIdUsuario());
+        istituicaoUsuarioref = ConfiguracaoFirebase.getFirebase().child("Minhas_Instituicoes");
+
+        queryInstituicaoUsuarioRef = ConfiguracaoFirebase.getFirebase().child("Minhas_Instituicoes").orderByChild("uidUsuario").equalTo(ConfiguracaoFirebase.getIdUsuario()) ;
 
         inicializarComponnetes();
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -84,7 +89,8 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 Instituicao inst = instituicoes.get(position);
                                                 String idInstituicao = inst.getUid();
-                                                removeMinhaInstituicao(idInstituicao);
+                                                String idUsuario = inst.getUidUsuario();
+                                                removeMinhaInstituicao(idInstituicao,idUsuario);
                                             }
                                         })
                                         .setNegativeButton("Não",null).show();
@@ -180,31 +186,36 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
         dialogCarregando.dismiss();
     }
 
-    private void removeMinhaInstituicao(String idInstituicao) {
-        istituicaoUsuarioref = ConfiguracaoFirebase.getFirebase()
-                .child("Minhas_Instituicoes")
-                .child(ConfiguracaoFirebase.getIdUsuario())
-                .child(idInstituicao);
+    private void removeMinhaInstituicao(String idInstituicao, String idUsuario) {
 
-        istituicaoUsuarioref.removeValue();
+         idInstituicao.concat(idUsuario);
+        queryInstituicaoUsuarioRef = ConfiguracaoFirebase.getFirebase()
+                .child("Minhas_Instituicoes").orderByChild("uidUsuaInst").equalTo(idInstituicao.concat(idUsuario));
+        istituicaoUsuarioref = queryInstituicaoUsuarioRef.getRef();
+        //istituicaoUsuarioref.child().removeValue();
+        adapterMyInst.notifyDataSetChanged();
 
     }
 
 
     private void recuperaInstituicoes() {
 
-        istituicaoUsuarioref.addValueEventListener(new ValueEventListener() {
+        queryInstituicaoUsuarioRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 instituicoes.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
+                    Instituicao inst = ds.getValue(Instituicao.class);
+
+                    if (inst.getSituacao().equals("2")){
 
                     instituicoes.add(ds.getValue(Instituicao.class));
                     adapterMyInst = new AdapterMyInst(instituicoes, MinhasInstituicoesActivity.this);
                     recyclerMinhasInstituicoes.setLayoutManager(new LinearLayoutManager(MinhasInstituicoesActivity.this));
                     recyclerMinhasInstituicoes.setHasFixedSize(true);
                     recyclerMinhasInstituicoes.setAdapter(adapterMyInst);
+                    }
                 }
                 Collections.reverse(instituicoes);
                 if (instituicoes.size() > 0) {

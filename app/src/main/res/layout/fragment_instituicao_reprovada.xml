@@ -13,7 +13,7 @@
         android:theme="@style/AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarInstNaoAvaliadas"
+            android:id="@+id/toolbarInstReprovadas"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorBlueDark"
