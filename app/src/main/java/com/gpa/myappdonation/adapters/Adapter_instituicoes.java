@@ -17,8 +17,6 @@ import com.gpa.myappdonation.model.Instituicao;
 import java.util.List;
 
 public class Adapter_instituicoes extends RecyclerView.Adapter<Adapter_instituicoes.MyViewHolder> {
-
-
     private List<Instituicao> instituicoes;
     private Context context;
 
@@ -26,14 +24,12 @@ public class Adapter_instituicoes extends RecyclerView.Adapter<Adapter_instituic
         this.instituicoes = instituicoes;
         this.context = context;
     }
-
     @NonNull
     @Override
     public Adapter_instituicoes.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_instituicoes,parent,false);
         return new MyViewHolder(item);
     }
-
     @Override
     public void onBindViewHolder(@NonNull Adapter_instituicoes.MyViewHolder holder, int position) {
         Instituicao instituicao = instituicoes.get(position);
@@ -46,8 +42,6 @@ public class Adapter_instituicoes extends RecyclerView.Adapter<Adapter_instituic
     public int getItemCount() {
         return instituicoes.size();
     }
-
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView nomeInst;
         TextView cidadeInst;

@@ -68,7 +68,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.gpa.myappdonation.activity.InicialActivityApoiador" />
         </activity>
-        <activity android:name=".activity.ListaDoacoesActivity" />
+
         <activity android:name=".activity.ListaInstActivity" />
         <activity android:name=".activity.InicialActivityApoiador" />
         <activity android:name=".activity.CadastrarConta"
@@ -80,9 +80,7 @@
         <activity android:name=".activity.AberturaActivity" />
         <activity android:name=".activity.Cadastrar" />
         <activity android:name=".activity.MainActivity" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -93,16 +91,27 @@
 
         <service
             android:name=".util.MyFirebaseMessagingService"
-            android:exported="false">
+            android:exported="true"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <!--<service
+            android:name=".util.MyFirebaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service> -->
+
         <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
      See README(https://goo.gl/l4GJaQ) for more. -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_info_black_24dp" />
+            android:resource="@drawable/logo_donation_sem_texto" />
+
         <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
              notification message. See README(https://goo.gl/6BKBk7) for more. -->
         <meta-data
@@ -112,6 +121,7 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
+
     </application>
 
 

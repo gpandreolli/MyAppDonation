@@ -43,7 +43,7 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
     private List<Conta> contas = new ArrayList<>();
     private AdapterMyInst adapterMyInst;
     private AdapterContasInstituicao adapterContasInstituicao;
-    private DatabaseReference istituicaoUsuarioref, contasInstituicaoRef;
+    private DatabaseReference instituicaoUsuarioref, contasInstituicaoRef;
     private Query queryInstituicaoUsuarioRef, queryInstituicaoAprovada;
     private AppCompatTextView txtRazaoSocial, txtNomeFantasia, txtCnpj, txtTelefone,  txtRua, txtNumeroRua, txtComplemento, txtBairro;
     private AppCompatTextView txtCidade, txtEstado;
@@ -56,7 +56,7 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minhas_instituicoes);
 
-        istituicaoUsuarioref = ConfiguracaoFirebase.getFirebase().child("Minhas_Instituicoes");
+        instituicaoUsuarioref = ConfiguracaoFirebase.getFirebase().child("Minhas_Instituicoes");
 
         queryInstituicaoUsuarioRef = ConfiguracaoFirebase.getFirebase().child("Minhas_Instituicoes").orderByChild("uidUsuario").equalTo(ConfiguracaoFirebase.getIdUsuario()) ;
 
@@ -91,6 +91,12 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
                                                 String idInstituicao = inst.getUid();
                                                 String idUsuario = inst.getUidUsuario();
                                                 removeMinhaInstituicao(idInstituicao,idUsuario);
+                                               /* if (adapterMyInst.getItemCount()>0 ){
+                                                    adapterMyInst.notifyItemRemoved(position);
+                                                    adapterMyInst.notifyDataSetChanged();
+
+                                                }*/
+
                                             }
                                         })
                                         .setNegativeButton("Não",null).show();
@@ -191,9 +197,26 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
          idInstituicao.concat(idUsuario);
         queryInstituicaoUsuarioRef = ConfiguracaoFirebase.getFirebase()
                 .child("Minhas_Instituicoes").orderByChild("uidUsuaInst").equalTo(idInstituicao.concat(idUsuario));
-        istituicaoUsuarioref = queryInstituicaoUsuarioRef.getRef();
-        //istituicaoUsuarioref.child().removeValue();
-        adapterMyInst.notifyDataSetChanged();
+
+        queryInstituicaoUsuarioRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot instDs : dataSnapshot.getChildren()) {
+                    String id = instDs.getKey();
+                    instituicaoUsuarioref = ConfiguracaoFirebase.getFirebase().child("Minhas_Instituicoes").child(id);
+                    instituicaoUsuarioref.removeValue();
+
+                }
+                Collections.reverse(instituicoes);
+                adapterMyInst.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 
@@ -209,12 +232,11 @@ public class MinhasInstituicoesActivity extends AppCompatActivity {
                     Instituicao inst = ds.getValue(Instituicao.class);
 
                     if (inst.getSituacao().equals("2")){
-
-                    instituicoes.add(ds.getValue(Instituicao.class));
-                    adapterMyInst = new AdapterMyInst(instituicoes, MinhasInstituicoesActivity.this);
-                    recyclerMinhasInstituicoes.setLayoutManager(new LinearLayoutManager(MinhasInstituicoesActivity.this));
-                    recyclerMinhasInstituicoes.setHasFixedSize(true);
-                    recyclerMinhasInstituicoes.setAdapter(adapterMyInst);
+                        instituicoes.add(ds.getValue(Instituicao.class));
+                        adapterMyInst = new AdapterMyInst(instituicoes, MinhasInstituicoesActivity.this);
+                        recyclerMinhasInstituicoes.setLayoutManager(new LinearLayoutManager(MinhasInstituicoesActivity.this));
+                        recyclerMinhasInstituicoes.setHasFixedSize(true);
+                        recyclerMinhasInstituicoes.setAdapter(adapterMyInst);
                     }
                 }
                 Collections.reverse(instituicoes);

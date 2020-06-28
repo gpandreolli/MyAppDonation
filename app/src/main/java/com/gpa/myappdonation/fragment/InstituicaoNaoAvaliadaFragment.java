@@ -49,7 +49,6 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
     private TextView txtCidade, txtEstado, txtCep;
     private android.app.AlertDialog dialogCarregando;
 
-
     public InstituicaoNaoAvaliadaFragment() {
         // Required empty public constructor
     }
@@ -80,12 +79,10 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
                 int swipeFlags = ItemTouchHelper.END;
                 return makeMovementFlags(dragFlags,swipeFlags);
             }
-
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
-
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 reprovarInstituicao(viewHolder);
@@ -105,7 +102,6 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
                         Instituicao instituicao = instituicoes.get(viewHolder.getAdapterPosition());
                         String idInst = instituicao.getUid();
                         ConfiguracaoFirebase.getFirebase().child("Instituicao").child(idInst).child("situacao").setValue("3");
-
                     }
                 })
                 .setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -143,7 +139,6 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
 
     private void aprovarInstituicao(final int position) {
 
-
         new AlertDialog.Builder(getActivity())
                 .setTitle("Aprovar Instituição")
                 .setMessage("Deseja realmente aprovar essa Instituição")
@@ -153,10 +148,8 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Instituicao instituicao = instituicoes.get(position);
                         String idInst = instituicao.getUid();
-                        String idInst2 = idInst;
                         ConfiguracaoFirebase.getFirebase().child("Instituicao").child(idInst).child("situacao").setValue("2");
                         adapterInst.notifyDataSetChanged();
-
                     }
                 })
                 .setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -165,7 +158,6 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
                         adapterInst.notifyDataSetChanged();
                     }
                 }).show();
-
     }
 
     private void recuperaInstituicoes() {
@@ -191,8 +183,6 @@ public class InstituicaoNaoAvaliadaFragment extends Fragment {
                 }
                 Collections.reverse(instituicoes);
                 adapterInst.notifyDataSetChanged();
-
-
             }
 
             @Override

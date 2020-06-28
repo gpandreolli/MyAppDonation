@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.model.Usuario;
 
@@ -162,6 +163,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Intent i = new Intent(LoginActivity.this, InicialActivityApoiador.class);
                             startActivity(i);
                             Toast.makeText(getBaseContext(), "Apoiador logado com sucesso", Toast.LENGTH_LONG).show();
+                            FirebaseMessaging.getInstance().subscribeToTopic("campanha");
                             finish();
                         }else if(tipoUsuario1.equals("3")){
                             Intent i = new Intent(LoginActivity.this, AdministradorActivity.class);

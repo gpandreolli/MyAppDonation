@@ -2,9 +2,11 @@ package com.gpa.myappdonation.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,11 +16,13 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blackcat.currencyedittext.CurrencyEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.model.Doacao;
@@ -47,11 +51,18 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
     private String produtos;
     private Bundle extras;
     private DatabaseReference doacaoEditReference,doacaoEditandoReference;
+    private Query qryInstituicaoRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_doacoes);
+
+        Toolbar toolbar = findViewById(R.id.toolbarCadastraDoacao);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Cadastrar Doação");
 
         inicializarComponentes();
         carregarDadosSpinner();
@@ -85,7 +96,9 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
         btnSalvarDoacao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                salvarDoacao(uidDoacao);
+                if ( verificarPreenchimento() ){
+                    salvarDoacao(uidDoacao);
+                }
             }
         });
 
@@ -109,6 +122,30 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private boolean verificarPreenchimento() {
+        if (spMyInst.getSelectedItem() != null){
+            if (!edtValorDoacao.getText().toString().equals("R$0,00")){
+                    return true;
+            }else{
+                edtValorDoacao.setError("Ops! favor inserir um valor maior que R$0,00");
+                //exibirMensagem("Ops! favor preenhcer o Banco da conta");
+                edtValorDoacao.setTextColor(Color.RED);
+                edtValorDoacao.requestFocus();
+                return false;
+            }
+        }else {
+            //spMyInst.setBackground(getDrawable(R.color.colorRosaEscuro));
+            exibirMensagem("favor selecionar uma instituição");
+            //spinnerInstituicaoLista.
+            return false;
+        }
+    }
+
+    private void exibirMensagem(String mensagem) {
+
+        Toast.makeText(this,mensagem,Toast.LENGTH_SHORT).show();
     }
 
     private void carregaDoacoes(String uidDoacao) {
@@ -163,8 +200,8 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
     }
 
     private void carregarDadosSpinner() {
-        instituicaoRef = ConfiguracaoFirebase.getFirebase().child("Minhas_Instituicoes").child(ConfiguracaoFirebase.getIdUsuario());
-        instituicaoRef.addValueEventListener(new ValueEventListener() {
+        qryInstituicaoRef = ConfiguracaoFirebase.getFirebase().child("Minhas_Instituicoes").orderByChild("uidUsuario").equalTo(ConfiguracaoFirebase.getIdUsuario());
+        qryInstituicaoRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int i = 0;
@@ -173,11 +210,13 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
                 for (DataSnapshot contaSnapshot : dataSnapshot.getChildren()) {
 
                     Instituicao inst = contaSnapshot.getValue(Instituicao.class);
-                    nomeInstituicao = inst.getNomeFantasia();
-                    uidInstituicao = inst.getUid();
-                    Instituicao dadosInstituicao = new Instituicao(uidInstituicao,nomeInstituicao);
-                    dadosInstituicao.setNomeFantasia(nomeInstituicao);
-                    instituicoes.add(dadosInstituicao);
+                    if (inst.getSituacao().equals("2")){
+                        nomeInstituicao = inst.getNomeFantasia();
+                        uidInstituicao = inst.getUid();
+                        Instituicao dadosInstituicao = new Instituicao(uidInstituicao,nomeInstituicao);
+                        dadosInstituicao.setNomeFantasia(nomeInstituicao);
+                        instituicoes.add(dadosInstituicao);
+                    }
                 }
                 ArrayAdapter adapter = new ArrayAdapter(CadastrarDoacoesActivity.this, android.R.layout.simple_spinner_dropdown_item,instituicoes);
                 spMyInst.setAdapter(adapter);

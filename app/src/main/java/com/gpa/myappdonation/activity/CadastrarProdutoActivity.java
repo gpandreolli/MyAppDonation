@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,7 +68,9 @@ public class CadastrarProdutoActivity extends AppCompatActivity {
         btnSalvarProduto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                salvarProduto(uidProduto);
+                if (verificarPreenchimento()){
+                    salvarProduto(uidProduto);
+                }
             }
         });
 
@@ -77,6 +81,31 @@ public class CadastrarProdutoActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean verificarPreenchimento() {
+        if (!edtNomeProduto.getText().toString().equals("")){
+                if (!edtDescricaoProduto.getText().toString().equals("")){
+                    return true;
+                }
+                else{
+                    edtDescricaoProduto.setError("Ops! favor preenhcer a descrição do Produto");
+                    //exibirMensagem("Ops! favor preenhcer o Banco da conta");
+                    edtDescricaoProduto.setHintTextColor(Color.RED);
+                    edtDescricaoProduto.requestFocus();
+                    return false;
+                }
+        }else{
+            edtNomeProduto.setError("Ops! favor preenhcer o nome do Produto");
+            //exibirMensagem("Ops! favor preenhcer o Banco da conta");
+            edtNomeProduto.setHintTextColor(Color.RED);
+            edtNomeProduto.requestFocus();
+            return false;
+        }
+    }
+
+    public void exibirMensagem(String mensagem) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
     }
 
     private void setaProduto(String idProduto) {
@@ -131,4 +160,8 @@ public class CadastrarProdutoActivity extends AppCompatActivity {
         edtNomeProduto.setText("");
         edtDescricaoProduto.setText("");
     }
+
+    /*public void retornarEditText(){
+        vi
+    }*/
 }

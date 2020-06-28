@@ -10,6 +10,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,20 +20,28 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.gpa.myappdonation.R;
 import com.gpa.myappdonation.adapters.AdapterProdutos;
 import com.gpa.myappdonation.adapters.AdapterProdutosCampanha;
 import com.gpa.myappdonation.model.Campanha;
 
+import com.gpa.myappdonation.model.Instituicao;
+import com.gpa.myappdonation.model.Notificacao;
+import com.gpa.myappdonation.model.NotificacaoDados;
 import com.gpa.myappdonation.model.ProdutosCampanha;
 import com.gpa.myappdonation.model.Produto;
 import com.gpa.myappdonation.util.ConfiguracaoFirebase;
+import com.gpa.myappdonation.util.NotificacaoService;
 import com.gpa.myappdonation.util.RecyclerItemClickListener;
+import com.gpa.myappdonation.util.Util;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,9 +50,17 @@ import java.util.List;
 import java.util.UUID;
 
 import dmax.dialog.SpotsDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CampanhaActivity extends AppCompatActivity {
 
+    Calendar mDataAtual;
+    int dia, mes, ano, campanhaPermanente;
+    Bundle extras;
     private TextView  txtDataInicial, txtDataFinal;
     private EditText edtNomeCampanha;
     private Button btnSalvarCampanha, btnCancelarCampanha;
@@ -61,12 +78,10 @@ public class CampanhaActivity extends AppCompatActivity {
     private AdapterProdutosCampanha adapterProdutosCampanha;
     private Context context;
     private Campanha campanhaRecuperada;
-    Calendar mDataAtual;
-    int dia, mes, ano ,campanhaPermanente;
-    Bundle extras;
-
-
-
+    private Retrofit retrofit;
+    private String baseUrl;
+    private String nomeInstituicao;
+    private Query queryInstituicao;
 
 
     @Override
@@ -89,9 +104,6 @@ public class CampanhaActivity extends AppCompatActivity {
 
         recuperaDadosInstituicao();
         recuperarProdutos();
-
-
-
 
         dia = mDataAtual.get(Calendar.DAY_OF_MONTH);
         mes = mDataAtual.get(Calendar.MONTH) +1;
@@ -158,28 +170,30 @@ public class CampanhaActivity extends AppCompatActivity {
                                                     produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
                                                 }
 
-                                                  if(adapterProdutosCampanha == null){
+                                                if (adapterProdutosCampanha == null) {
 
-                                                      produtosCampanha.add(produtoCampanha);
-                                                      campanhaRecuperada.setItens(produtosCampanha);
-                                                      produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
-                                                    adapterProdutosCampanha = new AdapterProdutosCampanha(produtosCampanha,CampanhaActivity.this);
+                                                    produtosCampanha.add(produtoCampanha);
+                                                    campanhaRecuperada.setItens(produtosCampanha);
+                                                    produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
+                                                    adapterProdutosCampanha = new AdapterProdutosCampanha(produtosCampanha, CampanhaActivity.this);
                                                     recyclerProdutosCampanhaAdd.setLayoutManager(new LinearLayoutManager(CampanhaActivity.this));
                                                     recyclerProdutosCampanhaAdd.setHasFixedSize(true);
                                                     recyclerProdutosCampanhaAdd.setAdapter(adapterProdutosCampanha);
-                                                  } else if (adapterProdutosCampanha != null && extras != null) {
+                                                } else if (adapterProdutosCampanha != null && extras != null) {
 
-                                                      produtosCampanhaRecuperados.add(produtoCampanha);
-                                                      campanhaRecuperada.setItens(produtosCampanhaRecuperados);
-                                                      produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
-                                                      adapterProdutosCampanha.notifyDataSetChanged();
-                                                  } else if (adapterProdutosCampanha != null && extras == null) {
-                                                      produtosCampanha.add(produtoCampanha);
-                                                      campanhaRecuperada.setItens(produtosCampanha);
-                                                      produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
-                                                      adapterProdutosCampanha.notifyDataSetChanged();
+                                                    produtosCampanhaRecuperados.add(produtoCampanha);
+                                                    campanhaRecuperada.setItens(produtosCampanhaRecuperados);
+                                                    produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
+                                                    adapterProdutosCampanha.notifyDataSetChanged();
 
-                                                  }
+                                                } else if (adapterProdutosCampanha != null && extras == null) {
+
+                                                    produtosCampanha.add(produtoCampanha);
+                                                    campanhaRecuperada.setItens(produtosCampanha);
+                                                    produtoCampanha.setUidCampanha(campanhaRecuperada.getUid());
+                                                    adapterProdutosCampanha.notifyDataSetChanged();
+
+                                                }
                                             }
                                         }).
                                         setNegativeButton("Não", null).show();
@@ -210,11 +224,9 @@ public class CampanhaActivity extends AppCompatActivity {
         });
 
         btnSalvarCampanha.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View view) {
-                salvaCampanha(uidCampanha);
+                salvaCampanha(uidCampanha, view);
             }
         });
 
@@ -225,68 +237,156 @@ public class CampanhaActivity extends AppCompatActivity {
 
             }
         });
+
+        baseUrl = "https://fcm.googleapis.com/fcm/";
+        // baseUrl = "https://fcm.googleapis.com/wp/";
+        retrofit = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build();
+        String teste = "";
+        //FirebaseMessaging.getInstance().subscribeToTopic("campanha");
     }
 
-    private void salvaCampanha(String uidCampanha) {
+    public void enviarNotificacao(View view) {
 
-        if (extras != null){
+        String nomeCampanha = campanhaRecuperada.getNomeCampanha();
+        String itensNotificacao = "" ;
+        String item;
+        for (int i = 0; i< produtosCampanha.size(); i++){
+                item = produtosCampanha.get(i).getNomeProCampanha();
+                itensNotificacao = itensNotificacao+" \n "+item;
+        }
 
-            campanhaEditReference = ConfiguracaoFirebase.getFirebase().child("Campanha").child(uidCampanha);
-            campanhaEditReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        String to = "/topics/campanha";
+
+        String title = "A Instituição: "+ nomeInstituicao;
+        String body = "Criou a campanha: "+nomeCampanha+ "\n e necesita dos produtos abaixo: \n \n"+itensNotificacao;
+
+        Notificacao notificacao = new Notificacao(title,body);
+
+        NotificacaoDados notificacaoDados = new NotificacaoDados(to, notificacao);
+        notificacaoDados.setNotificacao(notificacao);
+        notificacaoDados.setTo(to);
+
+        NotificacaoService service = retrofit.create(NotificacaoService.class);
+        Call<NotificacaoDados> call = service.salvarNotificacao(notificacaoDados);
+
+        String noti = notificacaoDados.getNotificacao().getTitle();
+        String teste = notificacaoDados.getNotificacao().getBody();
+
+
+        try {
+            call.enqueue(new Callback<NotificacaoDados>() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Campanha campanhaRecuperada = dataSnapshot.getValue(Campanha.class);
+                public void onResponse(Call<NotificacaoDados> call, Response<NotificacaoDados> response) {
 
-                   String uidCampanhaEdit = campanhaRecuperada.getUid();
 
-                    if(campanhaPermanente == 1){
-                        campanhaRecuperada.setDataFinal("");
-                        campanhaRecuperada.setDataInicial("");
-                        campanhaRecuperada.setPermanente("1");
-                    }else if (campanhaPermanente == 0) {
-                        campanhaRecuperada.setDataInicial(txtDataInicial.getText().toString());
-                        campanhaRecuperada.setDataFinal(txtDataFinal.getText().toString());
-                        campanhaRecuperada.setPermanente("0");
+                    if (response.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "codigo: " + response.code() + " - "
+                                + " Enviada ! Corpo: "+teste+" - Title: "+noti, Toast.LENGTH_LONG).show();
                     }
-                    campanhaRecuperada.setNomeCampanha(edtNomeCampanha.getText().toString());
-                    campanhaRecuperada.setStatus("1");
-
-                    int j = adapterProdutosCampanha.getItemCount();
-                    for (int i = 0; i < j ; ++i ){
-                        ProdutosCampanha  prodCampanha  ;
-                        prodCampanha = adapterProdutosCampanha.getItem(i);
-                        produtosCampanha.add(prodCampanha);
-                    }
-
-                    campanhaRecuperada.setItens(produtosCampanha);
-                    campanhaRecuperada.setUid(uidCampanhaEdit);
-                    campanhaRecuperada.salvarCampanha();
-                    finish();
-
-
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                public void onFailure(Call<NotificacaoDados> call, Throwable t) {
 
                 }
             });
+        }catch (Exception e ){
+            e.getMessage();
+        }
 
 
-        }else {
-            if(campanhaPermanente == 1){
-                campanhaRecuperada.setDataFinal("");
-                campanhaRecuperada.setDataInicial("");
-                campanhaRecuperada.setPermanente("1");
-            }else if (campanhaPermanente == 0) {
-                campanhaRecuperada.setDataInicial(txtDataInicial.getText().toString());
-                campanhaRecuperada.setDataFinal(txtDataFinal.getText().toString());
-                campanhaRecuperada.setPermanente("0");
+    }
+
+    private void salvaCampanha(String uidCampanha, final View view) {
+
+        if (!edtNomeCampanha.getText().toString().equals("")) {
+
+            if (extras != null){
+
+                campanhaEditReference = ConfiguracaoFirebase.getFirebase().child("Campanha").child(uidCampanha);
+                campanhaEditReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Campanha campanhaRecuperada = dataSnapshot.getValue(Campanha.class);
+
+                        String uidCampanhaEdit = campanhaRecuperada.getUid();
+
+                        if(campanhaPermanente == 1){
+                            campanhaRecuperada.setDataFinal("");
+                            campanhaRecuperada.setDataInicial("");
+                            campanhaRecuperada.setPermanente("1");
+                        }else if (campanhaPermanente == 0) {
+                            campanhaRecuperada.setDataInicial(txtDataInicial.getText().toString());
+                            campanhaRecuperada.setDataFinal(txtDataFinal.getText().toString());
+                            campanhaRecuperada.setPermanente("0");
+                        }
+                        campanhaRecuperada.setNomeCampanha(edtNomeCampanha.getText().toString());
+                        campanhaRecuperada.setStatus("1");
+
+                        int j = adapterProdutosCampanha.getItemCount();
+                        for (int i = 0; i < j ; ++i ){
+                            ProdutosCampanha  prodCampanha  ;
+                            prodCampanha = adapterProdutosCampanha.getItem(i);
+                            produtosCampanha.add(prodCampanha);
+                        }
+
+                        if (produtosCampanha.size() > 0) {
+                            campanhaRecuperada.setItens(produtosCampanha);
+                            campanhaRecuperada.setUid(uidCampanhaEdit);
+                            campanhaRecuperada.salvarCampanha();
+                            enviarNotificacao(view);
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Favor adicionar produtos a sua campanha", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+            }else {
+
+
+                if (campanhaRecuperada != null) {
+
+                    if (campanhaRecuperada.getItens().size() > 0) {
+
+                        if (campanhaPermanente == 1) {
+                            campanhaRecuperada.setDataFinal("");
+                            campanhaRecuperada.setDataInicial("");
+                            campanhaRecuperada.setPermanente("1");
+                        } else if (campanhaPermanente == 0) {
+                            campanhaRecuperada.setDataInicial(txtDataInicial.getText().toString());
+                            campanhaRecuperada.setDataFinal(txtDataFinal.getText().toString());
+                            campanhaRecuperada.setPermanente("0");
+                        }
+
+                        campanhaRecuperada.setNomeCampanha(edtNomeCampanha.getText().toString());
+                        campanhaRecuperada.setStatus("1");
+
+                        campanhaRecuperada.salvarCampanha();
+                        enviarNotificacao(view);
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Favor adicionar produtos a sua campanha", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Favor adicionar produtos a sua campanha", Toast.LENGTH_SHORT).show();
+                }
+
             }
-            campanhaRecuperada.setNomeCampanha(edtNomeCampanha.getText().toString());
-            campanhaRecuperada.setStatus("1");
-            campanhaRecuperada.salvarCampanha();
-            finish();
+        }else {
+            Toast.makeText(getApplicationContext(), "Favor preencher o nome da Campanha", Toast.LENGTH_SHORT).show();
+            edtNomeCampanha.setHintTextColor(Color.RED);
+            edtNomeCampanha.requestFocus();
         }
     }
 
@@ -394,6 +494,31 @@ public class CampanhaActivity extends AppCompatActivity {
         aSwitchPermanente = (Switch) findViewById(R.id.switchPermanente);
         edtNomeCampanha = (EditText) findViewById(R.id.edtNomeCampanha);
         recyclerProdutosCampanhaAdd = (RecyclerView) findViewById(R.id.recyclerProdutosCampanhaAdd);
+        nomeInstituicao = retornaNomeInstituicao();
+    }
+
+    private String retornaNomeInstituicao(){
+
+        queryInstituicao = ConfiguracaoFirebase.getFirebase().child("Instituicao").orderByChild("uid").equalTo(ConfiguracaoFirebase.getIdUsuario());
+
+        queryInstituicao.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot instDs : dataSnapshot.getChildren()) {
+                    Instituicao instituicao = instDs.getValue(Instituicao.class);
+                    nomeInstituicao = instituicao.getNomeFantasia();
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return nomeInstituicao;
+
     }
 
 

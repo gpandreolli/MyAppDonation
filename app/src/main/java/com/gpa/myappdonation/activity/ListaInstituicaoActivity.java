@@ -141,6 +141,7 @@ public class ListaInstituicaoActivity extends AppCompatActivity {
     }
 
     private void recuperaInstituicoes() {
+
         instituicaoRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -155,9 +156,8 @@ public class ListaInstituicaoActivity extends AppCompatActivity {
                     recyclerInstituicoes.setAdapter(adapterInst);
                 }
                 Collections.reverse(instituicoes);
-                if (instituicoes.size() > 0) {
-                    adapterInst.notifyDataSetChanged();
-                }
+                adapterInst.notifyDataSetChanged();
+
             }
 
             @Override

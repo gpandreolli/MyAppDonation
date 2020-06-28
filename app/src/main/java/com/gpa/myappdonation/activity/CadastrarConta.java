@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,7 +66,9 @@ public class CadastrarConta extends AppCompatActivity {
         btnSalvarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                salvarConta(uidConta);
+                if (verificarPreenchimento()) {
+                    salvarConta(uidConta);
+                }
             }
         });
         btnCancelarConta.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +121,7 @@ public class CadastrarConta extends AppCompatActivity {
     }
 
     private void salvarConta(String uidConta) {
+
         Conta conta = new Conta();
         conta.setNome(edtNomeConta.getText().toString());
         conta.setNumero_conta(edtNumeroConta.getText().toString());
@@ -153,6 +158,54 @@ public class CadastrarConta extends AppCompatActivity {
         edtNumeroBancoConta.setText("");
         edtNumeroConta.setText("");
     }
+
+    public boolean verificarPreenchimento() {
+
+        if (!edtNomeConta.getText().toString().equals("")) {
+            if (!edtNumeroBancoConta.getText().toString().equals("")) {
+                if (!edtAgenciaConta.getText().toString().equals("")) {
+                    if (!edtBancoConta.getText().toString().equals("")) {
+                        if (!edtNumeroConta.getText().toString().equals("")) {
+                            return true;
+                        } else {
+                            exibirMensagem("Ops! favor preenhcer a número da conta");
+                            edtNumeroConta.setHintTextColor(Color.RED);
+                            edtNumeroConta.requestFocus();
+                            return false;
+
+                        }
+                    } else {
+                        exibirMensagem("Ops! favor preenhcer o Banco da conta");
+                        edtBancoConta.setHintTextColor(Color.RED);
+                        edtBancoConta.requestFocus();
+                        return false;
+                    }
+                } else {
+                    exibirMensagem("Ops! favor preenhcer a agência da conta");
+                    edtAgenciaConta.setHintTextColor(Color.RED);
+                    edtAgenciaConta.requestFocus();
+                    return false;
+                }
+            } else {
+                exibirMensagem("Ops! favor preenhcer o número do Banco");
+                edtNumeroBancoConta.setHintTextColor(Color.RED);
+                edtNumeroBancoConta.requestFocus();
+                return false;
+            }
+        } else {
+            exibirMensagem("Ops! favor preenhcer o nome da Conta");
+            edtNomeConta.setHintTextColor(Color.RED);
+            edtNomeConta.requestFocus();
+            return false;
+        }
+        //return false;
+    }
+
+    public void exibirMensagem(String mensagem) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+    }
+
+
 
 
 }
