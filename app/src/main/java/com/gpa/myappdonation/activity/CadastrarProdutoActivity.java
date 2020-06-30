@@ -136,6 +136,7 @@ public class CadastrarProdutoActivity extends AppCompatActivity {
             produtoEditReference.child("Produto").child(idProduto).setValue(produto);
         } else {
             produto.setUid(UUID.randomUUID().toString());
+            produto.setUidInstituicao(ConfiguracaoFirebase.getIdUsuario());
             databaseReference = ConfiguracaoFirebase.getFirebase();
             databaseReference.child("Produto").child(produto.getUid()).setValue(produto);
         }

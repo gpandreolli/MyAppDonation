@@ -37,7 +37,7 @@ public class ListaProdutoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_produto);
         recyclerProdutos = (RecyclerView) findViewById(R.id.recyclerProdutos);
-        produtosRef = ConfiguracaoFirebase.getFirebase().child("Produto");
+        produtosRef = ConfiguracaoFirebase.getFirebase().child("Produto").orderByChild("uidInstituicao").equalTo(ConfiguracaoFirebase.getIdUsuario());
         recuperaProdutos();
 
         Toolbar toolbarProdutos = findViewById(R.id.toolbarProdutos);

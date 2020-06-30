@@ -73,8 +73,8 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
             carregaDoacoes(uidDoacao);
         }
 
-        dia = mDataAtual.get(Calendar.DAY_OF_MONTH);
-        mes = mDataAtual.get(Calendar.MONTH);
+        dia = mDataAtual.get(Calendar.DAY_OF_MONTH)+1;
+        mes = mDataAtual.get(Calendar.MONTH)+1;
         ano = mDataAtual.get(Calendar.YEAR);
 
 
@@ -88,7 +88,7 @@ public class CadastrarDoacoesActivity extends AppCompatActivity {
                         mes = mes + 1;
                         txtDataDoacao.setText(dia + "/" + mes + "/" + ano);
                     }
-                }, ano, mes, dia);
+                }, ano, mes-1, dia);
                 datePickerDialog.show();
             }
         });

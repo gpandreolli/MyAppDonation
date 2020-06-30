@@ -5,14 +5,16 @@ public class Produto {
     private String uid;
     private String nome;
     private String descricao;
+    private String uidInstituicao;
 
     public Produto() {
     }
 
-    public Produto(String uid, String nome, String descricao) {
+    public Produto(String uid, String nome, String descricao, String uidInstituicao) {
         this.uid = uid;
         this.nome = nome;
         this.descricao = descricao;
+        this.uidInstituicao = uidInstituicao;
     }
 
     public String getUid() {
@@ -37,5 +39,13 @@ public class Produto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getUidInstituicao() {
+        return uidInstituicao;
+    }
+
+    public void setUidInstituicao(String uidInstituicao) {
+        this.uidInstituicao = uidInstituicao;
     }
 }

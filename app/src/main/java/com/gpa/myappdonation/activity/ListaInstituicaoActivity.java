@@ -142,29 +142,34 @@ public class ListaInstituicaoActivity extends AppCompatActivity {
 
     private void recuperaInstituicoes() {
 
-        instituicaoRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                instituicoes.clear();
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+        if (instituicaoRef != null){
+
+            instituicaoRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    instituicoes.clear();
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
 
-                    instituicoes.add(ds.getValue(Instituicao.class));
-                    adapterInst = new Adapter_instituicoes(instituicoes, ListaInstituicaoActivity.this);
-                    recyclerInstituicoes.setLayoutManager(new LinearLayoutManager(ListaInstituicaoActivity.this));
-                    recyclerInstituicoes.setHasFixedSize(true);
-                    recyclerInstituicoes.setAdapter(adapterInst);
+                        instituicoes.add(ds.getValue(Instituicao.class));
+                        adapterInst = new Adapter_instituicoes(instituicoes, ListaInstituicaoActivity.this);
+                        recyclerInstituicoes.setLayoutManager(new LinearLayoutManager(ListaInstituicaoActivity.this));
+                        recyclerInstituicoes.setHasFixedSize(true);
+                        recyclerInstituicoes.setAdapter(adapterInst);
+                    }
+                    Collections.reverse(instituicoes);
+                    if (instituicoes.size() > 0){
+                        adapterInst.notifyDataSetChanged();
+                    }
+
                 }
-                Collections.reverse(instituicoes);
-                adapterInst.notifyDataSetChanged();
 
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+                }
+            });
+        }
     }
 
     private void inicializarComponnetes() {

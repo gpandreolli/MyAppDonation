@@ -81,7 +81,7 @@ public class CampanhaActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private String baseUrl;
     private String nomeInstituicao;
-    private Query queryInstituicao;
+    private Query queryInstituicao, queryProduto;
 
 
     @Override
@@ -105,20 +105,23 @@ public class CampanhaActivity extends AppCompatActivity {
         recuperaDadosInstituicao();
         recuperarProdutos();
 
-        dia = mDataAtual.get(Calendar.DAY_OF_MONTH);
+        dia = mDataAtual.get(Calendar.DAY_OF_MONTH)+1;
         mes = mDataAtual.get(Calendar.MONTH) +1;
         ano = mDataAtual.get(Calendar.YEAR);
 
         txtDataInicial.setText(dia + "/" + mes + "/" + ano);
+
         txtDataInicial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(CampanhaActivity.this, new DatePickerDialog.OnDateSetListener() {
+
                     @Override
                     public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
+                        mes = mes+1;
                         txtDataInicial.setText(dia + "/" + mes + "/" + ano);
                     }
-                }, ano, mes, dia);
+                }, ano, mes-1, dia);
                 datePickerDialog.show();
             }
         });
@@ -131,9 +134,10 @@ public class CampanhaActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(CampanhaActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
+                        mes = mes+1;
                         txtDataFinal.setText(dia + "/" + mes + "/" + ano);
                     }
-                }, ano, mes, dia);
+                }, ano, mes-1, dia);
                 datePickerDialog.show();
 
             }
@@ -456,8 +460,9 @@ public class CampanhaActivity extends AppCompatActivity {
                 .build();
         dialogCarregando.show();
 
-        produtoRef = ConfiguracaoFirebase.getFirebase().child("Produto");
-        produtoRef.addValueEventListener(new ValueEventListener() {
+        //produtoRef = ConfiguracaoFirebase.getFirebase().child("Produto");
+        queryProduto = ConfiguracaoFirebase.getFirebase().child("Produto").orderByChild("uidInstituicao").equalTo(ConfiguracaoFirebase.getIdUsuario());
+        queryProduto.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 produtos.clear();
